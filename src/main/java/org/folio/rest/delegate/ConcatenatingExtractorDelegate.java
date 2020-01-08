@@ -24,13 +24,9 @@ public class ConcatenatingExtractorDelegate extends AbstractExtractorDelegate {
 
   @Override
   public void execute(DelegateExecution execution) throws Exception {
-
     Stream<String> newStream = this.getStream(execution);
-
     String primaryStreamId = (String) execution.getVariable("primaryStreamId");
     streamService.concatenateStream(primaryStreamId, newStream);
-
-    log.info("CONCATENATING EXTRACTOR DELEGATE FINISHED");
   }
 
 }
