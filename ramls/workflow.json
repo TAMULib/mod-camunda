@@ -46,6 +46,10 @@
           "$ref" : "#/definitions/RestRequestTask"
         }, {
           "$ref" : "#/definitions/StreamingReportingTask"
+        }, {
+          "$ref" : "#/definitions/StreamingFileReadTask"
+        }, {
+          "$ref" : "#/definitions/StreamingFileWriteTask"
         } ]
       }
     },
@@ -359,6 +363,75 @@
         }
       },
       "title" : "StreamingReportingTask",
+      "required" : [ "deserializeAs", "name" ]
+    },
+    "StreamingFileReadTask" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "deserializeAs" : {
+          "type" : "string",
+          "enum" : [ "StreamingFileReadTask" ],
+          "default" : "StreamingFileReadTask"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string",
+          "minLength" : 4,
+          "maxLength" : 64
+        },
+        "delegate" : {
+          "type" : "string"
+        },
+        "streaming" : {
+          "type" : "boolean"
+        },
+        "path" : {
+          "type" : "string"
+        },
+        "workflow" : {
+          "type" : "string"
+        },
+        "delay" : {
+          "type" : "integer"
+        }
+      },
+      "title" : "StreamingFileReadTask",
+      "required" : [ "deserializeAs", "name" ]
+    },
+    "StreamingFileWriteTask" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "deserializeAs" : {
+          "type" : "string",
+          "enum" : [ "StreamingFileWriteTask" ],
+          "default" : "StreamingFileWriteTask"
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string",
+          "minLength" : 4,
+          "maxLength" : 64
+        },
+        "delegate" : {
+          "type" : "string"
+        },
+        "streaming" : {
+          "type" : "boolean"
+        },
+        "path" : {
+          "type" : "string"
+        },
+        "workflow" : {
+          "type" : "string"
+        }
+      },
+      "title" : "StreamingFileWriteTask",
       "required" : [ "deserializeAs", "name" ]
     },
     "EventTrigger" : {

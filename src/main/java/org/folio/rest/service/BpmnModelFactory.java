@@ -34,6 +34,8 @@ import org.folio.rest.workflow.components.RestRequestTask;
 import org.folio.rest.workflow.components.ScheduleTrigger;
 import org.folio.rest.workflow.components.StreamCreateForEachTask;
 import org.folio.rest.workflow.components.StreamingExtractorTask;
+import org.folio.rest.workflow.components.StreamingFileReadTask;
+import org.folio.rest.workflow.components.StreamingFileWriteTask;
 import org.folio.rest.workflow.components.StreamingReportingTask;
 import org.folio.rest.workflow.components.StreamingRequestTask;
 import org.folio.rest.workflow.components.Task;
@@ -193,6 +195,27 @@ public class BpmnModelFactory {
         } catch (JsonProcessingException e) {
           e.printStackTrace();
         }
+      } else if (task instanceof StreamingFileReadTask) {
+        StreamingFileReadTask sfrTask = (StreamingFileReadTask) task;
+        ExtensionElements extensionElements = createElement(modelInstance, serviceTask, null, ExtensionElements.class);
+        CamundaField path = createElement(modelInstance, extensionElements, String.format("t_%s-path", index), CamundaField.class);
+        path.setCamundaName("path");
+        path.setCamundaStringValue(sfrTask.getPath());
+        CamundaField workflowName = createElement(modelInstance, extensionElements, String.format("t_%s-workflow", index), CamundaField.class);
+        workflowName.setCamundaName("workflow");
+        workflowName.setCamundaStringValue(sfrTask.getWorkflow());
+        CamundaField delay = createElement(modelInstance, extensionElements, String.format("t_%s-delay", index), CamundaField.class);
+        delay.setCamundaName("delay");
+        delay.setCamundaStringValue(Long.toString(sfrTask.getDelay()));
+      } else if (task instanceof StreamingFileWriteTask) {
+        StreamingFileWriteTask sfwTask = (StreamingFileWriteTask) task;
+        ExtensionElements extensionElements = createElement(modelInstance, serviceTask, null, ExtensionElements.class);
+        CamundaField path = createElement(modelInstance, extensionElements, String.format("t_%s-path", index), CamundaField.class);
+        path.setCamundaName("path");
+        path.setCamundaStringValue(sfwTask.getPath());
+        CamundaField workflowName = createElement(modelInstance, extensionElements, String.format("t_%s-workflow", index), CamundaField.class);
+        workflowName.setCamundaName("workflow");
+        workflowName.setCamundaStringValue(sfwTask.getWorkflow());
       } else if(task instanceof RestRequestTask) {
         RestRequestTask sRRTask = (RestRequestTask) task;
         ExtensionElements extensionElements = createElement(modelInstance, serviceTask, null, ExtensionElements.class);

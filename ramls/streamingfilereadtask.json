@@ -1,0 +1,37 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "title" : "StreamingFileReadTask",
+  "type" : "object",
+  "additionalProperties" : false,
+  "properties" : {
+    "deserializeAs" : {
+      "type" : "string",
+      "enum" : [ "StreamingFileReadTask" ],
+      "default" : "StreamingFileReadTask"
+    },
+    "id" : {
+      "type" : "string"
+    },
+    "name" : {
+      "type" : "string",
+      "minLength" : 4,
+      "maxLength" : 64
+    },
+    "delegate" : {
+      "type" : "string"
+    },
+    "streaming" : {
+      "type" : "boolean"
+    },
+    "path" : {
+      "type" : "string"
+    },
+    "workflow" : {
+      "type" : "string"
+    },
+    "delay" : {
+      "type" : "integer"
+    }
+  },
+  "required" : [ "deserializeAs", "name" ]
+}
