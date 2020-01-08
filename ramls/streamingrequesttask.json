@@ -23,15 +23,32 @@
     "streaming" : {
       "type" : "boolean"
     },
-    "storageDestination" : {
-      "type" : "string"
-    },
-    "contentType" : {
-      "type" : "string"
-    },
-    "accept" : {
-      "type" : "string"
+    "requests" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/Request"
+      }
     }
   },
-  "required" : [ "deserializeAs", "name" ]
+  "required" : [ "deserializeAs", "name" ],
+  "definitions" : {
+    "Request" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "storageDestination" : {
+          "type" : "string"
+        },
+        "sourceProperty" : {
+          "type" : "string"
+        },
+        "contentType" : {
+          "type" : "string"
+        },
+        "accept" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
 }

@@ -186,15 +186,13 @@ public class BpmnModelFactory {
       } else if (task instanceof StreamingRequestTask) {
         StreamingRequestTask srTask = (StreamingRequestTask) task;
         ExtensionElements extensionElements = createElement(modelInstance, serviceTask, null, ExtensionElements.class);
-        CamundaField storageDestination = createElement(modelInstance, extensionElements, String.format("t_%s-storage-destination", index), CamundaField.class);
-        storageDestination.setCamundaName("storageDestination");
-        storageDestination.setCamundaStringValue(srTask.getStorageDestination());
-        CamundaField contentType = createElement(modelInstance, extensionElements, String.format("t_%s-content-type", index), CamundaField.class);
-        contentType.setCamundaName("contentType");
-        contentType.setCamundaStringValue(srTask.getContentType());
-        CamundaField accept = createElement(modelInstance, extensionElements, String.format("t_%s-accept", index), CamundaField.class);
-        accept.setCamundaName("accept");
-        accept.setCamundaStringValue(srTask.getAccept());
+        CamundaField requests = createElement(modelInstance, extensionElements, String.format("t_%s-requests", index), CamundaField.class);
+        requests.setCamundaName("requests");
+        try {
+          requests.setCamundaStringValue(mapper.writeValueAsString(srTask.getRequests()));
+        } catch (JsonProcessingException e) {
+          e.printStackTrace();
+        }
       } else if(task instanceof RestRequestTask) {
         RestRequestTask sRRTask = (RestRequestTask) task;
         ExtensionElements extensionElements = createElement(modelInstance, serviceTask, null, ExtensionElements.class);

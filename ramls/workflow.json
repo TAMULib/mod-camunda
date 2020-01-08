@@ -269,7 +269,24 @@
         "streaming" : {
           "type" : "boolean"
         },
+        "requests" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Request"
+          }
+        }
+      },
+      "title" : "StreamingRequestTask",
+      "required" : [ "deserializeAs", "name" ]
+    },
+    "Request" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
         "storageDestination" : {
+          "type" : "string"
+        },
+        "sourceProperty" : {
           "type" : "string"
         },
         "contentType" : {
@@ -278,9 +295,7 @@
         "accept" : {
           "type" : "string"
         }
-      },
-      "title" : "StreamingRequestTask",
-      "required" : [ "deserializeAs", "name" ]
+      }
     },
     "RestRequestTask" : {
       "type" : "object",
