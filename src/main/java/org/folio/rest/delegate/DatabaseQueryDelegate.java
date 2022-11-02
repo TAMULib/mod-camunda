@@ -88,8 +88,14 @@ public class DatabaseQueryDelegate extends AbstractDatabaseOutputDelegate {
           resultOp = new VariableResultOp(execution, results);
         }
 
+        int count = 0; 
         while (results.next()) {
           resultOp.next();
+          count++;
+        }
+
+        if (resultOp instanceof FileResultOp) {
+          setOutput(execution, count);
         }
 
         resultOp.finish();
