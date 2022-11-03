@@ -45,6 +45,8 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
 
   private Expression attachmentPath;
 
+  private Expression includeAttachment;
+
   @Override
   public void execute(DelegateExecution execution) throws Exception {
     long startTime = System.nanoTime();
@@ -59,6 +61,7 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
     String mailToTemplate = this.mailTo.getValue(execution).toString();
     String mailFromTemplate = this.mailFrom.getValue(execution).toString();
     String attachmentPathTemplate = Objects.nonNull(this.attachmentPath) ? this.attachmentPath.getValue(execution).toString() : "";
+    Boolean includeAttachment = Boolean.parseBoolean(this.includeAttachment.getValue(execution).toString());
 
     StringTemplateLoader stringLoader = new StringTemplateLoader();
     stringLoader.putTemplate("subject", subjectTemplate);
@@ -114,7 +117,7 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
           }
         }
 
-        if (attachmentPath.isPresent()) {
+        if (includeAttachment && attachmentPath.isPresent()) {
           File attachment = new File(attachmentPath.get());
           if (attachment.exists() && attachment.isFile()) {
             message.addAttachment(attachment.getName(), attachment);
