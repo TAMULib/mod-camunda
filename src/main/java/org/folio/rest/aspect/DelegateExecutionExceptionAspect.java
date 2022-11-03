@@ -22,6 +22,9 @@ public class DelegateExecutionExceptionAspect {
   @Autowired
   private JavaMailSender emailSender;
 
+  @Value("${error.handling.environment:DEV}")
+  private String errorHandlingEnvironment;
+
   @Value("${error.handling.emailFrom}")
   private String errorHandlingEmailFrom;
 
@@ -50,7 +53,10 @@ public class DelegateExecutionExceptionAspect {
 
     StringBuilder subject = new StringBuilder();
 
-    subject.append(workflowName)
+    subject
+        .append(errorHandlingEnvironment)
+        .append(": ")
+        .append(workflowName)
         .append(" failed on ")
         .append(taskName)
         .append(" for tenant ")

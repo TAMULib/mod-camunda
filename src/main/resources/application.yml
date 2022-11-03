@@ -120,6 +120,7 @@ okapi.url: http://localhost:9130
 
 error:
   handling:
+    environment: DEV
     emailFrom: noReply@mailinator.com
     # comma seperated email addresses
     emailTo: support@mailinator.com

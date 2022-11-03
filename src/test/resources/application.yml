@@ -78,6 +78,7 @@ tenant:
 
 error:
   handling:
+    environment: DEV
     emailFrom: noReply@mailinator.com
     # comma seperated email addresses
     emailTo: support@mailinator.com
