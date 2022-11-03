@@ -67,11 +67,14 @@
     "attachmentPath" : {
       "type" : "string"
     },
+    "includeAttachment" : {
+      "type" : "boolean"
+    },
     "identifier" : {
       "type" : "string"
     }
   },
-  "required" : [ "deserializeAs", "name", "asyncBefore", "asyncAfter" ],
+  "required" : [ "deserializeAs", "name", "asyncBefore", "asyncAfter", "includeAttachment" ],
   "definitions" : {
     "EmbeddedVariable" : {
       "type" : "object",

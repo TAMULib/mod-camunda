@@ -45,6 +45,8 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
 
   private Expression attachmentPath;
 
+  private Expression includeAttachment;
+
   @Override
   public void execute(DelegateExecution execution) throws Exception {
     long startTime = System.nanoTime();
@@ -59,6 +61,7 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
     String mailToTemplate = this.mailTo.getValue(execution).toString();
     String mailFromTemplate = this.mailFrom.getValue(execution).toString();
     String attachmentPathTemplate = Objects.nonNull(this.attachmentPath) ? this.attachmentPath.getValue(execution).toString() : "";
+    String includeAttachmentTemplate = Objects.nonNull(this.includeAttachment) ? this.includeAttachment.getValue(execution).toString() : "";
 
     StringTemplateLoader stringLoader = new StringTemplateLoader();
     stringLoader.putTemplate("subject", subjectTemplate);
@@ -67,6 +70,7 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
     stringLoader.putTemplate("mailFrom", mailFromTemplate);
     stringLoader.putTemplate("mailTo", mailToTemplate);
     stringLoader.putTemplate("attachmentPath", attachmentPathTemplate);
+    stringLoader.putTemplate("includeAttachment", includeAttachmentTemplate);
 
     Configuration cfg = new Configuration(Configuration.VERSION_2_3_23);
     cfg.setTemplateLoader(stringLoader);
@@ -81,6 +85,7 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
     Optional<String> cc = Objects.nonNull(this.mailCc) ? Optional.of(this.mailCc.getValue(execution).toString()) : Optional.empty();
     Optional<String> bcc = Objects.nonNull(this.mailBcc) ? Optional.of(this.mailBcc.getValue(execution).toString()) : Optional.empty();
     Optional<String> attachmentPath = Objects.nonNull(this.attachmentPath) ? Optional.of(FreeMarkerTemplateUtils.processTemplateIntoString(cfg.getTemplate("attachmentPath"), inputs)) : Optional.empty();
+    Optional<String> includeAttachment = Objects.nonNull(this.includeAttachment) ? Optional.of(FreeMarkerTemplateUtils.processTemplateIntoString(cfg.getTemplate("includeAttachment"), inputs)) : Optional.empty();
 
     MimeMessagePreparator preparator = new MimeMessagePreparator() {
       public void prepare(MimeMessage mimeMessage) throws Exception {
@@ -114,7 +119,7 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
           }
         }
 
-        if (attachmentPath.isPresent()) {
+        if (includeAttachment.isPresent() && Boolean.parseBoolean(includeAttachment.get()) && attachmentPath.isPresent()) {
           File attachment = new File(attachmentPath.get());
           if (attachment.exists() && attachment.isFile()) {
             message.addAttachment(attachment.getName(), attachment);
