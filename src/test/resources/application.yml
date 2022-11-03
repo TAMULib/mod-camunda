@@ -1,5 +1,7 @@
 logging:
-  file: logs/mod-camunda-tests.log
+  file:
+    path: logs
+    name: mod-camunda-tests.log
   level:
     org:
       folio: INFO
@@ -14,8 +16,10 @@ spring:
   data.rest:
     returnBodyOnCreate: true
     returnBodyOnUpdate: true
+  sql:
+    init:
+      platform: h2
   datasource:
-    platform: h2
     url: jdbc:h2:mem:AZ;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     driverClassName: org.h2.Driver
     username: folio
@@ -52,7 +56,7 @@ camunda:
       last-name: Admin
       email: cadmin@mailinator.com
     # authorization.enabled: true
-    
+
 event.queue.name: event.queue
 
 tenant:
@@ -71,5 +75,12 @@ tenant:
     - classpath:/org/camunda/bpm/engine/db/create/activiti.h2.create.case.history.sql
     - classpath:/org/camunda/bpm/engine/db/create/activiti.h2.create.decision.engine.sql
     - classpath:/org/camunda/bpm/engine/db/create/activiti.h2.create.decision.history.sql
+
+error:
+  handling:
+    environment: DEV
+    emailFrom: noReply@mailinator.com
+    # comma seperated email addresses
+    emailTo: support@mailinator.com
 
 okapi.url: http://localhost:9130

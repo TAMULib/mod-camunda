@@ -1,5 +1,7 @@
 logging:
-  file: logs/mod-camunda.log
+  file:
+    path: logs
+    name: mod-camunda.log
   level:
     com:
       zaxxer:
@@ -22,6 +24,9 @@ spring:
   data.rest:
     returnBodyOnCreate: true
     returnBodyOnUpdate: true
+  sql:
+    init:
+      platform: h2
   datasource:
     hikari:
       leakDetectionThreshold: 1800000
@@ -29,7 +34,6 @@ spring:
       idleTimeout: 600000
       maxLifetime: 1800000
       maximumPoolSize: 16
-    platform: h2
     url: jdbc:h2:./target/mod-camunda;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     driverClassName: org.h2.Driver
     # platform: postgres
@@ -113,6 +117,13 @@ tenant:
     - classpath:/org/camunda/bpm/engine/db/create/activiti.h2.create.decision.history.sql
 
 okapi.url: http://localhost:9130
+
+error:
+  handling:
+    environment: DEV
+    emailFrom: noReply@mailinator.com
+    # comma seperated email addresses
+    emailTo: support@mailinator.com
 
 info:
   build:
