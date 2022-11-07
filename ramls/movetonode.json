@@ -1126,15 +1126,12 @@
         "attachmentPath" : {
           "type" : "string"
         },
-        "includeAttachment" : {
-          "type" : "boolean"
-        },
         "identifier" : {
           "type" : "string"
         }
       },
       "title" : "EmailTask",
-      "required" : [ "deserializeAs", "name", "asyncBefore", "asyncAfter", "includeAttachment" ]
+      "required" : [ "deserializeAs", "name", "asyncBefore", "asyncAfter" ]
     },
     "FileTask" : {
       "type" : "object",
