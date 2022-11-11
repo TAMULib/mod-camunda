@@ -87,9 +87,9 @@ public class FileDelegate extends AbstractWorkflowIODelegate {
       case READ_LINE:
         if (file.exists() && line > 0) {
           BufferedReader reader = Files.newBufferedReader(Path.of(filePath), StandardCharsets.UTF_8);
-          int linecCount = 0;
+          int lineCount = 0;
           String currerntLine = "";
-          while ((currerntLine = reader.readLine()) != null && (++linecCount) < line) {}
+          while ((currerntLine = reader.readLine()) != null && (++lineCount) < line) {}
           reader.close();
           setOutput(execution, currerntLine);
           logger.info("{} read", filePath);
