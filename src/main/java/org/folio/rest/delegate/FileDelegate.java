@@ -1,8 +1,10 @@
 package org.folio.rest.delegate;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,6 +31,8 @@ public class FileDelegate extends AbstractWorkflowIODelegate {
 
   private Expression path;
 
+  private Expression line;
+
   private Expression op;
 
   @Override
@@ -40,15 +44,19 @@ public class FileDelegate extends AbstractWorkflowIODelegate {
     logger.info("{} started", delegateName);
 
     String pathTemplate = this.path.getValue(execution).toString();
+    String lineTemplate = this.line != null ? this.line.getValue(execution).toString() : "0";
 
-    StringTemplateLoader pathLoader = new StringTemplateLoader();
-    pathLoader.putTemplate("path", pathTemplate);
+    StringTemplateLoader templateLoader = new StringTemplateLoader();
+    templateLoader.putTemplate("path", pathTemplate);
+    templateLoader.putTemplate("line", lineTemplate);
 
     Configuration cfg = new Configuration(Configuration.VERSION_2_3_23);
-    cfg.setTemplateLoader(pathLoader);
+    cfg.setTemplateLoader(templateLoader);
 
     Map<String, Object> inputs = getInputs(execution);
+
     String filePath = FreeMarkerTemplateUtils.processTemplateIntoString(cfg.getTemplate("path"), inputs);
+    Integer line = Integer.parseInt(FreeMarkerTemplateUtils.processTemplateIntoString(cfg.getTemplate("line"), inputs));
 
     FileOp fileOp = FileOp.valueOf(this.op.getValue(execution).toString());
 
@@ -61,6 +69,30 @@ public class FileDelegate extends AbstractWorkflowIODelegate {
           if (deleted) {
             logger.info("{} has been deleted", filePath);
           }
+        } else {
+          logger.info("{} does not exist", filePath);
+        }
+        break;
+      case LINE_COUNT:
+        if (file.exists()) {
+          BufferedReader reader = Files.newBufferedReader(Path.of(filePath), StandardCharsets.UTF_8);
+          long lineCount = reader.lines().count();
+          reader.close();
+          setOutput(execution, lineCount);
+          logger.info("{} read", filePath);
+        } else {
+          logger.info("{} does not exist", filePath);
+        }
+        break;
+      case READ_LINE:
+        if (file.exists() && line > 0) {
+          BufferedReader reader = Files.newBufferedReader(Path.of(filePath), StandardCharsets.UTF_8);
+          int lineCount = 0;
+          String currerntLine = "";
+          while ((currerntLine = reader.readLine()) != null && (++lineCount) < line) {}
+          reader.close();
+          setOutput(execution, currerntLine);
+          logger.info("{} read", filePath);
         } else {
           logger.info("{} does not exist", filePath);
         }
