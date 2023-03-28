@@ -13,6 +13,12 @@ RUN mvn package
 # final base image
 FROM openjdk:11-jre-slim
 
+# Upgrade to latest patch versions of packages: https://pythonspeed.com/articles/security-updates-in-docker/
+RUN apt-get update \
+ && apt-get upgrade -y \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+
 # set deployment directory
 WORKDIR /mod-camunda
 
