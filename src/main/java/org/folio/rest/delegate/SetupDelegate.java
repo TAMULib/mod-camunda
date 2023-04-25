@@ -22,6 +22,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 public class SetupDelegate extends AbstractRuntimeDelegate {
 
   private final static String TIMESTAMP_VARIABLE_NAME = "timestamp";
+  private final static String TENANT_VARIABLE_NAME = "tenantId";
 
   @Autowired
   private ScriptEngineService scriptEngineService;
@@ -53,6 +54,7 @@ public class SetupDelegate extends AbstractRuntimeDelegate {
     String timestamp = String.valueOf(System.currentTimeMillis());
 
     execution.setVariable(TIMESTAMP_VARIABLE_NAME, timestamp);
+    execution.setVariable(TENANT_VARIABLE_NAME, execution.getTenantId());    
 
     logger.info("loading scripts");
 
