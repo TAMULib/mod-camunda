@@ -119,7 +119,14 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
           }
         }
 
-        if (includeAttachment.isPresent() && Boolean.parseBoolean(includeAttachment.get()) && attachmentPath.isPresent()) {
+        // TODO: This is a hot fix to address an issue with the workflows no attaching emails
+
+        //if (includeAttachment.isPresent() && Boolean.parseBoolean(includeAttachment.get()) && attachmentPath.isPresent()) {
+        if (attachmentPath.isPresent()) {
+
+          logger.info("includeAttachment.isPresent() = {}", includeAttachment.isPresent());
+          logger.info("Boolean.parseBoolean(includeAttachment.get()) = {}", Boolean.parseBoolean(includeAttachment.get()));
+
           File attachment = new File(attachmentPath.get());
           if (attachment.exists() && attachment.isFile()) {
             message.addAttachment(attachment.getName(), attachment);
