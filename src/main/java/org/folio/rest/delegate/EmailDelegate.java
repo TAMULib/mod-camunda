@@ -133,6 +133,8 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
           } else {
             logger.info("{} does not exist", attachmentPath.get());
           }
+        } else {
+          logger.info("No attachment required");
         }
       }
     };
