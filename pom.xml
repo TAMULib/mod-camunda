@@ -7,7 +7,7 @@
 
   <artifactId>mod-camunda</artifactId>
 
-  <version>1.1.12-SNAPSHOT</version>
+  <version>1.1.12-rc2</version>
 
   <name>Okapi Camunda Module</name>
 
