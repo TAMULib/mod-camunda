@@ -50,6 +50,13 @@ public class ScriptEngineService {
   private void configureScriptEngines() {
     scriptEngineManager = new ScriptEngineManager();
     scriptEngines = new HashMap<String, ScriptEngine>();
+
+    System.out.print("\n\n\nDEBUG: by extension = " + scriptEngineManager.getEngineByExtension(".py") + "\n\n\n");
+    System.out.print("\n\n\nDEBUG: by name = " + scriptEngineManager.getEngineByName("python") + "\n\n\n");
+
+    scriptEngineManager.getEngineFactories().forEach(sef -> {
+      System.out.print("\n\n\nDEBUG: by factory = " + sef.getEngineName() + ", " + sef.getEngineVersion() + ", lang = " + sef.getLanguageName() + ", engine = " + sef.getScriptEngine() + "\n\n\n");
+    });
   }
 
   /**
@@ -70,13 +77,21 @@ public class ScriptEngineService {
    */
   public void registerScript(String extension, String name, String script)
       throws ScriptException, IOException, ScriptEngineUnsupported, NoSuchMethodException, ScriptEngineLoadFailed {
-    if (!SCRIPT_ENGINE_TYPES.containsValue(extension)) {
-      throw new ScriptEngineUnsupported(extension);
-    }
+//    if (!SCRIPT_ENGINE_TYPES.containsValue(extension)) {
+//      throw new ScriptEngineUnsupported(extension);
+//    }
+
+    System.out.print("\n\n\nDEBUG: by extension = " + scriptEngineManager.getEngineByExtension(".py") + "\n\n\n");
+    System.out.print("\n\n\nDEBUG: by name = " + scriptEngineManager.getEngineByName("python") + "\n\n\n");
+
+    scriptEngineManager.getEngineFactories().forEach(sef -> {
+      System.out.print("\n\n\nDEBUG: by factory = " + sef.getEngineName() + ", " + sef.getEngineVersion() + ", lang = " + sef.getLanguageName() + "\n\n\n");
+    });
 
     Optional<ScriptEngine> maybeScriptEngine = Optional.ofNullable(scriptEngines.get(extension));
 
     if (!maybeScriptEngine.isPresent()) {
+      System.out.print("\n\n\nDEBUG: script engine is NULL\n\n\n");
       ScriptEngine newEngine = scriptEngineManager.getEngineByExtension(extension);
 
       if (newEngine == null) {
@@ -111,9 +126,37 @@ public class ScriptEngineService {
    *
    * @throws NoSuchMethodException
    * @throws ScriptException
+   * @throws ScriptEngineLoadFailed 
+   * @throws IOException 
    */
-  public Object runScript(String extension, String name, Object... args) throws NoSuchMethodException, ScriptException {
-    Invocable invocable = (Invocable) scriptEngines.get(extension);
+  public Object runScript(String extension, String name, Object... args) throws NoSuchMethodException, ScriptException, ScriptEngineLoadFailed, IOException {
+    System.out.print("\n\n\nDEBUG: extension" + extension + "\n\n\n");
+    ScriptEngine scriptEngine = scriptEngines.get(extension);
+    System.out.print("\n\n\nDEBUG: script engine is " + scriptEngine + "\n\n\n");
+    System.out.print("\n\n\nDEBUG: scriptEngines = ");
+    scriptEngines.forEach((str, se) -> {
+      System.out.print("\nse (" + str + ") = " + se);
+    });
+    System.out.print("\n\n\n");
+
+    if (scriptEngine == null) {
+      System.out.print("\n\n\nDEBUG: script engine is NULL\n\n\n");
+      ScriptEngine newEngine = scriptEngineManager.getEngineByExtension(extension);
+
+      if (newEngine == null) {
+        throw new ScriptEngineLoadFailed(extension);
+      }
+
+      scriptEngines.put(extension, newEngine);
+
+      if (SCRIPT_ENGINE_TYPES.containsValue(extension)) {
+        newEngine.eval(loadScript(UTILS_PREFIX + extension));
+      }
+
+      scriptEngine = newEngine;
+    }
+
+    Invocable invocable = (Invocable) scriptEngine;
     return invocable.invokeFunction(name, args);
   }
 

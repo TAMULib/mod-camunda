@@ -80,25 +80,28 @@ public class BpmnModelFactory {
 
   public BpmnModelInstance fromWorkflow(Workflow workflow) throws ScriptTaskDeserializeCodeFailure {
 
-    // @formatter:off
     ProcessBuilder processBuilder = Bpmn.createExecutableProcess().name(workflow.getName())
-        .camundaHistoryTimeToLive(workflow.getHistoryTimeToLive())
-        .camundaVersionTag(workflow.getVersionTag());
-    // @formatter:on
+      .camundaHistoryTimeToLive(workflow.getHistoryTimeToLive())
+      .camundaVersionTag(workflow.getVersionTag());
 
     BpmnModelInstance model = build(processBuilder, workflow);
 
-    // @formatter:off
-    workflow.getNodes().stream()
-      .filter(node -> node instanceof EventSubprocess)
-      .forEach(subprocess -> {
-        try {
-            eventSubprocess(processBuilder, subprocess);
-        } catch (ScriptTaskDeserializeCodeFailure e) {
-            throw new RuntimeException(e);
-        }
-    });
-    // @formatter:on
+    for (Node node : workflow.getNodes()) {
+      if (!(node instanceof EventSubprocess)) continue;
+
+      for (Node subprocess : ((EventSubprocess) node).getNodes()) {
+        eventSubprocess(processBuilder, subprocess);
+      }
+    }
+//    workflow.getNodes().stream()
+//      .filter(node -> node instanceof EventSubprocess)
+//      .forEach(subprocess -> {
+//        try {
+//            eventSubprocess(processBuilder, subprocess);
+//        } catch (ScriptTaskDeserializeCodeFailure e) {
+//            throw new RuntimeException(e);
+//        }
+//    });
 
     setup(model, workflow);
     expressions(model, workflow.getNodes());

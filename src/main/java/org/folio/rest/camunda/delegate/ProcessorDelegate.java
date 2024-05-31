@@ -40,6 +40,8 @@ public class ProcessorDelegate extends AbstractWorkflowIODelegate {
     Map<String, Object> inputs = getInputs(execution);
 
     JsonNode input = objectMapper.valueToTree(inputs);
+    
+    System.out.print("\n\n\nDEBUG: running script " + scriptTypeExtension + ", " + scriptName + "\n\n\n");
 
     String output = (String) scriptEngineService.runScript(scriptTypeExtension, scriptName, input);
 

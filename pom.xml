@@ -29,6 +29,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <spring-module-core.version>2.1.0-SNAPSHOT</spring-module-core.version>
     <workflow-components.version>1.2.0-SNAPSHOT</workflow-components.version>
+    <graalvm-polyglot.version>24.0.1</graalvm-polyglot.version>
     <camunda.version>7.21.0-alpha2</camunda.version>
     <openapi.server.port>9000</openapi.server.port>
     <maven.javadoc.skip>true</maven.javadoc.skip>
@@ -198,19 +199,8 @@
     </dependency>
 
     <dependency>
-      <groupId>org.python</groupId>
-      <artifactId>jython-standalone</artifactId>
-      <version>2.7.3</version>
-    </dependency>
-
-    <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-jms</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.groovy</groupId>
-      <artifactId>groovy-jsr223</artifactId>
     </dependency>
 
     <dependency>
@@ -243,51 +233,92 @@
     </dependency>
 
     <dependency>
-      <groupId>org.graalvm.js</groupId>
-      <artifactId>js</artifactId>
-      <version>23.0.4</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.graalvm.python</groupId>
-      <artifactId>python-language</artifactId>
-      <version>23.1.3</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.graalvm.python</groupId>
-      <artifactId>python-resources</artifactId>
-      <version>23.1.3</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.graalvm.ruby</groupId>
-      <artifactId>ruby-language</artifactId>
-      <version>23.1.3</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.graalvm.ruby</groupId>
-      <artifactId>ruby-resources</artifactId>
-      <version>23.1.3</version>
-    </dependency>
-
-    <dependency>
       <groupId>org.jruby</groupId>
       <artifactId>jruby</artifactId>
       <version>9.4.7.0</version>
     </dependency>
 
     <dependency>
+      <groupId>org.python</groupId>
+      <artifactId>jython-standalone</artifactId>
+      <version>2.7.3</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.groovy</groupId>
+      <artifactId>groovy-jsr223</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>org.graalvm.js</groupId>
       <artifactId>js-scriptengine</artifactId>
-      <version>23.1.2</version>
+      <version>${graalvm-polyglot.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.graalvm.shadowed</groupId>
+      <artifactId>json</artifactId>
+      <version>${graalvm-polyglot.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.graalvm.shadowed</groupId>
+      <artifactId>icu4j</artifactId>
+      <version>${graalvm-polyglot.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.graalvm.sdk</groupId>
+      <artifactId>graal-sdk</artifactId>
+      <version>${graalvm-polyglot.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.graalvm.polyglot</groupId>
       <artifactId>polyglot</artifactId>
-      <version>23.1.3</version>
+      <version>${graalvm-polyglot.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.graalvm.polyglot</groupId>
+      <artifactId>java-community</artifactId>
+      <version>${graalvm-polyglot.version}</version>
+      <type>pom</type>
+    </dependency>
+
+    <dependency>
+      <groupId>org.graalvm.polyglot</groupId>
+      <artifactId>js-community</artifactId>
+      <version>${graalvm-polyglot.version}</version>
+      <type>pom</type>
+    </dependency>
+
+    <dependency>
+      <groupId>org.graalvm.polyglot</groupId>
+      <artifactId>llvm-community</artifactId>
+      <version>${graalvm-polyglot.version}</version>
+      <type>pom</type>
+    </dependency>
+
+    <dependency>
+      <groupId>org.graalvm.polyglot</groupId>
+      <artifactId>python-community</artifactId>
+      <version>${graalvm-polyglot.version}</version>
+      <type>pom</type>
+    </dependency>
+
+    <dependency>
+      <groupId>org.graalvm.polyglot</groupId>
+      <artifactId>ruby-community</artifactId>
+      <version>${graalvm-polyglot.version}</version>
+      <type>pom</type>
+    </dependency>
+
+    <dependency>
+      <groupId>org.graalvm.polyglot</groupId>
+      <artifactId>wasm-community</artifactId>
+      <version>${graalvm-polyglot.version}</version>
+      <type>pom</type>
     </dependency>
 
     <dependency>
