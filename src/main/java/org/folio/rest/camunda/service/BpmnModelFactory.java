@@ -9,6 +9,7 @@ import java.util.Optional;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.persistence.Convert;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.camunda.bpm.engine.delegate.Expression;
 import org.camunda.bpm.model.bpmn.Bpmn;
@@ -53,6 +54,7 @@ import org.folio.rest.workflow.model.components.Gateway;
 import org.folio.rest.workflow.model.components.Navigation;
 import org.folio.rest.workflow.model.components.Task;
 import org.folio.rest.workflow.model.components.Wait;
+import org.folio.rest.workflow.model.converter.CryptoConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +78,9 @@ public class BpmnModelFactory {
 
   @Autowired
   private ObjectMapper objectMapper;
+
+  @Autowired
+  private CryptoConverter cryptoConverter;
 
   @Autowired
   private List<AbstractWorkflowDelegate> workflowDelegates;
@@ -104,6 +109,7 @@ public class BpmnModelFactory {
 
     setup(model, workflow);
     expressions(model, workflow.getNodes());
+
     return model;
   }
 
@@ -415,7 +421,14 @@ public class BpmnModelFactory {
                 if (Objects.nonNull(value)) {
                   CamundaField field = model.newInstance(CamundaField.class);
                   field.setCamundaName(f.getName());
-                  field.setCamundaStringValue(serialize(value));
+
+                  Convert convert = f.getAnnotation(Convert.class);
+                  if (convert != null && CryptoConverter.class.isAssignableFrom(convert.converter()) && String.class.isAssignableFrom(value.getClass())) {
+                    field.setCamundaExpression(String.format("${cryptoConverter.decrypt(\"%s\")}", cryptoConverter.encrypt(serialize(value))));
+                  } else {
+                    field.setCamundaStringValue(serialize(value));
+                  }
+
                   extensions.addChildElement(field);
                 }
               } catch (JsonProcessingException | IllegalArgumentException | IllegalAccessException e) {
