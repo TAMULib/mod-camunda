@@ -12,6 +12,7 @@ import org.camunda.bpm.engine.delegate.Expression;
 import org.camunda.spin.impl.json.jackson.JacksonJsonNode;
 import org.folio.rest.workflow.enums.VariableType;
 import org.folio.rest.workflow.model.EmbeddedVariable;
+import org.folio.rest.workflow.model.converter.CryptoConverter;
 import org.slf4j.Logger;
 
 public interface Input {
@@ -43,7 +44,16 @@ public interface Input {
       } else if (type == null) {
         getLogger().warn("Variable type not present for {}", key);
       } else if (type == VariableType.LOCAL || type == VariableType.PROCESS) {
-        Object value = type == VariableType.LOCAL ? execution.getVariableLocal(key) : execution.getVariable(key);
+
+        Object value = type == VariableType.LOCAL
+          ? execution.getVariableLocal(key)
+          : execution.getVariable(key);
+
+        // naive approach
+        if (variable.getAsSecure() && String.class.isAssignableFrom(value.getClass())) {
+          value = CryptoConverter.decrypt((String) value);
+        }
+
         defaultGetInputsLoop(variable, key, type, value, inputs);
       } else {
         getLogger().warn("Could not find value for {} from {}", key, type);
@@ -80,10 +90,14 @@ public interface Input {
     } else if (Boolean.TRUE.equals(node.isArray())) {
       inputs.put(key, getObjectMapper().convertValue(node.unwrap(), new TypeReference<List<Object>>() {}));
     } else if (Boolean.TRUE.equals(node.isValue())) {
+
+      // :/
       try {
         // Try read tree if value is JSON string.
+        getLogger().info("TRYING PUT as JSON {}", node.value());
         inputs.put(key, getObjectMapper().readTree((String) node.value()));
       } catch (Exception e) {
+        getLogger().info("PUT in exception {} from {}", e.getMessage(), node.value());
         inputs.put(key, node.value());
       }
     }

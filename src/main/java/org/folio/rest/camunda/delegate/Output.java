@@ -9,6 +9,7 @@ import org.camunda.bpm.engine.delegate.Expression;
 import org.camunda.bpm.engine.variable.Variables;
 import org.folio.rest.workflow.enums.VariableType;
 import org.folio.rest.workflow.model.EmbeddedVariable;
+import org.folio.rest.workflow.model.converter.CryptoConverter;
 import org.slf4j.Logger;
 
 public interface Output {
@@ -43,9 +44,42 @@ public interface Output {
     }
 
     VariableType type = variable.getType();
-    Object value = Boolean.TRUE.equals(variable.getSpin())
-      ? JSON(getObjectMapper().writeValueAsString(output))
-      : Variables.objectValue(output, variable.getAsTransient()).create();
+
+    Object value = null;
+
+    Boolean spin = variable.getSpin();
+
+    boolean secure = variable.getAsSecure();
+
+    // assign an arbitrary typed variable output
+    // not sure why any of this is necessary
+    // anyway here we will try to encrypt both a spin variable
+    // and object variable that is a string
+
+    if (spin) {
+
+      value = getObjectMapper().writeValueAsString(output);
+
+      if (secure) {
+        getLogger().info("ENCRYPTING SPIN VALUE");
+        value = CryptoConverter.encrypt((String) value);
+      }
+
+      value = JSON(value);
+
+      getLogger().info("SPIN: {} {} {} {}", key, output, type, value);
+    } else {
+
+      if (secure && String.class.isAssignableFrom(output.getClass())) {
+        getLogger().info("ENCRYPTING VALUE");
+        output = CryptoConverter.encrypt((String) output);
+      }
+
+      value = Variables.objectValue(output, variable.getAsTransient()).create();
+
+      getLogger().info("OBJECT VALUE {} {} {} {}", key, output, type, value);
+
+    }
 
     if (type == VariableType.LOCAL) {
       execution.setVariableLocal(key, value);
