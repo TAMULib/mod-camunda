@@ -51,11 +51,6 @@ public interface Output {
 
     boolean secure = variable.getAsSecure();
 
-    // assign an arbitrary typed variable output
-    // not sure why any of this is necessary
-    // anyway here we will try to encrypt both a spin variable
-    // and object variable that is a string
-
     if (spin) {
 
       value = getObjectMapper().writeValueAsString(output);
