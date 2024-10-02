@@ -97,7 +97,7 @@ public interface Input {
           inputs.put(key, node.value());
         }
       } catch (Exception e) {
-        if (variable.getAsSecure() && String.class.isAssignableFrom(value.getClass())) {
+        if (variable.getAsSecure()) {
           inputs.put(key, CryptoConverter.decrypt((String) node.value()));
         } else {
           inputs.put(key, node.value()); 
