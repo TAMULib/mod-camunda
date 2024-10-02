@@ -86,7 +86,7 @@ public interface Input {
       inputs.put(key, getObjectMapper().convertValue(node.unwrap(), new TypeReference<List<Object>>() {}));
     } else if (Boolean.TRUE.equals(node.isValue())) {
       try {
-        if (String.class.isAssignableFrom(value.getClass())) {
+        if (String.class.isAssignableFrom(node.value().getClass())) {
           if (variable.getAsSecure()) {
             inputs.put(key, CryptoConverter.decrypt((String) node.value()));
           }  else {
