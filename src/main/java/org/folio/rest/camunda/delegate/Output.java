@@ -45,42 +45,11 @@ public interface Output {
 
     VariableType type = variable.getType();
 
-    Object value = null;
-
-    Boolean spin = variable.getSpin();
-
-    boolean secure = variable.getAsSecure();
-
-    if (spin) {
-
-      value = getObjectMapper().writeValueAsString(output);
-
-      if (secure) {
-        // ??? not sure how to support encrypting/decrypting JSON asSpin
-        getLogger().info("ENCRYPTING SPIN VALUE NOT SUPPORTED");
-      }
-
-      value = JSON(value);
-
-      getLogger().info("SPIN: {} {} {} {}", key, output, type, value);
-    } else {
-
-      if (secure) {
-
-        if (String.class.isAssignableFrom(output.getClass())) {
-          getLogger().info("ENCRYPTING VALUE");
-          output = CryptoConverter.encrypt((String) output);
-        } else {
-          getLogger().info("ENCRYPTING NON STRING VALUE NOT SUPPORTED");
-        }
-
-      }
-
-      value = Variables.objectValue(output, variable.getAsTransient()).create();
-
-      getLogger().info("OBJECT VALUE {} {} {} {}", key, output, type, value);
-
-    }
+    Object value = Boolean.TRUE.equals(variable.getSpin())
+      ? JSON(getObjectMapper().writeValueAsString(output))
+      : variable.getAsSecure() && String.class.isAssignableFrom(output.getClass())
+        ? Variables.objectValue(CryptoConverter.encrypt((String) output), variable.getAsTransient()).create();
+        : Variables.objectValue(output, variable.getAsTransient()).create();
 
     if (type == VariableType.LOCAL) {
       execution.setVariableLocal(key, value);
