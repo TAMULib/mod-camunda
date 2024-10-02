@@ -85,9 +85,8 @@ public interface Input {
     } else if (Boolean.TRUE.equals(node.isArray())) {
       inputs.put(key, getObjectMapper().convertValue(node.unwrap(), new TypeReference<List<Object>>() {}));
     } else if (Boolean.TRUE.equals(node.isValue())) {
-      // TODO: refactor to not have to convert JSON to JsonNode
       try {
-        // Attempt to convert JSON String to Object
+        // Attempt to convert JSON String to Object (JsonNode)
         inputs.put(key, getObjectMapper().readTree((String) node.value()));
       } catch (Exception e) {
         if (variable.getAsSecure() && String.class.isAssignableFrom(value.getClass())) {
