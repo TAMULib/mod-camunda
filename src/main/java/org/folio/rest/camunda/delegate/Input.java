@@ -49,8 +49,7 @@ public interface Input {
           ? execution.getVariableLocal(key)
           : execution.getVariable(key);
 
-        // naive approach
-        if (variable.getAsSecure() && String.class.isAssignableFrom(value.getClass())) {
+        if (!variable.getSpin() && variable.getAsSecure() && String.class.isAssignableFrom(value.getClass())) {
           value = CryptoConverter.decrypt((String) value);
         }
 
