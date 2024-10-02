@@ -68,10 +68,6 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
     stringLoader.putTemplate("attachmentPath", attachmentPathTemplate);
     stringLoader.putTemplate("includeAttachment", includeAttachmentTemplate);
 
-    // TODO: have the email delegate respect includeAttachment
-    // the attachment is always included
-    // anything but 0, false should work
-
     Configuration cfg = new Configuration(Configuration.VERSION_2_3_23);
     cfg.setTemplateLoader(stringLoader);
 
