@@ -45,6 +45,9 @@ public interface Output {
 
     VariableType type = variable.getType();
 
+    // TODO: refactor here to not expect all variables to be objectValue
+    // https://docs.camunda.org/javadoc/camunda-bpm-platform/7.14/org/camunda/bpm/engine/variable/Variables.html
+
     Object value = Boolean.TRUE.equals(variable.getSpin())
       ? JSON(getObjectMapper().writeValueAsString(output))
       : variable.getAsSecure() && String.class.isAssignableFrom(output.getClass())
