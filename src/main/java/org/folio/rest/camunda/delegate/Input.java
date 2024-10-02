@@ -90,6 +90,7 @@ public interface Input {
       inputs.put(key, getObjectMapper().convertValue(node.unwrap(), new TypeReference<List<Object>>() {}));
     } else if (Boolean.TRUE.equals(node.isValue())) {
       try {
+        // Attempt convert JSON string to Object
         inputs.put(key, getObjectMapper().readTree((String) node.value()));
       } catch (Exception e) {
         inputs.put(key, node.value());
