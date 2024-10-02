@@ -49,10 +49,6 @@ public interface Input {
           ? execution.getVariableLocal(key)
           : execution.getVariable(key);
 
-        if (!variable.getSpin() && variable.getAsSecure() && String.class.isAssignableFrom(value.getClass())) {
-          value = CryptoConverter.decrypt((String) value);
-        }
-
         defaultGetInputsLoop(variable, key, type, value, inputs);
       } else {
         getLogger().warn("Could not find value for {} from {}", key, type);
@@ -89,11 +85,16 @@ public interface Input {
     } else if (Boolean.TRUE.equals(node.isArray())) {
       inputs.put(key, getObjectMapper().convertValue(node.unwrap(), new TypeReference<List<Object>>() {}));
     } else if (Boolean.TRUE.equals(node.isValue())) {
+      // TODO: refactor to not have to convert JSON to JsonNode
       try {
-        // Attempt convert JSON string to Object
+        // Attempt to convert JSON String to Object
         inputs.put(key, getObjectMapper().readTree((String) node.value()));
       } catch (Exception e) {
-        inputs.put(key, node.value());
+        if (variable.getAsSecure() && String.class.isAssignableFrom(value.getClass())) {
+          inputs.put(key, CryptoConverter.decrypt((String) node.value()));
+        } else {
+          inputs.put(key, node.value());
+        }
       }
     }
   }
