@@ -89,14 +89,9 @@ public interface Input {
     } else if (Boolean.TRUE.equals(node.isArray())) {
       inputs.put(key, getObjectMapper().convertValue(node.unwrap(), new TypeReference<List<Object>>() {}));
     } else if (Boolean.TRUE.equals(node.isValue())) {
-
-      // :/
       try {
-        // Try read tree if value is JSON string.
-        getLogger().info("TRYING PUT as JSON {}", node.value());
         inputs.put(key, getObjectMapper().readTree((String) node.value()));
       } catch (Exception e) {
-        getLogger().info("PUT in exception {} from {}", e.getMessage(), node.value());
         inputs.put(key, node.value());
       }
     }
