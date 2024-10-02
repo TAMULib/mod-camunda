@@ -85,12 +85,17 @@ public interface Input {
     } else if (Boolean.TRUE.equals(node.isArray())) {
       inputs.put(key, getObjectMapper().convertValue(node.unwrap(), new TypeReference<List<Object>>() {}));
     } else if (Boolean.TRUE.equals(node.isValue())) {
+      boolean asString = String.class.isAssignableFrom(node.value().getClass());
       try {
-        // Try convert JSON String to Object (JsonNode) ==> throws exception when not JSON
-        inputs.put(key, getObjectMapper().readTree(value));
+        if (!asString) {
+          inputs.put(key, node.value());
+        } else {
+          // Try convert JSON String to Object (JsonNode) ==> can throw exception when not JSON
+          inputs.put(key, getObjectMapper().readTree((String) node.value()));
+        }
       } catch (Exception e) {
-        // everything is a JSON or encrypted string or string or Object !?!?
-        if (String.class.isAssignableFrom(node.value().getClass())) {
+        getLogger().debug("Caught exception {} for {} from {}", e.getMessage(), key, type);
+        if (asString) {
           String value = (String) node.value();
           if (variable.getAsSecure()) {
             value = CryptoConverter.decrypt(value);
