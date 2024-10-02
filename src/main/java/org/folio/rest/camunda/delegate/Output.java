@@ -61,8 +61,8 @@ public interface Output {
       value = getObjectMapper().writeValueAsString(output);
 
       if (secure) {
-        getLogger().info("ENCRYPTING SPIN VALUE");
-        value = CryptoConverter.encrypt((String) value);
+        // ??? not sure how to support encrypting/decrypting JSON asSpin
+        getLogger().info("ENCRYPTING SPIN VALUE NOT SUPPORTED");
       }
 
       value = JSON(value);
@@ -70,9 +70,15 @@ public interface Output {
       getLogger().info("SPIN: {} {} {} {}", key, output, type, value);
     } else {
 
-      if (secure && String.class.isAssignableFrom(output.getClass())) {
-        getLogger().info("ENCRYPTING VALUE");
-        output = CryptoConverter.encrypt((String) output);
+      if (secure) {
+
+        if (String.class.isAssignableFrom(output.getClass())) {
+          getLogger().info("ENCRYPTING VALUE");
+          output = CryptoConverter.encrypt((String) output);
+        } else {
+          getLogger().info("ENCRYPTING NON STRING VALUE NOT SUPPORTED");
+        }
+
       }
 
       value = Variables.objectValue(output, variable.getAsTransient()).create();
