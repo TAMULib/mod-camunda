@@ -1,1 +1,38 @@
-{"statisticalCodeTypes":[{"id":"b0c98509-f7e8-411c-94b5-494b4b4518c8","name":"batch_id","source":"voyager","metadata":{"createdDate":1641513349867,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513349867,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"da9bf42b-5785-4945-9385-7e93fbcfe447","name":"custodian","source":"voyager","metadata":{"createdDate":1641513349897,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513349897,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"e7dff618-aad7-4af9-8d8d-a5a945b12431","name":"vger_item_status","source":"voyager","metadata":{"createdDate":1641513349910,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513349910,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}}],"totalRecords":3}
+{
+  "statisticalCodeTypes": [
+    {
+      "id": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "name": "batch_id",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513349867,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513349867,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "da9bf42b-5785-4945-9385-7e93fbcfe447",
+      "name": "custodian",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513349897,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513349897,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "name": "vger_item_status",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513349910,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513349910,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    }
+  ],
+  "totalRecords": 3
+}

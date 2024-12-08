@@ -1,0 +1,65 @@
+{
+  "subjectTypes": [
+    {
+      "id": "06b2cbd8-66bf-4956-9d90-97c9776365b8",
+      "name": "Personal name",
+      "source": "folio"
+    },
+    {
+      "id": "f9e5b41b-8d5b-47d3-91d0-ca9004796400",
+      "name": "Occupation",
+      "source": "folio"
+    },
+    {
+      "id": "6e09d47d-95e2-4d8a-831b-f777b8ef6d99",
+      "name": "Phone number",
+      "source": "local"
+    },
+    {
+      "id": "932da5e2-c802-4781-a6ce-cbe451db6777",
+      "name": "Agricultural Production",
+      "source": "folio"
+    },
+    {
+      "id": "97bb6c17-9de1-4978-8c5d-3779939c3b22",
+      "name": "Agricultural Products",
+      "source": "folio"
+    },
+    {
+      "id": "3e3b21f2-9bbf-4627-b007-db5a211fb37e",
+      "name": "Crops",
+      "source": "folio"
+    },
+    {
+      "id": "07ab49a5-740f-4e17-9a43-994779fe22e7",
+      "name": "Ethnicity",
+      "source": "folio"
+    },
+    {
+      "id": "86c928bc-0b3a-40ee-8d9b-4e40c0cfaf1c",
+      "name": "Farmers",
+      "source": "folio"
+    },
+    {
+      "id": "1046ba78-ddbf-4701-a3b1-d0b12fee7997",
+      "name": "Gender",
+      "source": "folio"
+    },
+    {
+      "id": "6c400283-b538-4660-9a8e-88d3f3a31fac",
+      "name": "Race",
+      "source": "folio"
+    },
+    {
+      "id": "62e6a6f8-2bcc-4c2e-bc5a-41d6969b1d1b",
+      "name": "Sociodemographic Characteristics",
+      "source": "folio"
+    },
+    {
+      "id": "ab45f7c2-2607-4de4-a413-b48ca6ef9b37",
+      "name": "USA",
+      "source": "folio"
+    }
+  ],
+  "totalRecords": 12
+}

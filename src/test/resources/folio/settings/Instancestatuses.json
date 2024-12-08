@@ -1,1 +1,77 @@
-{"instanceStatuses":[{"id":"2a340d34-6b70-443a-bb1b-1b8d1c65d862","code":"other","name":"Other","source":"folio","metadata":{"createdDate":1635889312158,"updatedDate":1635889312158}},{"id":"f5cc2ab6-bb92-4cab-b83f-5a3d09261a41","code":"none","name":"Not yet assigned","source":"folio","metadata":{"createdDate":1635889312217,"updatedDate":1635889312217}},{"id":"52a2ff34-2a12-420d-8539-21aa8d3cf5d8","code":"batch","name":"Batch Loaded","source":"folio","metadata":{"createdDate":1635889312224,"updatedDate":1635889312224}},{"id":"26f5208e-110a-4394-be29-1569a8c84a65","code":"uncat","name":"Uncataloged","source":"folio","metadata":{"createdDate":1635889312231,"updatedDate":1635889312231}},{"id":"daf2681c-25af-4202-a3fa-e58fdf806183","code":"temp","name":"Temporary","source":"folio","metadata":{"createdDate":1635889312240,"updatedDate":1635889312240}},{"id":"9634a5ab-9228-4703-baf2-4d12ebc77d56","code":"cat","name":"Cataloged","source":"folio","metadata":{"createdDate":1635889312248,"updatedDate":1635889312248}},{"id":"c8d51dc6-2f84-4220-8aef-3c4894d53b93","code":"migrated","name":"Migrated from previous system","source":"local","metadata":{"createdDate":1641513355821,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513355821,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}}],"totalRecords":7}
+{
+  "instanceStatuses": [
+    {
+      "id": "2a340d34-6b70-443a-bb1b-1b8d1c65d862",
+      "code": "other",
+      "name": "Other",
+      "source": "folio",
+      "metadata": {
+        "createdDate": 1635889312158,
+        "updatedDate": 1635889312158
+      }
+    },
+    {
+      "id": "f5cc2ab6-bb92-4cab-b83f-5a3d09261a41",
+      "code": "none",
+      "name": "Not yet assigned",
+      "source": "folio",
+      "metadata": {
+        "createdDate": 1635889312217,
+        "updatedDate": 1635889312217
+      }
+    },
+    {
+      "id": "52a2ff34-2a12-420d-8539-21aa8d3cf5d8",
+      "code": "batch",
+      "name": "Batch Loaded",
+      "source": "folio",
+      "metadata": {
+        "createdDate": 1635889312224,
+        "updatedDate": 1635889312224
+      }
+    },
+    {
+      "id": "26f5208e-110a-4394-be29-1569a8c84a65",
+      "code": "uncat",
+      "name": "Uncataloged",
+      "source": "folio",
+      "metadata": {
+        "createdDate": 1635889312231,
+        "updatedDate": 1635889312231
+      }
+    },
+    {
+      "id": "daf2681c-25af-4202-a3fa-e58fdf806183",
+      "code": "temp",
+      "name": "Temporary",
+      "source": "folio",
+      "metadata": {
+        "createdDate": 1635889312240,
+        "updatedDate": 1635889312240
+      }
+    },
+    {
+      "id": "9634a5ab-9228-4703-baf2-4d12ebc77d56",
+      "code": "cat",
+      "name": "Cataloged",
+      "source": "folio",
+      "metadata": {
+        "createdDate": 1635889312248,
+        "updatedDate": 1635889312248
+      }
+    },
+    {
+      "id": "c8d51dc6-2f84-4220-8aef-3c4894d53b93",
+      "code": "migrated",
+      "name": "Migrated from previous system",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513355821,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513355821,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    }
+  ],
+  "totalRecords": 7
+}

@@ -1,1 +1,43 @@
-{"holdingsTypes":[{"id":"e6da6c98-6dd0-41bc-8b4b-cfd4bbd9c3ae","name":"Serial","source":"folio","metadata":{"createdDate":1635889313503,"updatedDate":1635889313503}},{"id":"03c9c400-b9e3-4a07-ac0e-05ab470233ed","name":"Monograph","source":"folio","metadata":{"createdDate":1635889313543,"updatedDate":1635889313543}},{"id":"dc35d0ae-e877-488b-8e97-6e41444e6d0a","name":"Multi-part monograph","source":"folio","metadata":{"createdDate":1635889313552,"updatedDate":1635889313552}},{"id":"61155a36-148b-4664-bb7f-64ad708e0b32","name":"Unknown","source":"marc","metadata":{"createdDate":1641513362277,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513362277,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}}],"totalRecords":4}
+{
+  "holdingsTypes": [
+    {
+      "id": "e6da6c98-6dd0-41bc-8b4b-cfd4bbd9c3ae",
+      "name": "Serial",
+      "source": "folio",
+      "metadata": {
+        "createdDate": 1635889313503,
+        "updatedDate": 1635889313503
+      }
+    },
+    {
+      "id": "03c9c400-b9e3-4a07-ac0e-05ab470233ed",
+      "name": "Monograph",
+      "source": "folio",
+      "metadata": {
+        "createdDate": 1635889313543,
+        "updatedDate": 1635889313543
+      }
+    },
+    {
+      "id": "dc35d0ae-e877-488b-8e97-6e41444e6d0a",
+      "name": "Multi-part monograph",
+      "source": "folio",
+      "metadata": {
+        "createdDate": 1635889313552,
+        "updatedDate": 1635889313552
+      }
+    },
+    {
+      "id": "61155a36-148b-4664-bb7f-64ad708e0b32",
+      "name": "Unknown",
+      "source": "marc",
+      "metadata": {
+        "createdDate": 1641513362277,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513362277,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    }
+  ],
+  "totalRecords": 4
+}

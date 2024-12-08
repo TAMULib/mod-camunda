@@ -1,1 +1,2007 @@
-{"statisticalCodes":[{"id":"6e2654ac-9a86-433d-a50e-c570925b9b05","code":"AADR","name":"AADR","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351165,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351165,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"47ef2c97-80ab-4c50-95d5-18374237968a","code":"acceng","name":"acceng","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351194,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351194,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"d99a5472-e855-4743-8618-3dea403132f8","code":"Acsess","name":"Acsess","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351205,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351205,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"075a5734-9039-4088-8f26-5a7bf9562586","code":"AFSO","name":"AFSO","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351216,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351216,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"09664cae-029e-4b04-968f-a011c424915c","code":"asce","name":"asce","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351228,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351228,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"82ee41b4-8aab-4bda-8603-53a3314a3d2a","code":"ASPress","name":"ASPress","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351239,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351239,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"746429f5-30fd-453e-b07b-e74eb857e47d","code":"bindery","name":"At Bindery","statisticalCodeTypeId":"e7dff618-aad7-4af9-8d8d-a5a945b12431","source":"local","metadata":{"createdDate":1641513351250,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351250,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"ca1828b3-894f-4961-a9c5-cf7c201e89cc","code":"BLDR","name":"BLDR","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351261,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351261,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"e93d62b6-d24d-4bfa-a400-29225d5e1aec","code":"BLTC","name":"BLTC","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351273,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351273,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"43878b4f-1f9f-41fa-ac78-fbed9fbbd867","code":"BLWW","name":"BLWW","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351287,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351287,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"396fe935-1719-4727-9063-cf6168cf06ec","code":"burney","name":"burney","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351297,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351297,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"74b442bd-38cb-430c-8d5b-e45632ee3507","code":"BWLD","name":"BWLD","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351308,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351308,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"5fab41c6-88e1-4b45-a352-f055ab00b323","code":"call_slip","name":"Call Slip Request","statisticalCodeTypeId":"e7dff618-aad7-4af9-8d8d-a5a945b12431","source":"local","metadata":{"createdDate":1641513351318,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351318,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"50b06961-26e9-482b-97ea-c8308dda77d8","code":"cat_review","name":"Cataloging Review","statisticalCodeTypeId":"e7dff618-aad7-4af9-8d8d-a5a945b12431","source":"local","metadata":{"createdDate":1641513351328,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351328,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"974bfd47-47c9-48af-91e8-2c25a586ba2a","code":"charged","name":"Charged","statisticalCodeTypeId":"e7dff618-aad7-4af9-8d8d-a5a945b12431","source":"local","metadata":{"createdDate":1641513351338,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351338,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"a51afa35-ac99-427b-8b3b-fa5e87d84d05","code":"crcengnet","name":"crcengnet","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351350,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351350,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"e3b2ecbc-d9be-42eb-9fc3-4cf59fdc292f","code":"credoref","name":"credoref","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351360,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351360,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"0b374ddf-2d7f-41d9-a7d0-85db8202abeb","code":"ecco","name":"ecco","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351370,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351370,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"5fb37983-e98f-4829-a721-462f213599a1","code":"IETebooks","name":"IETebooks","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351380,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351380,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"96cb1c7f-e188-4a24-b390-11ef4d1ffc99","code":"in_transit","name":"In Transit","statisticalCodeTypeId":"e7dff618-aad7-4af9-8d8d-a5a945b12431","source":"local","metadata":{"createdDate":1641513351389,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351389,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"af4ddf3a-405a-4b42-887d-53119dca26c9","code":"in_transit_on_hold","name":"In Transit On Hold","statisticalCodeTypeId":"e7dff618-aad7-4af9-8d8d-a5a945b12431","source":"local","metadata":{"createdDate":1641513351401,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351401,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"d861861d-ee59-4038-8256-7ee264bb08b0","code":"jstdda","name":"jstdda","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351411,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351411,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"6d0fb589-9cb0-46b5-8979-b52d2a12e047","code":"jstor","name":"jstor","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351424,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351424,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"35b492f9-93e4-4b57-a0df-3451c27643be","code":"kanopy","name":"kanopy","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351433,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351433,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"ef4050a6-9962-41b2-a963-64e44d766641","code":"Marcive","name":"Marcive","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351443,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351443,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"b96595fa-1c95-48fe-b388-d5646843837d","code":"cabi","name":"cabi","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351454,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351454,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"e13e1b95-3167-4976-a6ca-12a6689e81c4","code":"circ_review","name":"Circulation Review","statisticalCodeTypeId":"e7dff618-aad7-4af9-8d8d-a5a945b12431","source":"local","metadata":{"createdDate":1641513351463,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351463,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"932cfc07-9e97-40ed-acd5-aefa2b8f8aed","code":"dancevid","name":"dancevid","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351473,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351473,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"99ae18d8-932a-4ce9-bb32-0f3e08191595","code":"EBSCOPDAT","name":"EBSCOPDAT","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351483,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351483,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"87c143a9-299c-495c-b975-a894ed8c9943","code":"elibro","name":"elibro","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351492,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351492,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"2e662e01-0474-434b-821b-b7daba729677","code":"elserefrex","name":"elserefrex","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351502,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351502,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"434c13c7-73f3-4d2e-a33e-7fa4cee146d9","code":"elsesciret","name":"elsesciret","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351519,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351519,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"38c86b2b-8156-4b7e-943e-460e15ea0dc0","code":"evans","name":"evans","statisticalCodeTypeId":"da9bf42b-5785-4945-9385-7e93fbcfe447","source":"voyager","metadata":{"createdDate":1641513351530,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351530,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"fef0a61c-7a29-4b9e-ae05-6c70b8656e9c","code":"in_process","name":"In Process","statisticalCodeTypeId":"e7dff618-aad7-4af9-8d8d-a5a945b12431","source":"local","metadata":{"createdDate":1641513351547,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351547,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"2e868044-e790-44e9-a2a0-3014ff306615","code":"iop","name":"iop","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351557,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351557,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"fff70f96-230a-4e85-a5cd-cd44808335f4","code":"kluwer","name":"kluwer","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351566,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351566,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"37e178fa-dd83-441d-bb2f-77de049cfba1","code":"lost_system","name":"Lost--System Applied","statisticalCodeTypeId":"e7dff618-aad7-4af9-8d8d-a5a945b12431","source":"local","metadata":{"createdDate":1641513351576,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351576,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"16374214-7536-4f05-9d21-8e0f9bd328c8","code":"morgan3","name":"morgan3","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351586,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351586,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"ef691248-7e35-4730-94e3-3fa3b2c31a70","code":"morgan5","name":"morgan5","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351594,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351594,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"e69f6df3-2c68-4e6c-927d-d45a0bf53e79","code":"muse","name":"muse","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351604,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351604,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"9100c460-fd18-44e7-9022-73f689d93546","code":"cambridge","name":"cambridge","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351613,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351613,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"9e740074-b427-47a3-9539-c13190c07c17","code":"CWLD","name":"CWLD","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351624,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351624,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"dfde01f2-7d08-4f28-b282-c894fc38728c","code":"ebrary","name":"ebrary","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351633,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351633,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"aa49eef3-3698-4098-874e-8ea92fb5e0b3","code":"EEBO","name":"EEBO","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351643,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351643,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"1ea91e85-ce1d-4dc4-ba6f-f535ab1cdff0","code":"elsemethod","name":"elsemethod","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351653,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351653,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"1ddd398d-c4e9-4c4f-9901-3ee41a045978","code":"elsescidir","name":"elsescidir","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351663,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351663,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"57a31cb3-f9aa-4b69-9d89-7813fbd6adb8","code":"elsevier","name":"elsevier","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351672,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351672,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"31e9c5bb-e76a-4dd1-b528-34470bad5921","code":"hein","name":"hein","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351682,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351682,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"ef9468b0-1a26-4476-a356-8360bedc90ff","code":"in_transit_discharged","name":"In Transit Discharged","statisticalCodeTypeId":"e7dff618-aad7-4af9-8d8d-a5a945b12431","source":"local","metadata":{"createdDate":1641513351692,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351692,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"1d032a61-0bec-4ea7-9372-f59b268b0ff0","code":"IOP3","name":"IOP3","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351701,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351701,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"46e215ae-f2cf-4b37-88f7-a1690bc6bd03","code":"knovel","name":"knovel","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351712,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351712,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"dd3e4363-fb80-4318-84ca-a5cafa89ebc5","code":"mmf","name":"mmf","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351722,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351722,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"7b0fc91e-ccdc-44f9-afeb-a4290fa79ec4","code":"morgan4","name":"morgan4","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351732,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351732,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"f5d1069d-f718-4f0e-8ff8-308f55540daf","code":"msl","name":"msl","statisticalCodeTypeId":"da9bf42b-5785-4945-9385-7e93fbcfe447","source":"voyager","metadata":{"createdDate":1641513351742,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351742,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"e6b54b33-ae52-45bf-8253-b56f615ac575","code":"musecom10","name":"musecom10","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351753,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351753,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"6b95543b-14e4-43ac-8861-860e9f9aa149","code":"claims_return","name":"Claims Returned","statisticalCodeTypeId":"e7dff618-aad7-4af9-8d8d-a5a945b12431","source":"local","metadata":{"createdDate":1641513351763,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351763,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"fdcb9916-2624-4196-84e8-9445e0df00e7","code":"discharged","name":"Discharged","statisticalCodeTypeId":"e7dff618-aad7-4af9-8d8d-a5a945b12431","source":"local","metadata":{"createdDate":1641513351773,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351773,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"982fd39f-720e-473b-a59c-ebc369a6d826","code":"ECCO2","name":"ECCO2","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351783,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351783,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"16f2d2c4-8d84-43d7-96ef-18add1a9c028","code":"galeMOMW","name":"galeMOMW","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351794,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351794,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"97f89dde-ae14-4588-a954-674a3390b502","code":"IMLD","name":"IMLD","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351804,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351804,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"9a579158-d437-4e13-87b2-550c401a3994","code":"missing","name":"Missing","statisticalCodeTypeId":"e7dff618-aad7-4af9-8d8d-a5a945b12431","source":"local","metadata":{"createdDate":1641513351815,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351815,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"79b2fe08-1692-41bd-9882-25970ec7b6a2","code":"musearcsu","name":"musearcsu","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351825,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351825,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"ba8fd283-fc4d-4dd6-94c2-9deae5576954","code":"ProCongres","name":"ProCongres","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351835,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351835,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"a9091510-e99b-49d6-869f-3e0f6319bcf9","code":"short_loan","name":"Short Loan Request","statisticalCodeTypeId":"e7dff618-aad7-4af9-8d8d-a5a945b12431","source":"local","metadata":{"createdDate":1641513351846,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351846,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"226c529d-2ecd-4c0a-90ed-288ea82212ed","code":"springer","name":"springer","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351856,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351856,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"9337a166-107a-4708-8ef2-03b36b9adb67","code":"vicmotion","name":"vicmotion","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351866,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351866,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"66df84b7-695a-4792-8e87-620d76458438","code":"CRCNetbase","name":"CRCNetbase","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351876,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351876,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"6fb66017-7ca2-43f7-9cf0-3038db975478","code":"ebrarypur","name":"ebrarypur","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351886,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351886,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"5c9cceb8-bf5f-4d8d-99a0-c1a3a5f8e882","code":"embuset","name":"embuset","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351898,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351898,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"c242c618-033b-46aa-93c1-1f40a410f82f","code":"hold","name":"Hold Request","statisticalCodeTypeId":"e7dff618-aad7-4af9-8d8d-a5a945b12431","source":"local","metadata":{"createdDate":1641513351909,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351909,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"ccf06fc3-4a02-4dbd-b51f-e1d84f75ab4b","code":"lost_library","name":"Lost--Library Applied","statisticalCodeTypeId":"e7dff618-aad7-4af9-8d8d-a5a945b12431","source":"local","metadata":{"createdDate":1641513351920,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351920,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"eef3d872-d723-4d56-812a-4a47d5945cd3","code":"morgan2","name":"morgan2","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351932,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351932,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"544281b9-fa63-4c91-afe0-d338d0fc820b","code":"NWLD","name":"NWLD","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351942,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351942,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"6972a1f6-b22a-48bf-829e-a673337c9031","code":"scheduled","name":"Scheduled","statisticalCodeTypeId":"e7dff618-aad7-4af9-8d8d-a5a945b12431","source":"local","metadata":{"createdDate":1641513351957,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351957,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"37a74b2a-9ca8-4ce6-8e79-5b18f27598b9","code":"slavery","name":"slavery","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351967,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351967,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"ac23ed12-ccd2-427d-b96e-1c039245e880","code":"springer05","name":"springer05","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351977,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351977,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"7cfd2e13-f85e-4337-8b10-f36e0b325d9b","code":"Withdrawn","name":"Withdrawn","statisticalCodeTypeId":"e7dff618-aad7-4af9-8d8d-a5a945b12431","source":"local","metadata":{"createdDate":1641513351987,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351987,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"c84453d3-c2ba-4f79-adbc-a08a2a23f9ca","code":"mmfset","name":"mmfset","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513351996,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513351996,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"7c5d0d2a-4f5a-4ca4-b3e2-8ec56f60625e","code":"mmset","name":"mmset","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352006,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352006,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"4eaa750a-7db3-48e3-a251-475ddff0c96f","code":"MMW","name":"MMW","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352022,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352022,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"3fa7f5aa-f17e-4e66-b156-15dc6251a05c","code":"morgan","name":"morgan","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352032,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352032,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"ee8799fa-1db1-4ee8-b8df-bbd80fc77e99","code":"morgan6","name":"morgan6","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352041,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352041,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"71b2451d-408f-4ac7-ad28-e5e774efd06a","code":"not_charged","name":"Not Charged","statisticalCodeTypeId":"e7dff618-aad7-4af9-8d8d-a5a945b12431","source":"local","metadata":{"createdDate":1641513352051,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352051,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"ef42e4c0-b4ba-4f98-8224-cbc348e4ca35","code":"prochdc","name":"prochdc","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352061,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352061,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"f347bcf1-9e09-4202-9971-4449253e9672","code":"recall","name":"Recall Request","statisticalCodeTypeId":"e7dff618-aad7-4af9-8d8d-a5a945b12431","source":"local","metadata":{"createdDate":1641513352073,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352073,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"30d8ab13-b397-4e1e-b0b8-ec87f3341122","code":"remote_storage","name":"Remote Storage Request","statisticalCodeTypeId":"e7dff618-aad7-4af9-8d8d-a5a945b12431","source":"local","metadata":{"createdDate":1641513352084,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352084,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"8a55aa46-5a8e-4911-a12f-86f5940be30b","code":"SPIE","name":"SPIE","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352094,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352094,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"bd0bbe09-f2b1-4d5c-83aa-0870b9effd3d","code":"musecom11","name":"musecom11","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352106,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352106,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"dc96cad4-c6cf-4d21-8f92-ac329d42ed3c","code":"musecom13","name":"musecom13","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352115,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352115,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"895fb0fb-0135-494e-8dec-3ff4372743dd","code":"proebd","name":"proebd","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352124,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352124,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"3162224a-0d5f-4517-827a-f7a5cb21478e","code":"proser2","name":"proser2","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352135,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352135,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"a3ab2d27-fad9-4b81-b8dd-60c99dc2e374","code":"psycbooks","name":"psycbooks","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352147,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352147,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"6363d3b7-aef1-4470-8934-8df96498d27b","code":"renewed","name":"Renewed","statisticalCodeTypeId":"e7dff618-aad7-4af9-8d8d-a5a945b12431","source":"local","metadata":{"createdDate":1641513352158,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352158,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"ba46acb5-68fb-452f-89c7-748a4f35a9f5","code":"SageBusCas","name":"SageBusCas","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352167,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352167,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"88b36809-bee9-44a0-9cf1-18863dad0ba1","code":"sageknow","name":"sageknow","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352177,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352177,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"8c4e2c6e-ef41-4155-b31e-c1964171872f","code":"SagePsych","name":"SagePsych","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352186,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352186,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"54bdccf1-9534-499c-9f6b-bb8f9da9d59a","code":"musecom12","name":"musecom12","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352195,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352195,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"a7f407ae-fd13-412b-8bc5-da5635138cf8","code":"NADR","name":"NADR","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352205,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352205,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"569a0d11-ef82-4f60-9979-941bcaf4e7ad","code":"netlib","name":"netlib","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352215,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352215,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"f9d11c37-1f99-4428-84f3-5f62278805cb","code":"springerOA","name":"springerOA","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352225,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352225,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"53de001a-6701-4512-8185-ac10fe1efa7a","code":"safari","name":"safari","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352234,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352234,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"dbc46726-263b-47d2-ae70-e36c8edf12c2","code":"SagePol","name":"SagePol","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352244,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352244,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"c686f1b0-b103-4bfc-a79d-ba0f3e381be2","code":"SageRes","name":"SageRes","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352254,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352254,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"99a43ad0-7faa-4aab-8f57-dfe15dc594eb","code":"sageresch","name":"sageresch","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352263,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352263,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"ec65f123-25f8-407d-b5d5-6648b0c56fff","code":"springer1","name":"springer1","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352273,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352273,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"9c2883ca-79a3-4f23-83d5-cae6354731b9","code":"wileyeb","name":"wileyeb","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352283,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352283,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"3c945493-9e36-42d3-af58-dcd239d316a1","code":"wwi","name":"wwi","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352292,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352292,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"907024ff-1822-43dd-a793-10c9a85389f0","code":"naxosmus","name":"naxosmus","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352301,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352301,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"d96462aa-ec7b-4330-b68b-8f8fb5c6f4d0","code":"overdue","name":"Overdue","statisticalCodeTypeId":"e7dff618-aad7-4af9-8d8d-a5a945b12431","source":"local","metadata":{"createdDate":1641513352311,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352311,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"f9c97098-535e-41d6-92bc-b3f3ac76a605","code":"pda","name":"pda","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352321,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352321,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"6e78b2e8-490a-439b-a975-3500d6808bca","code":"wiley","name":"wiley","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352334,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352334,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"82807c4e-5fc5-4379-b336-0dad1052ef94","code":"ybpepref","name":"ybpepref","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352345,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352345,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"8c6acfd3-24dd-4261-b81a-1085a396d5e2","code":"ybppdatrig","name":"ybppdatrig","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352356,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352356,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"b4a7c802-213b-4764-865c-bd21cabbceba","code":"SageSoc","name":"SageSoc","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352366,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352366,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"854ef875-a631-4108-a42b-cc300ada242f","code":"samethods","name":"samethods","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352375,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352375,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"b9050100-049b-45dc-8841-e00409309929","code":"springersu","name":"springersu","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352384,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352384,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"42ec7486-3ab4-470c-b1b6-48652c42495a","code":"ppda","name":"ppda","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352393,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352393,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"eb8cb682-2606-481c-9bf5-36ae8eb87dee","code":"scitech","name":"scitech","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352406,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352406,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"0b40ba6b-b169-4e44-a7a5-5cbbe3f120f4","code":"on_hold","name":"On Hold","statisticalCodeTypeId":"e7dff618-aad7-4af9-8d8d-a5a945b12431","source":"local","metadata":{"createdDate":1641513352416,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352416,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"65bcd994-5ddf-4f7b-afb9-fa0a325ee122","code":"oxhand","name":"oxhand","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352426,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352426,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"138b769e-d2c0-4064-a804-ad250a623d1c","code":"pdaebrary","name":"pdaebrary","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352436,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352436,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"04b49101-b3c1-46b1-8f15-12a9c852264d","code":"procrcd","name":"procrcd","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352446,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352446,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"b4fe3f72-1ab2-462b-85e0-58922538ebc3","code":"prohearing","name":"prohearing","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352455,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352455,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"a6f96ce8-b675-406d-9dc4-9037f09b8953","code":"psycbook","name":"psycbook","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352464,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352464,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"8a2dbabc-99a3-4c19-af2b-f71fb6721a4f","code":"psycther","name":"psycther","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352474,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352474,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"5cd49ec1-b1e2-45fc-ad47-54f88c5221f2","code":"sabin","name":"sabin","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352484,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352484,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"d33e2405-4b45-4a08-a6cd-5980ac119ae4","code":"SageBus","name":"SageBus","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352502,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352502,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"3a251b33-ccaa-403f-a914-8f66954c32e4","code":"SageCrim","name":"SageCrim","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352515,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352515,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"fd0463dc-a818-4d2a-9bcf-1c69d3bbeb07","code":"springerEB","name":"springerEB","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352524,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352524,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"c07c8334-abe2-405a-90e7-fde18de5290e","code":"theatvid","name":"theatvid","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352534,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352534,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"fc3fadf6-0879-417e-854b-5542392401a4","code":"ybpebooks","name":"ybpebooks","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352544,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352544,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"18d4d1d5-bb85-4f39-b92c-0f195368c5c2","code":"ybppapp","name":"ybppapp","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352553,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352553,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"aa107ced-c0dc-4fcc-8da8-058482cc29a2","code":"ybppfirm","name":"ybppfirm","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"voyager","metadata":{"createdDate":1641513352563,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352563,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"dced8ca6-03c3-4b7f-8dce-c759758d2a16","code":"jstddatrig","name":"jstddatrig","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"local","metadata":{"createdDate":1641513352573,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352573,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"6b9ab93c-e039-4803-ba89-c387d6c18a9a","code":"oxford","name":"oxford","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"local","metadata":{"createdDate":1641513352582,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513352582,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"dab1651d-73ac-4842-a672-2402721f43d9","code":"qatarybpebooks","name":"qatarybpebooks","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"local","metadata":{"createdDate":1644520914127,"createdByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8","updatedDate":1644520914127,"updatedByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8"}},{"id":"40910a76-1484-4775-801b-9d346c192e8d","code":"ACS","name":"ACS","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"local","metadata":{"createdDate":1647959554398,"createdByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8","updatedDate":1647959554398,"updatedByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8"}},{"id":"91980d40-52bb-4608-a803-7b37e4be0909","code":"salempress","name":"salempress","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"local","metadata":{"createdDate":1649788099095,"createdByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8","updatedDate":1649788099095,"updatedByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8"}},{"id":"ff581917-b2c6-4acf-8e43-548d5eae6960","code":"cnki","name":"cnki","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"local","metadata":{"createdDate":1649961540074,"createdByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8","updatedDate":1649961540074,"updatedByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8"}},{"id":"31edb179-caac-4508-8627-141f1875ff41","code":"ice","name":"ice","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"local","metadata":{"createdDate":1649961557945,"createdByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8","updatedDate":1649961557945,"updatedByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8"}},{"id":"bde0b03a-2cea-45dd-8ff8-9951fcf800eb","code":"MATHnetBASE","name":"MATHnetBASE","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"local","metadata":{"createdDate":1655139916066,"createdByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8","updatedDate":1655139916066,"updatedByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8"}},{"id":"6a47443d-d85c-440d-9592-926ee7393318","code":"FORENSICnetBASE","name":"FORENSICnetBASE","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"local","metadata":{"createdDate":1655139958200,"createdByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8","updatedDate":1655140217050,"updatedByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8"}},{"id":"adfb52de-4d0e-4239-a5bd-85cf54b05a5d","code":"delete","name":"delete","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"local","metadata":{"createdDate":1661129389049,"createdByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8","updatedDate":1661129389049,"updatedByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8"}},{"id":"3165db1a-f501-4746-a8bd-65378271a240","code":"swank","name":"swank","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"local","metadata":{"createdDate":1664473001255,"createdByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8","updatedDate":1664473001255,"updatedByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8"}},{"id":"dac68afa-b502-41a1-808b-7a7a70aace42","code":"MIT","name":"MIT","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"local","metadata":{"createdDate":1668993584478,"createdByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8","updatedDate":1668993584478,"updatedByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8"}},{"id":"6dc95d0b-f129-4abc-9732-c2d2b3c008e7","code":"MIT OA","name":"MIT OA","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"local","metadata":{"createdDate":1668994202162,"createdByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8","updatedDate":1668994202162,"updatedByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8"}},{"id":"2d6e74cc-98f5-414a-aa27-311fcd5f0169","code":"MichiganPress","name":"MichiganPress","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"local","metadata":{"createdDate":1669122703889,"createdByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8","updatedDate":1669122703889,"updatedByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8"}},{"id":"76f388f7-be57-45d4-8a1d-6363ea9879d0","code":"MichiganPress OA","name":"MichiganPress OA","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"local","metadata":{"createdDate":1669122882987,"createdByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8","updatedDate":1669122882987,"updatedByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8"}},{"id":"82c3cf51-bed5-4743-91ad-59795759f579","code":"ComicsPlus","name":"ComicsPlus","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"local","metadata":{"createdDate":1670443346707,"createdByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8","updatedDate":1670443346707,"updatedByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8"}},{"id":"3acb1cd8-c9d2-4ed5-a022-fec0c3762372","code":"RSC","name":"RSC","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"local","metadata":{"createdDate":1673384556093,"createdByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8","updatedDate":1673384556093,"updatedByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8"}},{"id":"71ded87e-8ef5-4676-97ff-7b9f19d0dcec","code":"asceEbooks","name":"asceEbooks","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"local","metadata":{"createdDate":1675028436043,"createdByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8","updatedDate":1675028436043,"updatedByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8"}},{"id":"43a97570-e86e-4858-836b-d2b513be1431","code":"springerEBA purchase","name":"springerEBA purchase","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"local","metadata":{"createdDate":1680188406865,"createdByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8","updatedDate":1680188743551,"updatedByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8"}},{"id":"c9370f6f-ca9e-44f1-9011-28397bf3c380","code":"ybpetext","name":"ybpetext","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"local","metadata":{"createdDate":1682710872084,"createdByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8","updatedDate":1682710872084,"updatedByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8"}},{"id":"40b474af-fd17-4581-aaf6-7764e38c152d","code":"WileyEBA","name":"WileyEBA","statisticalCodeTypeId":"b0c98509-f7e8-411c-94b5-494b4b4518c8","source":"local","metadata":{"createdDate":1682959280680,"createdByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8","updatedDate":1682959280680,"updatedByUserId":"55eb0923-4348-3535-923c-d8f3b617c8c8"}}],"totalRecords":154}
+{
+  "statisticalCodes": [
+    {
+      "id": "6e2654ac-9a86-433d-a50e-c570925b9b05",
+      "code": "AADR",
+      "name": "AADR",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351165,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351165,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "47ef2c97-80ab-4c50-95d5-18374237968a",
+      "code": "acceng",
+      "name": "acceng",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351194,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351194,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "d99a5472-e855-4743-8618-3dea403132f8",
+      "code": "Acsess",
+      "name": "Acsess",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351205,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351205,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "075a5734-9039-4088-8f26-5a7bf9562586",
+      "code": "AFSO",
+      "name": "AFSO",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351216,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351216,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "09664cae-029e-4b04-968f-a011c424915c",
+      "code": "asce",
+      "name": "asce",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351228,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351228,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "82ee41b4-8aab-4bda-8603-53a3314a3d2a",
+      "code": "ASPress",
+      "name": "ASPress",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351239,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351239,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "746429f5-30fd-453e-b07b-e74eb857e47d",
+      "code": "bindery",
+      "name": "At Bindery",
+      "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513351250,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351250,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "ca1828b3-894f-4961-a9c5-cf7c201e89cc",
+      "code": "BLDR",
+      "name": "BLDR",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351261,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351261,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "e93d62b6-d24d-4bfa-a400-29225d5e1aec",
+      "code": "BLTC",
+      "name": "BLTC",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351273,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351273,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "43878b4f-1f9f-41fa-ac78-fbed9fbbd867",
+      "code": "BLWW",
+      "name": "BLWW",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351287,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351287,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "396fe935-1719-4727-9063-cf6168cf06ec",
+      "code": "burney",
+      "name": "burney",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351297,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351297,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "74b442bd-38cb-430c-8d5b-e45632ee3507",
+      "code": "BWLD",
+      "name": "BWLD",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351308,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351308,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "5fab41c6-88e1-4b45-a352-f055ab00b323",
+      "code": "call_slip",
+      "name": "Call Slip Request",
+      "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513351318,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351318,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "50b06961-26e9-482b-97ea-c8308dda77d8",
+      "code": "cat_review",
+      "name": "Cataloging Review",
+      "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513351328,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351328,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "974bfd47-47c9-48af-91e8-2c25a586ba2a",
+      "code": "charged",
+      "name": "Charged",
+      "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513351338,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351338,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "a51afa35-ac99-427b-8b3b-fa5e87d84d05",
+      "code": "crcengnet",
+      "name": "crcengnet",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351350,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351350,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "e3b2ecbc-d9be-42eb-9fc3-4cf59fdc292f",
+      "code": "credoref",
+      "name": "credoref",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351360,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351360,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "0b374ddf-2d7f-41d9-a7d0-85db8202abeb",
+      "code": "ecco",
+      "name": "ecco",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351370,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351370,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "5fb37983-e98f-4829-a721-462f213599a1",
+      "code": "IETebooks",
+      "name": "IETebooks",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351380,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351380,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "96cb1c7f-e188-4a24-b390-11ef4d1ffc99",
+      "code": "in_transit",
+      "name": "In Transit",
+      "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513351389,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351389,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "af4ddf3a-405a-4b42-887d-53119dca26c9",
+      "code": "in_transit_on_hold",
+      "name": "In Transit On Hold",
+      "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513351401,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351401,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "d861861d-ee59-4038-8256-7ee264bb08b0",
+      "code": "jstdda",
+      "name": "jstdda",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351411,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351411,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "6d0fb589-9cb0-46b5-8979-b52d2a12e047",
+      "code": "jstor",
+      "name": "jstor",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351424,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351424,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "35b492f9-93e4-4b57-a0df-3451c27643be",
+      "code": "kanopy",
+      "name": "kanopy",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351433,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351433,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "ef4050a6-9962-41b2-a963-64e44d766641",
+      "code": "Marcive",
+      "name": "Marcive",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351443,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351443,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "b96595fa-1c95-48fe-b388-d5646843837d",
+      "code": "cabi",
+      "name": "cabi",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351454,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351454,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "e13e1b95-3167-4976-a6ca-12a6689e81c4",
+      "code": "circ_review",
+      "name": "Circulation Review",
+      "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513351463,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351463,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "932cfc07-9e97-40ed-acd5-aefa2b8f8aed",
+      "code": "dancevid",
+      "name": "dancevid",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351473,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351473,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "99ae18d8-932a-4ce9-bb32-0f3e08191595",
+      "code": "EBSCOPDAT",
+      "name": "EBSCOPDAT",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351483,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351483,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "87c143a9-299c-495c-b975-a894ed8c9943",
+      "code": "elibro",
+      "name": "elibro",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351492,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351492,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "2e662e01-0474-434b-821b-b7daba729677",
+      "code": "elserefrex",
+      "name": "elserefrex",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351502,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351502,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "434c13c7-73f3-4d2e-a33e-7fa4cee146d9",
+      "code": "elsesciret",
+      "name": "elsesciret",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351519,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351519,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "38c86b2b-8156-4b7e-943e-460e15ea0dc0",
+      "code": "evans",
+      "name": "evans",
+      "statisticalCodeTypeId": "da9bf42b-5785-4945-9385-7e93fbcfe447",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351530,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351530,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "fef0a61c-7a29-4b9e-ae05-6c70b8656e9c",
+      "code": "in_process",
+      "name": "In Process",
+      "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513351547,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351547,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "2e868044-e790-44e9-a2a0-3014ff306615",
+      "code": "iop",
+      "name": "iop",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351557,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351557,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "fff70f96-230a-4e85-a5cd-cd44808335f4",
+      "code": "kluwer",
+      "name": "kluwer",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351566,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351566,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "37e178fa-dd83-441d-bb2f-77de049cfba1",
+      "code": "lost_system",
+      "name": "Lost--System Applied",
+      "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513351576,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351576,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "16374214-7536-4f05-9d21-8e0f9bd328c8",
+      "code": "morgan3",
+      "name": "morgan3",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351586,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351586,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "ef691248-7e35-4730-94e3-3fa3b2c31a70",
+      "code": "morgan5",
+      "name": "morgan5",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351594,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351594,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "e69f6df3-2c68-4e6c-927d-d45a0bf53e79",
+      "code": "muse",
+      "name": "muse",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351604,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351604,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "9100c460-fd18-44e7-9022-73f689d93546",
+      "code": "cambridge",
+      "name": "cambridge",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351613,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351613,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "9e740074-b427-47a3-9539-c13190c07c17",
+      "code": "CWLD",
+      "name": "CWLD",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351624,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351624,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "dfde01f2-7d08-4f28-b282-c894fc38728c",
+      "code": "ebrary",
+      "name": "ebrary",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351633,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351633,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "aa49eef3-3698-4098-874e-8ea92fb5e0b3",
+      "code": "EEBO",
+      "name": "EEBO",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351643,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351643,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "1ea91e85-ce1d-4dc4-ba6f-f535ab1cdff0",
+      "code": "elsemethod",
+      "name": "elsemethod",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351653,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351653,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "1ddd398d-c4e9-4c4f-9901-3ee41a045978",
+      "code": "elsescidir",
+      "name": "elsescidir",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351663,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351663,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "57a31cb3-f9aa-4b69-9d89-7813fbd6adb8",
+      "code": "elsevier",
+      "name": "elsevier",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351672,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351672,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "31e9c5bb-e76a-4dd1-b528-34470bad5921",
+      "code": "hein",
+      "name": "hein",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351682,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351682,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "ef9468b0-1a26-4476-a356-8360bedc90ff",
+      "code": "in_transit_discharged",
+      "name": "In Transit Discharged",
+      "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513351692,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351692,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "1d032a61-0bec-4ea7-9372-f59b268b0ff0",
+      "code": "IOP3",
+      "name": "IOP3",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351701,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351701,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "46e215ae-f2cf-4b37-88f7-a1690bc6bd03",
+      "code": "knovel",
+      "name": "knovel",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351712,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351712,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "dd3e4363-fb80-4318-84ca-a5cafa89ebc5",
+      "code": "mmf",
+      "name": "mmf",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351722,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351722,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "7b0fc91e-ccdc-44f9-afeb-a4290fa79ec4",
+      "code": "morgan4",
+      "name": "morgan4",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351732,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351732,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "f5d1069d-f718-4f0e-8ff8-308f55540daf",
+      "code": "msl",
+      "name": "msl",
+      "statisticalCodeTypeId": "da9bf42b-5785-4945-9385-7e93fbcfe447",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351742,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351742,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "e6b54b33-ae52-45bf-8253-b56f615ac575",
+      "code": "musecom10",
+      "name": "musecom10",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351753,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351753,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "6b95543b-14e4-43ac-8861-860e9f9aa149",
+      "code": "claims_return",
+      "name": "Claims Returned",
+      "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513351763,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351763,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "fdcb9916-2624-4196-84e8-9445e0df00e7",
+      "code": "discharged",
+      "name": "Discharged",
+      "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513351773,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351773,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "982fd39f-720e-473b-a59c-ebc369a6d826",
+      "code": "ECCO2",
+      "name": "ECCO2",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351783,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351783,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "16f2d2c4-8d84-43d7-96ef-18add1a9c028",
+      "code": "galeMOMW",
+      "name": "galeMOMW",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351794,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351794,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "97f89dde-ae14-4588-a954-674a3390b502",
+      "code": "IMLD",
+      "name": "IMLD",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351804,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351804,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "9a579158-d437-4e13-87b2-550c401a3994",
+      "code": "missing",
+      "name": "Missing",
+      "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513351815,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351815,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "79b2fe08-1692-41bd-9882-25970ec7b6a2",
+      "code": "musearcsu",
+      "name": "musearcsu",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351825,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351825,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "ba8fd283-fc4d-4dd6-94c2-9deae5576954",
+      "code": "ProCongres",
+      "name": "ProCongres",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351835,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351835,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "a9091510-e99b-49d6-869f-3e0f6319bcf9",
+      "code": "short_loan",
+      "name": "Short Loan Request",
+      "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513351846,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351846,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "226c529d-2ecd-4c0a-90ed-288ea82212ed",
+      "code": "springer",
+      "name": "springer",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351856,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351856,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "9337a166-107a-4708-8ef2-03b36b9adb67",
+      "code": "vicmotion",
+      "name": "vicmotion",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351866,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351866,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "66df84b7-695a-4792-8e87-620d76458438",
+      "code": "CRCNetbase",
+      "name": "CRCNetbase",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351876,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351876,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "6fb66017-7ca2-43f7-9cf0-3038db975478",
+      "code": "ebrarypur",
+      "name": "ebrarypur",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351886,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351886,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "5c9cceb8-bf5f-4d8d-99a0-c1a3a5f8e882",
+      "code": "embuset",
+      "name": "embuset",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351898,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351898,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "c242c618-033b-46aa-93c1-1f40a410f82f",
+      "code": "hold",
+      "name": "Hold Request",
+      "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513351909,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351909,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "ccf06fc3-4a02-4dbd-b51f-e1d84f75ab4b",
+      "code": "lost_library",
+      "name": "Lost--Library Applied",
+      "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513351920,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351920,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "eef3d872-d723-4d56-812a-4a47d5945cd3",
+      "code": "morgan2",
+      "name": "morgan2",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351932,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351932,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "544281b9-fa63-4c91-afe0-d338d0fc820b",
+      "code": "NWLD",
+      "name": "NWLD",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351942,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351942,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "6972a1f6-b22a-48bf-829e-a673337c9031",
+      "code": "scheduled",
+      "name": "Scheduled",
+      "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513351957,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351957,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "37a74b2a-9ca8-4ce6-8e79-5b18f27598b9",
+      "code": "slavery",
+      "name": "slavery",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351967,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351967,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "ac23ed12-ccd2-427d-b96e-1c039245e880",
+      "code": "springer05",
+      "name": "springer05",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351977,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351977,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "7cfd2e13-f85e-4337-8b10-f36e0b325d9b",
+      "code": "Withdrawn",
+      "name": "Withdrawn",
+      "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513351987,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351987,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "c84453d3-c2ba-4f79-adbc-a08a2a23f9ca",
+      "code": "mmfset",
+      "name": "mmfset",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513351996,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513351996,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "7c5d0d2a-4f5a-4ca4-b3e2-8ec56f60625e",
+      "code": "mmset",
+      "name": "mmset",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352006,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352006,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "4eaa750a-7db3-48e3-a251-475ddff0c96f",
+      "code": "MMW",
+      "name": "MMW",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352022,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352022,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "3fa7f5aa-f17e-4e66-b156-15dc6251a05c",
+      "code": "morgan",
+      "name": "morgan",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352032,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352032,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "ee8799fa-1db1-4ee8-b8df-bbd80fc77e99",
+      "code": "morgan6",
+      "name": "morgan6",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352041,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352041,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "71b2451d-408f-4ac7-ad28-e5e774efd06a",
+      "code": "not_charged",
+      "name": "Not Charged",
+      "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513352051,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352051,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "ef42e4c0-b4ba-4f98-8224-cbc348e4ca35",
+      "code": "prochdc",
+      "name": "prochdc",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352061,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352061,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "f347bcf1-9e09-4202-9971-4449253e9672",
+      "code": "recall",
+      "name": "Recall Request",
+      "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513352073,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352073,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "30d8ab13-b397-4e1e-b0b8-ec87f3341122",
+      "code": "remote_storage",
+      "name": "Remote Storage Request",
+      "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513352084,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352084,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "8a55aa46-5a8e-4911-a12f-86f5940be30b",
+      "code": "SPIE",
+      "name": "SPIE",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352094,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352094,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "bd0bbe09-f2b1-4d5c-83aa-0870b9effd3d",
+      "code": "musecom11",
+      "name": "musecom11",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352106,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352106,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "dc96cad4-c6cf-4d21-8f92-ac329d42ed3c",
+      "code": "musecom13",
+      "name": "musecom13",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352115,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352115,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "895fb0fb-0135-494e-8dec-3ff4372743dd",
+      "code": "proebd",
+      "name": "proebd",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352124,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352124,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "3162224a-0d5f-4517-827a-f7a5cb21478e",
+      "code": "proser2",
+      "name": "proser2",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352135,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352135,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "a3ab2d27-fad9-4b81-b8dd-60c99dc2e374",
+      "code": "psycbooks",
+      "name": "psycbooks",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352147,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352147,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "6363d3b7-aef1-4470-8934-8df96498d27b",
+      "code": "renewed",
+      "name": "Renewed",
+      "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513352158,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352158,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "ba46acb5-68fb-452f-89c7-748a4f35a9f5",
+      "code": "SageBusCas",
+      "name": "SageBusCas",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352167,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352167,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "88b36809-bee9-44a0-9cf1-18863dad0ba1",
+      "code": "sageknow",
+      "name": "sageknow",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352177,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352177,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "8c4e2c6e-ef41-4155-b31e-c1964171872f",
+      "code": "SagePsych",
+      "name": "SagePsych",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352186,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352186,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "54bdccf1-9534-499c-9f6b-bb8f9da9d59a",
+      "code": "musecom12",
+      "name": "musecom12",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352195,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352195,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "a7f407ae-fd13-412b-8bc5-da5635138cf8",
+      "code": "NADR",
+      "name": "NADR",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352205,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352205,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "569a0d11-ef82-4f60-9979-941bcaf4e7ad",
+      "code": "netlib",
+      "name": "netlib",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352215,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352215,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "f9d11c37-1f99-4428-84f3-5f62278805cb",
+      "code": "springerOA",
+      "name": "springerOA",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352225,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352225,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "53de001a-6701-4512-8185-ac10fe1efa7a",
+      "code": "safari",
+      "name": "safari",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352234,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352234,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "dbc46726-263b-47d2-ae70-e36c8edf12c2",
+      "code": "SagePol",
+      "name": "SagePol",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352244,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352244,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "c686f1b0-b103-4bfc-a79d-ba0f3e381be2",
+      "code": "SageRes",
+      "name": "SageRes",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352254,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352254,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "99a43ad0-7faa-4aab-8f57-dfe15dc594eb",
+      "code": "sageresch",
+      "name": "sageresch",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352263,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352263,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "ec65f123-25f8-407d-b5d5-6648b0c56fff",
+      "code": "springer1",
+      "name": "springer1",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352273,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352273,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "9c2883ca-79a3-4f23-83d5-cae6354731b9",
+      "code": "wileyeb",
+      "name": "wileyeb",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352283,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352283,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "3c945493-9e36-42d3-af58-dcd239d316a1",
+      "code": "wwi",
+      "name": "wwi",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352292,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352292,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "907024ff-1822-43dd-a793-10c9a85389f0",
+      "code": "naxosmus",
+      "name": "naxosmus",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352301,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352301,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "d96462aa-ec7b-4330-b68b-8f8fb5c6f4d0",
+      "code": "overdue",
+      "name": "Overdue",
+      "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513352311,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352311,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "f9c97098-535e-41d6-92bc-b3f3ac76a605",
+      "code": "pda",
+      "name": "pda",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352321,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352321,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "6e78b2e8-490a-439b-a975-3500d6808bca",
+      "code": "wiley",
+      "name": "wiley",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352334,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352334,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "82807c4e-5fc5-4379-b336-0dad1052ef94",
+      "code": "ybpepref",
+      "name": "ybpepref",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352345,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352345,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "8c6acfd3-24dd-4261-b81a-1085a396d5e2",
+      "code": "ybppdatrig",
+      "name": "ybppdatrig",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352356,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352356,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "b4a7c802-213b-4764-865c-bd21cabbceba",
+      "code": "SageSoc",
+      "name": "SageSoc",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352366,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352366,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "854ef875-a631-4108-a42b-cc300ada242f",
+      "code": "samethods",
+      "name": "samethods",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352375,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352375,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "b9050100-049b-45dc-8841-e00409309929",
+      "code": "springersu",
+      "name": "springersu",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352384,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352384,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "42ec7486-3ab4-470c-b1b6-48652c42495a",
+      "code": "ppda",
+      "name": "ppda",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352393,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352393,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "eb8cb682-2606-481c-9bf5-36ae8eb87dee",
+      "code": "scitech",
+      "name": "scitech",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352406,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352406,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "0b40ba6b-b169-4e44-a7a5-5cbbe3f120f4",
+      "code": "on_hold",
+      "name": "On Hold",
+      "statisticalCodeTypeId": "e7dff618-aad7-4af9-8d8d-a5a945b12431",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513352416,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352416,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "65bcd994-5ddf-4f7b-afb9-fa0a325ee122",
+      "code": "oxhand",
+      "name": "oxhand",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352426,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352426,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "138b769e-d2c0-4064-a804-ad250a623d1c",
+      "code": "pdaebrary",
+      "name": "pdaebrary",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352436,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352436,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "04b49101-b3c1-46b1-8f15-12a9c852264d",
+      "code": "procrcd",
+      "name": "procrcd",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352446,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352446,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "b4fe3f72-1ab2-462b-85e0-58922538ebc3",
+      "code": "prohearing",
+      "name": "prohearing",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352455,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352455,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "a6f96ce8-b675-406d-9dc4-9037f09b8953",
+      "code": "psycbook",
+      "name": "psycbook",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352464,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352464,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "8a2dbabc-99a3-4c19-af2b-f71fb6721a4f",
+      "code": "psycther",
+      "name": "psycther",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352474,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352474,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "5cd49ec1-b1e2-45fc-ad47-54f88c5221f2",
+      "code": "sabin",
+      "name": "sabin",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352484,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352484,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "d33e2405-4b45-4a08-a6cd-5980ac119ae4",
+      "code": "SageBus",
+      "name": "SageBus",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352502,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352502,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "3a251b33-ccaa-403f-a914-8f66954c32e4",
+      "code": "SageCrim",
+      "name": "SageCrim",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352515,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352515,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "fd0463dc-a818-4d2a-9bcf-1c69d3bbeb07",
+      "code": "springerEB",
+      "name": "springerEB",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352524,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352524,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "c07c8334-abe2-405a-90e7-fde18de5290e",
+      "code": "theatvid",
+      "name": "theatvid",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352534,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352534,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "fc3fadf6-0879-417e-854b-5542392401a4",
+      "code": "ybpebooks",
+      "name": "ybpebooks",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352544,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352544,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "18d4d1d5-bb85-4f39-b92c-0f195368c5c2",
+      "code": "ybppapp",
+      "name": "ybppapp",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352553,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352553,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "aa107ced-c0dc-4fcc-8da8-058482cc29a2",
+      "code": "ybppfirm",
+      "name": "ybppfirm",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "voyager",
+      "metadata": {
+        "createdDate": 1641513352563,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352563,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "dced8ca6-03c3-4b7f-8dce-c759758d2a16",
+      "code": "jstddatrig",
+      "name": "jstddatrig",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513352573,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352573,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "6b9ab93c-e039-4803-ba89-c387d6c18a9a",
+      "code": "oxford",
+      "name": "oxford",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513352582,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513352582,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "dab1651d-73ac-4842-a672-2402721f43d9",
+      "code": "qatarybpebooks",
+      "name": "qatarybpebooks",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1644520914127,
+        "createdByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8",
+        "updatedDate": 1644520914127,
+        "updatedByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8"
+      }
+    },
+    {
+      "id": "40910a76-1484-4775-801b-9d346c192e8d",
+      "code": "ACS",
+      "name": "ACS",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1647959554398,
+        "createdByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8",
+        "updatedDate": 1647959554398,
+        "updatedByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8"
+      }
+    },
+    {
+      "id": "91980d40-52bb-4608-a803-7b37e4be0909",
+      "code": "salempress",
+      "name": "salempress",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1649788099095,
+        "createdByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8",
+        "updatedDate": 1649788099095,
+        "updatedByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8"
+      }
+    },
+    {
+      "id": "ff581917-b2c6-4acf-8e43-548d5eae6960",
+      "code": "cnki",
+      "name": "cnki",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1649961540074,
+        "createdByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8",
+        "updatedDate": 1649961540074,
+        "updatedByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8"
+      }
+    },
+    {
+      "id": "31edb179-caac-4508-8627-141f1875ff41",
+      "code": "ice",
+      "name": "ice",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1649961557945,
+        "createdByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8",
+        "updatedDate": 1649961557945,
+        "updatedByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8"
+      }
+    },
+    {
+      "id": "bde0b03a-2cea-45dd-8ff8-9951fcf800eb",
+      "code": "MATHnetBASE",
+      "name": "MATHnetBASE",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1655139916066,
+        "createdByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8",
+        "updatedDate": 1655139916066,
+        "updatedByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8"
+      }
+    },
+    {
+      "id": "6a47443d-d85c-440d-9592-926ee7393318",
+      "code": "FORENSICnetBASE",
+      "name": "FORENSICnetBASE",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1655139958200,
+        "createdByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8",
+        "updatedDate": 1655140217050,
+        "updatedByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8"
+      }
+    },
+    {
+      "id": "adfb52de-4d0e-4239-a5bd-85cf54b05a5d",
+      "code": "delete",
+      "name": "delete",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1661129389049,
+        "createdByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8",
+        "updatedDate": 1661129389049,
+        "updatedByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8"
+      }
+    },
+    {
+      "id": "3165db1a-f501-4746-a8bd-65378271a240",
+      "code": "swank",
+      "name": "swank",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1664473001255,
+        "createdByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8",
+        "updatedDate": 1664473001255,
+        "updatedByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8"
+      }
+    },
+    {
+      "id": "dac68afa-b502-41a1-808b-7a7a70aace42",
+      "code": "MIT",
+      "name": "MIT",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1668993584478,
+        "createdByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8",
+        "updatedDate": 1668993584478,
+        "updatedByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8"
+      }
+    },
+    {
+      "id": "6dc95d0b-f129-4abc-9732-c2d2b3c008e7",
+      "code": "MIT OA",
+      "name": "MIT OA",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1668994202162,
+        "createdByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8",
+        "updatedDate": 1668994202162,
+        "updatedByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8"
+      }
+    },
+    {
+      "id": "2d6e74cc-98f5-414a-aa27-311fcd5f0169",
+      "code": "MichiganPress",
+      "name": "MichiganPress",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1669122703889,
+        "createdByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8",
+        "updatedDate": 1669122703889,
+        "updatedByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8"
+      }
+    },
+    {
+      "id": "76f388f7-be57-45d4-8a1d-6363ea9879d0",
+      "code": "MichiganPress OA",
+      "name": "MichiganPress OA",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1669122882987,
+        "createdByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8",
+        "updatedDate": 1669122882987,
+        "updatedByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8"
+      }
+    },
+    {
+      "id": "82c3cf51-bed5-4743-91ad-59795759f579",
+      "code": "ComicsPlus",
+      "name": "ComicsPlus",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1670443346707,
+        "createdByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8",
+        "updatedDate": 1670443346707,
+        "updatedByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8"
+      }
+    },
+    {
+      "id": "3acb1cd8-c9d2-4ed5-a022-fec0c3762372",
+      "code": "RSC",
+      "name": "RSC",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1673384556093,
+        "createdByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8",
+        "updatedDate": 1673384556093,
+        "updatedByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8"
+      }
+    },
+    {
+      "id": "71ded87e-8ef5-4676-97ff-7b9f19d0dcec",
+      "code": "asceEbooks",
+      "name": "asceEbooks",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1675028436043,
+        "createdByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8",
+        "updatedDate": 1675028436043,
+        "updatedByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8"
+      }
+    },
+    {
+      "id": "43a97570-e86e-4858-836b-d2b513be1431",
+      "code": "springerEBA purchase",
+      "name": "springerEBA purchase",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1680188406865,
+        "createdByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8",
+        "updatedDate": 1680188743551,
+        "updatedByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8"
+      }
+    },
+    {
+      "id": "c9370f6f-ca9e-44f1-9011-28397bf3c380",
+      "code": "ybpetext",
+      "name": "ybpetext",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1682710872084,
+        "createdByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8",
+        "updatedDate": 1682710872084,
+        "updatedByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8"
+      }
+    },
+    {
+      "id": "40b474af-fd17-4581-aaf6-7764e38c152d",
+      "code": "WileyEBA",
+      "name": "WileyEBA",
+      "statisticalCodeTypeId": "b0c98509-f7e8-411c-94b5-494b4b4518c8",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1682959280680,
+        "createdByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8",
+        "updatedDate": 1682959280680,
+        "updatedByUserId": "55eb0923-4348-3535-923c-d8f3b617c8c8"
+      }
+    }
+  ],
+  "totalRecords": 154
+}
