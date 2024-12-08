@@ -1,1 +1,112 @@
-{"holdingsNoteTypes":[{"id":"6a41b714-8574-4084-8d64-a9373c3fbb59","name":"Reproduction","source":"folio","metadata":{"createdDate":1635889314450,"updatedDate":1635889314450}},{"id":"88914775-f677-4759-b57b-1a33b90b24e0","name":"Electronic bookplate","source":"folio","metadata":{"createdDate":1635889314458,"updatedDate":1635889314458}},{"id":"e19eabab-a85c-4aef-a7b2-33bd9acef24e","name":"Binding","source":"folio","metadata":{"createdDate":1635889314465,"updatedDate":1635889314465}},{"id":"d6510242-5ec3-42ed-b593-3585d2e48fd6","name":"Action note","source":"folio","metadata":{"createdDate":1635889314511,"updatedDate":1635889314511}},{"id":"b160f13a-ddba-4053-b9c4-60ec5ea45d56","name":"Note","source":"folio","metadata":{"createdDate":1635889314519,"updatedDate":1635889314519}},{"id":"db9b4787-95f0-4e78-becf-26748ce6bdeb","name":"Provenance","source":"folio","metadata":{"createdDate":1635889314528,"updatedDate":1635889314528}},{"id":"c4407cc7-d79f-4609-95bd-1cefb2e2b5c5","name":"Copy note","source":"folio","metadata":{"createdDate":1635889314543,"updatedDate":1635889314543}},{"id":"f453de0f-8b54-4e99-9180-52932529e3a6","name":"Access restrictions","source":"local","metadata":{"createdDate":1641513362174,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513362174,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"7ca7dc63-c053-4aec-8272-c03aeda4840c","name":"latest_in","source":"local","metadata":{"createdDate":1641513362193,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513362193,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"0fe80632-2616-4626-a316-c3bba0e3eeb9","name":"receiving_note","source":"local","metadata":{"createdDate":1641513362204,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513362204,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}},{"id":"ba85f1c3-db24-4618-80e1-dc4d601bbd26","name":"Source of acquisition","source":"local","metadata":{"createdDate":1641513362215,"createdByUserId":"41199828-e6a3-444d-82d1-be838dea67d4","updatedDate":1641513362215,"updatedByUserId":"41199828-e6a3-444d-82d1-be838dea67d4"}}],"totalRecords":11}
+{
+  "holdingsNoteTypes": [
+    {
+      "id": "6a41b714-8574-4084-8d64-a9373c3fbb59",
+      "name": "Reproduction",
+      "source": "folio",
+      "metadata": {
+        "createdDate": 1635889314450,
+        "updatedDate": 1635889314450
+      }
+    },
+    {
+      "id": "88914775-f677-4759-b57b-1a33b90b24e0",
+      "name": "Electronic bookplate",
+      "source": "folio",
+      "metadata": {
+        "createdDate": 1635889314458,
+        "updatedDate": 1635889314458
+      }
+    },
+    {
+      "id": "e19eabab-a85c-4aef-a7b2-33bd9acef24e",
+      "name": "Binding",
+      "source": "folio",
+      "metadata": {
+        "createdDate": 1635889314465,
+        "updatedDate": 1635889314465
+      }
+    },
+    {
+      "id": "d6510242-5ec3-42ed-b593-3585d2e48fd6",
+      "name": "Action note",
+      "source": "folio",
+      "metadata": {
+        "createdDate": 1635889314511,
+        "updatedDate": 1635889314511
+      }
+    },
+    {
+      "id": "b160f13a-ddba-4053-b9c4-60ec5ea45d56",
+      "name": "Note",
+      "source": "folio",
+      "metadata": {
+        "createdDate": 1635889314519,
+        "updatedDate": 1635889314519
+      }
+    },
+    {
+      "id": "db9b4787-95f0-4e78-becf-26748ce6bdeb",
+      "name": "Provenance",
+      "source": "folio",
+      "metadata": {
+        "createdDate": 1635889314528,
+        "updatedDate": 1635889314528
+      }
+    },
+    {
+      "id": "c4407cc7-d79f-4609-95bd-1cefb2e2b5c5",
+      "name": "Copy note",
+      "source": "folio",
+      "metadata": {
+        "createdDate": 1635889314543,
+        "updatedDate": 1635889314543
+      }
+    },
+    {
+      "id": "f453de0f-8b54-4e99-9180-52932529e3a6",
+      "name": "Access restrictions",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513362174,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513362174,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "7ca7dc63-c053-4aec-8272-c03aeda4840c",
+      "name": "latest_in",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513362193,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513362193,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "0fe80632-2616-4626-a316-c3bba0e3eeb9",
+      "name": "receiving_note",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513362204,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513362204,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    },
+    {
+      "id": "ba85f1c3-db24-4618-80e1-dc4d601bbd26",
+      "name": "Source of acquisition",
+      "source": "local",
+      "metadata": {
+        "createdDate": 1641513362215,
+        "createdByUserId": "41199828-e6a3-444d-82d1-be838dea67d4",
+        "updatedDate": 1641513362215,
+        "updatedByUserId": "41199828-e6a3-444d-82d1-be838dea67d4"
+      }
+    }
+  ],
+  "totalRecords": 11
+}

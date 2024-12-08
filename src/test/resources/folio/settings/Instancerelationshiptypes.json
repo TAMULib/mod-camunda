@@ -1,1 +1,29 @@
-{"instanceRelationshipTypes":[{"id":"a17daf0a-f057-43b3-9997-13d0724cdf51","name":"multipart monograph","metadata":{"createdDate":1635889310316,"updatedDate":1635889310316}},{"id":"758f13db-ffb4-440e-bb10-8a364aa6cb4a","name":"bound-with","metadata":{"createdDate":1635889310338,"updatedDate":1635889310338}},{"id":"30773a27-b485-4dab-aeb6-b8c04fa3cb17","name":"monographic series","metadata":{"createdDate":1635889310354,"updatedDate":1635889310354}}],"totalRecords":3}
+{
+  "instanceRelationshipTypes": [
+    {
+      "id": "a17daf0a-f057-43b3-9997-13d0724cdf51",
+      "name": "multipart monograph",
+      "metadata": {
+        "createdDate": 1635889310316,
+        "updatedDate": 1635889310316
+      }
+    },
+    {
+      "id": "758f13db-ffb4-440e-bb10-8a364aa6cb4a",
+      "name": "bound-with",
+      "metadata": {
+        "createdDate": 1635889310338,
+        "updatedDate": 1635889310338
+      }
+    },
+    {
+      "id": "30773a27-b485-4dab-aeb6-b8c04fa3cb17",
+      "name": "monographic series",
+      "metadata": {
+        "createdDate": 1635889310354,
+        "updatedDate": 1635889310354
+      }
+    }
+  ],
+  "totalRecords": 3
+}

@@ -1,1 +1,90 @@
-{"id":"cd71c802-8ac8-4cf5-bae1-4ce2876d8d2b","hrid":"55-008008027","source":"MARC","parentInstances":[],"childInstances":[],"title":"Demographics - Field Crops from the Agricultural Census database Date Type: Year; Commodity: COTTON; Indicator: COTTON - OPERATIONS WITH AREA HARVESTED; Domain Category: TENURE: (PART OWNER) AND AREA HARVESTED: (250 TO 499 ACRES) Data-Planet by Conquest Systems Data-Planet Statistical Datasets [electronic resource]","indexTitle":"Demographics - Field Crops from the Agricultural Census database Date Type: Year; Commodity: COTTON; Indicator: COTTON - OPERATIONS WITH AREA HARVESTED; Domain Category: TENURE: (PART OWNER) AND AREA HARVESTED: (250 TO 499 ACRES)","alternativeTitles":[],"editions":[],"series":[],"identifiers":[],"contributors":[{"name":"United States Department of Agriculture","contributorNameTypeId":"2e48e713-17f3-4c13-a9f8-23845bb210aa","primary":true}],"subjects":["Agricultural Production","Agricultural Products","Crops","Ethnicity","Farmers","Gender","Race","Sociodemographic Characteristics","USA"],"classifications":[],"publication":[{"publisher":"Data-Planet by Conquest Systems","place":"Bethesda, MD","dateOfPublication":"2018"}],"publicationFrequency":[],"publicationRange":[],"electronicAccess":[{"uri":"https://statisticaldatasets.data-planet.com/dataplanet/content?type=dp&param=7fuKsUAw6JIaGcWOIA3l-Vwto9mzZgrNMFLFPlGtk6FnjoQZkwLM8jWhRg6gcm8a7szy16Zd-qX21gWL60K16CYDcvh94mjfobuCg_FwKocJTwwJUl90QQZtUt2a1-MRCznwYjKgrkv2NgIXnZXPjr7R5HVLvU4vLOm2ZTd4B5VlwrZdkER7sbSgs5sIhubGi-5IjIie32_7MvClaen243TYNMdn4hAqv-EmO2IG_RRFwSXyg1l5E1WiWY2L11VofjuPoj4uRInaj-Ifd7QoAkn9fam-vckCM9OfDYUkkqY%3D&view=RANKING%7COrg0%7C%7CTimeUnit0%7C%7C250_0%4058%2C250_1%406587%2C250_2%4015038%7C2012%7C%7Cfalse&exp=7fuKsUAw6JKvEAT2Orb_xsiTfTW5o29HbEM8bZqAE3XsE9XAhdG2Eo9h5Qt8fhF8Yn1GjBfzI3sfmlWJ36t4u5PMwppsaSiTDP0fUpujM9KV2lxQfofQCw%3D%3D","relationshipId":"f5d0068e-6272-458e-8a81-b85e7b9a14aa"}],"instanceTypeId":"df5dddff-9c30-4507-8b82-119ff972d4d7","instanceFormatIds":["f5e8210f-7640-459b-a71f-552567f92369"],"physicalDescriptions":[],"languages":["eng"],"notes":[{"instanceNoteTypeId":"3d931c23-6ae8-4e5a-8802-dc8c2e21ea19","note":"Statistical data with bibliographic citation and abstract","staffOnly":false},{"instanceNoteTypeId":"10e2e11b-450f-45c8-b09b-0f819999966e","note":"Reports metrics describing the race, gender, ethnicity, and other characteristics of farm operators in the United States involved in animal and livestock production. The United States Department of Agriculture collects race and Hispanic origin information following the Office of Management and Budget's standards for collecting and tabulating data on race and ethnicity. The Census of Agriculture, conducted every five years by the National Agricultural Statistics Service (NASS) of the United States Department of Agriculture (USDA) since 1840, provides comprehensive data on the current situation, historical changes, and long-term trends in US agriculture. The Census also collects information on the agricultural industry that is not gathered elsewhere in the annual survey programs conducted by the NASS, including data on areas such as agritourism, organic production, farmer demographics, specialized agricultural production, Internet access and more.  Statistics offer a detailed picture of US farms and ranches and the people who operate them. Participation in the Census is required by law, and is the responsibility of every farmer and rancher, regardless of the size or type of operation. For Census purposes, a farm is any place from which $1,000 or more of agricultural products were produced and sold, or normally would have been sold, during the Census year. Data are provided, where available, for the nation, states, counties, and ZIP code. With the 2012 Census of Agriculture, ZIP code tabulations will not be available due to the impact of sequestration, per NASS","staffOnly":false}],"modeOfIssuanceId":"9d18a02f-5897-4c31-9106-c9abb5c7ae8b","statisticalCodeIds":[],"natureOfContentTermIds":[],"precedingTitles":[],"succeedingTitles":[]}
+{
+  "hrid": "55-008008027",
+  "source": "MARC",
+  "parentInstances": [],
+  "childInstances": [],
+  "title": "Demographics - Field Crops from the Agricultural Census database Date Type: Year; Commodity: COTTON; Indicator: COTTON - OPERATIONS WITH AREA HARVESTED; Domain Category: TENURE: (PART OWNER) AND AREA HARVESTED: (250 TO 499 ACRES) Data-Planet by Conquest Systems Data-Planet Statistical Datasets [electronic resource]",
+  "indexTitle": "Demographics - Field Crops from the Agricultural Census database Date Type: Year; Commodity: COTTON; Indicator: COTTON - OPERATIONS WITH AREA HARVESTED; Domain Category: TENURE: (PART OWNER) AND AREA HARVESTED: (250 TO 499 ACRES)",
+  "alternativeTitles": [],
+  "editions": [],
+  "series": [],
+  "identifiers": [],
+  "contributors": [
+    {
+      "name": "United States Department of Agriculture",
+      "contributorNameTypeId": "2e48e713-17f3-4c13-a9f8-23845bb210aa",
+      "primary": true
+    }
+  ],
+  "subjects": [
+    {
+      "value": "Agricultural Production"
+    },
+    {
+      "value": "Agricultural Products"
+    },
+    {
+      "value": "Crops"
+    },
+    {
+      "value": "Ethnicity"
+    },
+    {
+      "value": "Farmers"
+    },
+    {
+      "value": "Gender"
+    },
+    {
+      "value": "Race"
+    },
+    {
+      "value": "Sociodemographic Characteristics"
+    },
+    {
+      "value": "USA"
+    }
+  ],
+  "classifications": [],
+  "publication": [
+    {
+      "publisher": "Data-Planet by Conquest Systems",
+      "place": "Bethesda, MD",
+      "dateOfPublication": "2018"
+    }
+  ],
+  "publicationFrequency": [],
+  "publicationRange": [],
+  "electronicAccess": [
+    {
+      "uri": "https://statisticaldatasets.data-planet.com/dataplanet/content?type=dp&param=7fuKsUAw6JIaGcWOIA3l-Vwto9mzZgrNMFLFPlGtk6FnjoQZkwLM8jWhRg6gcm8a7szy16Zd-qX21gWL60K16CYDcvh94mjfobuCg_FwKocJTwwJUl90QQZtUt2a1-MRCznwYjKgrkv2NgIXnZXPjr7R5HVLvU4vLOm2ZTd4B5VlwrZdkER7sbSgs5sIhubGi-5IjIie32_7MvClaen243TYNMdn4hAqv-EmO2IG_RRFwSXyg1l5E1WiWY2L11VofjuPoj4uRInaj-Ifd7QoAkn9fam-vckCM9OfDYUkkqY%3D&view=RANKING%7COrg0%7C%7CTimeUnit0%7C%7C250_0%4058%2C250_1%406587%2C250_2%4015038%7C2012%7C%7Cfalse&exp=7fuKsUAw6JKvEAT2Orb_xsiTfTW5o29HbEM8bZqAE3XsE9XAhdG2Eo9h5Qt8fhF8Yn1GjBfzI3sfmlWJ36t4u5PMwppsaSiTDP0fUpujM9KV2lxQfofQCw%3D%3D",
+      "relationshipId": "f5d0068e-6272-458e-8a81-b85e7b9a14aa"
+    }
+  ],
+  "instanceTypeId": "df5dddff-9c30-4507-8b82-119ff972d4d7",
+  "instanceFormatIds": [
+    "f5e8210f-7640-459b-a71f-552567f92369"
+  ],
+  "physicalDescriptions": [],
+  "languages": [
+    "eng"
+  ],
+  "notes": [
+    {
+      "instanceNoteTypeId": "3d931c23-6ae8-4e5a-8802-dc8c2e21ea19",
+      "note": "Statistical data with bibliographic citation and abstract",
+      "staffOnly": false
+    },
+    {
+      "instanceNoteTypeId": "10e2e11b-450f-45c8-b09b-0f819999966e",
+      "note": "Reports metrics describing the race, gender, ethnicity, and other characteristics of farm operators in the United States involved in animal and livestock production. The United States Department of Agriculture collects race and Hispanic origin information following the Office of Management and Budget's standards for collecting and tabulating data on race and ethnicity. The Census of Agriculture, conducted every five years by the National Agricultural Statistics Service (NASS) of the United States Department of Agriculture (USDA) since 1840, provides comprehensive data on the current situation, historical changes, and long-term trends in US agriculture. The Census also collects information on the agricultural industry that is not gathered elsewhere in the annual survey programs conducted by the NASS, including data on areas such as agritourism, organic production, farmer demographics, specialized agricultural production, Internet access and more.  Statistics offer a detailed picture of US farms and ranches and the people who operate them. Participation in the Census is required by law, and is the responsibility of every farmer and rancher, regardless of the size or type of operation. For Census purposes, a farm is any place from which $1,000 or more of agricultural products were produced and sold, or normally would have been sold, during the Census year. Data are provided, where available, for the nation, states, counties, and ZIP code. With the 2012 Census of Agriculture, ZIP code tabulations will not be available due to the impact of sequestration, per NASS",
+      "staffOnly": false
+    }
+  ],
+  "administrativeNotes": [],
+  "modeOfIssuanceId": "9d18a02f-5897-4c31-9106-c9abb5c7ae8b",
+  "statisticalCodeIds": [],
+  "natureOfContentTermIds": [],
+  "precedingTitles": [],
+  "succeedingTitles": []
+}

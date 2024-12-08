@@ -1,10 +1,38 @@
 package org.folio.rest.camunda.utility;
 
+import static org.folio.rest.camunda.utility.MappingParametersType.ALTERNATIVE_TITLE_TYPES;
+import static org.folio.rest.camunda.utility.MappingParametersType.CALL_NUMBER_TYPES;
+import static org.folio.rest.camunda.utility.MappingParametersType.CLASSIFICATION_TYPES;
+import static org.folio.rest.camunda.utility.MappingParametersType.CONTRIBUTOR_NAME_TYPES;
+import static org.folio.rest.camunda.utility.MappingParametersType.CONTRIBUTOR_TYPES;
+import static org.folio.rest.camunda.utility.MappingParametersType.ELECTRONIC_ACCESS_RELATIONSHIPS;
+import static org.folio.rest.camunda.utility.MappingParametersType.HOLDINGS_NOTE_TYPES;
+import static org.folio.rest.camunda.utility.MappingParametersType.HOLDINGS_TYPES;
+import static org.folio.rest.camunda.utility.MappingParametersType.IDENTIFIER_TYPES;
+import static org.folio.rest.camunda.utility.MappingParametersType.ILL_POLICIES;
+import static org.folio.rest.camunda.utility.MappingParametersType.INSTANCE_FORMATS;
+import static org.folio.rest.camunda.utility.MappingParametersType.INSTANCE_NOTE_TYPES;
+import static org.folio.rest.camunda.utility.MappingParametersType.INSTANCE_RELATIONSHIP_TYPES;
+import static org.folio.rest.camunda.utility.MappingParametersType.INSTANCE_STATUSES;
+import static org.folio.rest.camunda.utility.MappingParametersType.INSTANCE_TYPES;
+import static org.folio.rest.camunda.utility.MappingParametersType.ISSUANCE_MODES;
+import static org.folio.rest.camunda.utility.MappingParametersType.ITEM_DAMAGED_STATUSES;
+import static org.folio.rest.camunda.utility.MappingParametersType.ITEM_NOTE_TYPES;
+import static org.folio.rest.camunda.utility.MappingParametersType.LOAN_TYPES;
+import static org.folio.rest.camunda.utility.MappingParametersType.LOCATIONS;
+import static org.folio.rest.camunda.utility.MappingParametersType.MARC_FIELD_PROTECTION_SETTINGS;
+import static org.folio.rest.camunda.utility.MappingParametersType.MATERIAL_TYPES;
+import static org.folio.rest.camunda.utility.MappingParametersType.NATURE_OF_CONTENT_TERMS;
+import static org.folio.rest.camunda.utility.MappingParametersType.STATISTICAL_CODES;
+import static org.folio.rest.camunda.utility.MappingParametersType.STATISTICAL_CODE_TYPES;
+import static org.folio.rest.camunda.utility.MappingParametersType.SUBJECT_SOURCES;
+import static org.folio.rest.camunda.utility.MappingParametersType.SUBJECT_TYPES;
+import static org.folio.rest.camunda.utility.MappingParametersUtility.LIMIT;
+import static org.folio.rest.camunda.utility.MappingParametersUtility.MAPPING_RULES_PATH;
 import static org.folio.rest.camunda.utility.TestUtility.i;
 import static org.folio.rest.camunda.utility.TestUtility.om;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.lenient;
 
@@ -13,8 +41,8 @@ import java.util.Objects;
 import java.util.stream.Stream;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import io.vertx.core.json.DecodeException;
 import org.folio.Alternativetitletypes;
 import org.folio.Callnumbertypes;
 import org.folio.Classificationtypes;
@@ -40,66 +68,70 @@ import org.folio.Materialtypes;
 import org.folio.Natureofcontentterms;
 import org.folio.Statisticalcodes;
 import org.folio.Statisticalcodetypes;
+import org.folio.SubjectSources;
+import org.folio.SubjectTypes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestTemplate;
 
 @ExtendWith(MockitoExtension.class)
 class MappingUtilityTest {
 
-  @Spy
-  private RestTemplate mockRestTemplate;
-
   private final static String OKAPI_URL = "http://localhost:9130";
+
+  @Spy
+  private OkapiRestTemplate mockRestTemplate;
 
   @BeforeEach
   void beforeEach() throws RestClientException, IOException {
-    lenient().doReturn(i("/folio/settings/rules.json", String.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.MAPPING_RULES_URL), eq(HttpMethod.GET), any(), eq(String.class));
-    lenient().doReturn(i("/folio/settings/Identifiertypes.json", Identifiertypes.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.IDENTIFIER_TYPES_URL), eq(HttpMethod.GET), any(), eq(Identifiertypes.class));
-    lenient().doReturn(i("/folio/settings/Classificationtypes.json", Classificationtypes.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.CLASSIFICATION_TYPES_URL), eq(HttpMethod.GET), any(), eq(Classificationtypes.class));
-    lenient().doReturn(i("/folio/settings/Instancetypes.json", Instancetypes.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.INSTANCE_TYPES_URL), eq(HttpMethod.GET), any(), eq(Instancetypes.class));
-    lenient().doReturn(i("/folio/settings/Electronicaccessrelationships.json", Electronicaccessrelationships.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.ELECTRONIC_ACCESS_URL), eq(HttpMethod.GET), any(), eq(Electronicaccessrelationships.class));
-    lenient().doReturn(i("/folio/settings/Instanceformats.json", Instanceformats.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.INSTANCE_FORMATS_URL), eq(HttpMethod.GET), any(), eq(Instanceformats.class));
-    lenient().doReturn(i("/folio/settings/Contributortypes.json", Contributortypes.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.CONTRIBUTOR_TYPES_URL), eq(HttpMethod.GET), any(), eq(Contributortypes.class));
-    lenient().doReturn(i("/folio/settings/Contributornametypes.json", Contributornametypes.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.CONTRIBUTOR_NAME_TYPES_URL), eq(HttpMethod.GET), any(), eq(Contributornametypes.class));
-    lenient().doReturn(i("/folio/settings/Instancenotetypes.json", Instancenotetypes.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.INSTANCE_NOTE_TYPES_URL), eq(HttpMethod.GET), any(), eq(Instancenotetypes.class));
-    lenient().doReturn(i("/folio/settings/Alternativetitletypes.json", Alternativetitletypes.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.INSTANCE_ALTERNATIVE_TITLE_TYPES_URL), eq(HttpMethod.GET), any(), eq(Alternativetitletypes.class));
-    lenient().doReturn(i("/folio/settings/Natureofcontentterms.json", Natureofcontentterms.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.NATURE_OF_CONTENT_TERMS_URL), eq(HttpMethod.GET), any(), eq(Natureofcontentterms.class));
-    lenient().doReturn(i("/folio/settings/Instancestatuses.json", Instancestatuses.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.INSTANCE_STATUSES_URL), eq(HttpMethod.GET), any(), eq(Instancestatuses.class));
-    lenient().doReturn(i("/folio/settings/Instancerelationshiptypes.json", Instancerelationshiptypes.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.INSTANCE_RELATIONSHIP_TYPES_URL), eq(HttpMethod.GET), any(), eq(Instancerelationshiptypes.class));
-    lenient().doReturn(i("/folio/settings/Holdingstypes.json", Holdingstypes.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.HOLDINGS_TYPES_URL), eq(HttpMethod.GET), any(), eq(Holdingstypes.class));
-    lenient().doReturn(i("/folio/settings/Holdingsnotetypes.json", Holdingsnotetypes.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.HOLDINGS_NOTE_TYPES_URL), eq(HttpMethod.GET), any(), eq(Holdingsnotetypes.class));
-    lenient().doReturn(i("/folio/settings/Illpolicies.json", Illpolicies.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.ILL_POLICIES_URL), eq(HttpMethod.GET), any(), eq(Illpolicies.class));
-    lenient().doReturn(i("/folio/settings/Callnumbertypes.json", Callnumbertypes.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.CALL_NUMBER_TYPES_URL), eq(HttpMethod.GET), any(), eq(Callnumbertypes.class));
-    lenient().doReturn(i("/folio/settings/Statisticalcodes.json", Statisticalcodes.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.STATISTICAL_CODES_URL), eq(HttpMethod.GET), any(), eq(Statisticalcodes.class));
-    lenient().doReturn(i("/folio/settings/Statisticalcodetypes.json", Statisticalcodetypes.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.STATISTICAL_CODE_TYPES_URL), eq(HttpMethod.GET), any(), eq(Statisticalcodetypes.class));
-    lenient().doReturn(i("/folio/settings/Locations.json", Locations.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.LOCATIONS_URL), eq(HttpMethod.GET), any(), eq(Locations.class));
-    lenient().doReturn(i("/folio/settings/Materialtypes.json", Materialtypes.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.MATERIAL_TYPES_URL), eq(HttpMethod.GET), any(), eq(Materialtypes.class));
-    lenient().doReturn(i("/folio/settings/Itemdamagedstatuses.json", Itemdamagedstatuses.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.ITEM_DAMAGED_STATUSES_URL), eq(HttpMethod.GET), any(), eq(Itemdamagedstatuses.class));
-    lenient().doReturn(i("/folio/settings/Loantypes.json", Loantypes.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.LOAN_TYPES_URL), eq(HttpMethod.GET), any(), eq(Loantypes.class));
-    lenient().doReturn(i("/folio/settings/Itemnotetypes.json", Itemnotetypes.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.ITEM_NOTE_TYPES_URL), eq(HttpMethod.GET), any(), eq(Itemnotetypes.class));
-    lenient().doReturn(i("/folio/settings/MarcFieldProtectionSettingsCollection.json", MarcFieldProtectionSettingsCollection.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.FIELD_PROTECTION_SETTINGS_URL), eq(HttpMethod.GET), any(), eq(MarcFieldProtectionSettingsCollection.class));
-    lenient().doReturn(i("/folio/settings/Issuancemodes.json", Issuancemodes.class)).when(mockRestTemplate).exchange(eq(OKAPI_URL + MappingUtility.ISSUANCE_MODES_URL), eq(HttpMethod.GET), any(), eq(Issuancemodes.class));
+    mockJsonResponse("rules.json", MAPPING_RULES_PATH, JsonNode.class);
+
+    mockJsonResponse("Alternativetitletypes.json", ALTERNATIVE_TITLE_TYPES.getPath(LIMIT), Alternativetitletypes.class);
+    mockJsonResponse("Callnumbertypes.json", CALL_NUMBER_TYPES.getPath(LIMIT), Callnumbertypes.class);
+    mockJsonResponse("Classificationtypes.json", CLASSIFICATION_TYPES.getPath(LIMIT), Classificationtypes.class);
+    mockJsonResponse("Contributornametypes.json", CONTRIBUTOR_NAME_TYPES.getPath(LIMIT), Contributornametypes.class);
+    mockJsonResponse("Contributortypes.json", CONTRIBUTOR_TYPES.getPath(LIMIT), Contributortypes.class);
+    mockJsonResponse("Electronicaccessrelationships.json", ELECTRONIC_ACCESS_RELATIONSHIPS.getPath(LIMIT), Electronicaccessrelationships.class);
+    mockJsonResponse("Holdingsnotetypes.json", HOLDINGS_NOTE_TYPES.getPath(LIMIT), Holdingsnotetypes.class);
+    mockJsonResponse("Holdingstypes.json", HOLDINGS_TYPES.getPath(LIMIT), Holdingstypes.class);
+    mockJsonResponse("Identifiertypes.json", IDENTIFIER_TYPES.getPath(LIMIT), Identifiertypes.class);
+    mockJsonResponse("Illpolicies.json", ILL_POLICIES.getPath(LIMIT), Illpolicies.class);
+    mockJsonResponse("Instanceformats.json", INSTANCE_FORMATS.getPath(LIMIT), Instanceformats.class);
+    mockJsonResponse("Instancenotetypes.json", INSTANCE_NOTE_TYPES.getPath(LIMIT), Instancenotetypes.class);
+    mockJsonResponse("Instancerelationshiptypes.json", INSTANCE_RELATIONSHIP_TYPES.getPath(LIMIT), Instancerelationshiptypes.class);
+    mockJsonResponse("Instancestatuses.json", INSTANCE_STATUSES.getPath(LIMIT), Instancestatuses.class);
+    mockJsonResponse("Instancetypes.json", INSTANCE_TYPES.getPath(LIMIT), Instancetypes.class);
+    mockJsonResponse("Issuancemodes.json", ISSUANCE_MODES.getPath(LIMIT), Issuancemodes.class);
+    mockJsonResponse("Itemdamagedstatuses.json", ITEM_DAMAGED_STATUSES.getPath(LIMIT), Itemdamagedstatuses.class);
+    mockJsonResponse("Itemnotetypes.json", ITEM_NOTE_TYPES.getPath(LIMIT), Itemnotetypes.class);
+    mockJsonResponse("Loantypes.json", LOAN_TYPES.getPath(LIMIT), Loantypes.class);
+    mockJsonResponse("Locations.json", LOCATIONS.getPath(LIMIT), Locations.class);
+    mockJsonResponse("MarcFieldProtectionSettingsCollection.json", MARC_FIELD_PROTECTION_SETTINGS.getPath(LIMIT), MarcFieldProtectionSettingsCollection.class);
+    mockJsonResponse("Materialtypes.json", MATERIAL_TYPES.getPath(LIMIT), Materialtypes.class);
+    mockJsonResponse("Natureofcontentterms.json", NATURE_OF_CONTENT_TERMS.getPath(LIMIT), Natureofcontentterms.class);
+    mockJsonResponse("Statisticalcodes.json", STATISTICAL_CODES.getPath(LIMIT), Statisticalcodes.class);
+    mockJsonResponse("Statisticalcodetypes.json", STATISTICAL_CODE_TYPES.getPath(LIMIT), Statisticalcodetypes.class);
+    mockJsonResponse("Subjectsources.json", SUBJECT_SOURCES.getPath(LIMIT), SubjectSources.class);
+    mockJsonResponse("Subjecttypes.json", SUBJECT_TYPES.getPath(LIMIT), SubjectTypes.class);
+
     MappingUtility.restTemplate = mockRestTemplate;
   }
 
   @ParameterizedTest
   @MethodSource("testMapRecordToInsanceStream")
   void testMapRecordToInsance(Parameters<String, String> data) throws JsonProcessingException {
-
     String marcJson = data.input;
     String okapiUrl = OKAPI_URL;
     String tenant = "diku";
-    String token = "";
+    String token = "token";
 
     if (Objects.nonNull(data.exception)) {
-      assertThrows(data.exception.getClass(), () -> MappingUtility.mapRecordToInsance(marcJson, okapiUrl, tenant, token));
+      assertThrows(data.exception.getClass(),
+          () -> MappingUtility.mapRecordToInsance(marcJson, okapiUrl, tenant, token));
     } else {
       ObjectNode expected = (ObjectNode) om(data.expected);
       expected.remove("id");
@@ -114,21 +146,41 @@ class MappingUtilityTest {
    * Stream parameters for testing mapRecordToInsance.
    *
    * @return
-   *   The test method parameters:
-   *     - input of type String (MARC JSON)
-   *     - expected output of type String (JSON FOLIO instance).
-   *     - exception expected to be thrown
+   *         The test method parameters:
+   *         - input of type String (MARC JSON)
+   *         - expected output of type String (JSON FOLIO instance).
+   *         - exception expected to be thrown
    */
   static Stream<Parameters<String, String>> testMapRecordToInsanceStream() throws IOException {
     return Stream.of(
-      Parameters.of(null, null, new NullPointerException()),
-      Parameters.of("", null, new DecodeException()),
-      Parameters.of(i("/marc4j/54-56-008008027-0.mrc.json"), i("/folio/instances/54-008008027.json")),
-      Parameters.of(i("/marc4j/54-56-008008027-1.mrc.json"), i("/folio/instances/55-008008027.json")),
-      Parameters.of(i("/marc4j/54-56-008008027-2.mrc.json"), i("/folio/instances/56-008008027.json")),
-      Parameters.of(i("/marc4j/54-56-008008027-3.mrc.json"), i("/folio/instances/57-008008027.json")),
-      Parameters.of(i("/marc4j/54-56-008008027-4.mrc.json"), i("/folio/instances/58-008008027.json"))
-    );
+        Parameters.of(null, null, new IllegalArgumentException()),
+        Parameters.of("", null, new IllegalArgumentException()),
+        Parameters.of(i("/marc4j/54-56-008008027-0.mrc.json"), i("/folio/instances/54-008008027.json")),
+        Parameters.of(i("/marc4j/54-56-008008027-1.mrc.json"), i("/folio/instances/55-008008027.json")),
+        Parameters.of(i("/marc4j/54-56-008008027-2.mrc.json"), i("/folio/instances/56-008008027.json")),
+        Parameters.of(i("/marc4j/54-56-008008027-3.mrc.json"), i("/folio/instances/57-008008027.json")),
+        Parameters.of(i("/marc4j/54-56-008008027-4.mrc.json"), i("/folio/instances/58-008008027.json")));
+  }
+
+  /**
+   * Mock the JSON response in a lenient manner.
+   *
+   * This is intended to simplify the mock code.
+   *
+   * @param name
+   *              The name of the JSON file from the FOLIO settings path.
+   * @param path
+   *              The Okapi path for this JSON.
+   * @param clazz
+   *              The class type the JSON file is being returned as.
+   *
+   * @throws IOException         On I/O error.
+   * @throws RestClientException On Rest Client error.
+   */
+  private void mockJsonResponse(String name, String path, Class<?> clazz) throws RestClientException, IOException {
+    lenient()
+        .doReturn(i("/folio/settings/" + name, clazz))
+        .when(mockRestTemplate).getForEntity(eq(path), eq(clazz));
   }
 
 }
