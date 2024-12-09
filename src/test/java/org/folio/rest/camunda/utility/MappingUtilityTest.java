@@ -180,7 +180,7 @@ class MappingUtilityTest {
   private void mockJsonResponse(String name, String path, Class<?> clazz) throws RestClientException, IOException {
     lenient()
         .doReturn(i("/folio/settings/" + name, clazz))
-        .when(mockRestTemplate).getForEntity(eq(path), eq(clazz));
+        .when(mockRestTemplate).getForEntity(path, clazz);
   }
 
 }
