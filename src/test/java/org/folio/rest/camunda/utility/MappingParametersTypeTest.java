@@ -69,7 +69,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class MappingParametersTypeTest {
+class MappingParametersTypeTest {
 
   @ParameterizedTest
   @MethodSource("testGetParametersTypeStream")
