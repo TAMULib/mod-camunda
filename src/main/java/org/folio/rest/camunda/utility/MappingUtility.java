@@ -46,7 +46,7 @@ public class MappingUtility {
   private static final ObjectMapper objectMapper = new ObjectMapper();
 
   /** Rest template for making Okapi-based REST calls. */
-  static OkapiRestTemplate restTemplate = new OkapiRestTemplate();
+  static OkapiRestTemplate restTemplate = OkapiRestTemplate.build();
 
   /**
    * Private constructor to prevent instantiation of utility class.
