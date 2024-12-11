@@ -26,6 +26,7 @@ public class SpringContextAccessor implements ApplicationContextAware {
    *                        context
    */
   @Override
+  @SuppressWarnings("java:S2696") // SonarQube static assignment from non-static method.
   public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
     context = applicationContext;
   }
