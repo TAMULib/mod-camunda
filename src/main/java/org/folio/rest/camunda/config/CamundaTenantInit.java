@@ -1,12 +1,11 @@
 package org.folio.rest.camunda.config;
 
-import jakarta.annotation.PostConstruct;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.UUID;
+
 import org.folio.spring.tenant.hibernate.HibernateTenantInit;
-import org.folio.spring.tenant.properties.TenantProperties;
 import org.folio.spring.tenant.service.SqlTemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,30 +13,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class CamundaTenantInit implements HibernateTenantInit {
 
-  /**
-   * HTTP header name for providing the authentication token.
-   */
-  public static final String OKAPI_TOKEN_HEADER = "X-Okapi-Token";
-
   private static final String SCHEMA_IMPORT_TENANT = "import/tenant";
 
   private static final String TENANT_TEMPLATE_KEY = "tenant";
 
-  private static String TENANT_HEADER_NAME;
-
   private SqlTemplateService sqlTemplateService;
 
-  private TenantProperties tenantProperties;
-
   @Autowired
-  public CamundaTenantInit(SqlTemplateService sqlTemplateService, TenantProperties tenantProperties) {
+  public CamundaTenantInit(SqlTemplateService sqlTemplateService) {
     this.sqlTemplateService = sqlTemplateService;
-    this.tenantProperties = tenantProperties;
-  }
-
-  @PostConstruct
-  public void initializeStaticTenantHeader() {
-    TENANT_HEADER_NAME = tenantProperties.getHeaderName();
   }
 
   @Override
@@ -49,23 +33,6 @@ public class CamundaTenantInit implements HibernateTenantInit {
     try (Statement statement = connection.createStatement()) {
       statement.execute(sqlTemplateService.templateInitSql(SCHEMA_IMPORT_TENANT, TENANT_TEMPLATE_KEY, camundaTenant));
     }
-  }
-
-  /**
-   * Provide a static way get the tenant header name value.
-   *
-   * The yaml file names this `tenant.header-name`.
-   * The environment variable for this is `TENANT_HEADERNAME`.
-   *
-   * The OkapiRestTemplate design prevents auto-injection because non-Java code will run the static methods via the MappingUtility.
-   * Load the settings in such a way that a static method may access settings injected by Spring.
-   *
-   * These settings are normally defined in the Spring-Module-Core Spring-Tenant `TenantProperties` class
-   *
-   * @return the tenant header.
-   */
-  public static String getHeaderName() {
-    return TENANT_HEADER_NAME;
   }
 
   public class CamundaTenant {

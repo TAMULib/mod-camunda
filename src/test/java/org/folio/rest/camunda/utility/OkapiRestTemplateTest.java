@@ -14,13 +14,14 @@ import static org.springframework.http.MediaType.TEXT_PLAIN;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import org.folio.rest.camunda.config.CamundaTenantInit;
+
+import org.folio.rest.camunda.SpringContextAccessor;
 import org.folio.spring.tenant.properties.TenantProperties;
-import org.folio.spring.tenant.service.SqlTemplateService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.HttpHeaders;
@@ -29,13 +30,10 @@ import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.web.util.DefaultUriBuilderFactory;
-import org.thymeleaf.spring6.SpringTemplateEngine;
 
 @SpringBootTest(
   classes = {
-    CamundaTenantInit.class,
-    SpringTemplateEngine.class,
-    SqlTemplateService.class,
+    SpringContextAccessor.class,
     TenantProperties.class
   },
   webEnvironment = WebEnvironment.MOCK
@@ -46,9 +44,12 @@ class OkapiRestTemplateTest {
   @Spy
   OkapiRestTemplate okapiRestTemplate;
 
+  @Autowired
+  TenantProperties tenantProperties;
+
   @Test
   void testBuild() {
-    OkapiRestTemplate restTemplate = new OkapiRestTemplate();
+    OkapiRestTemplate restTemplate = OkapiRestTemplate.build();
     assertNotNull(restTemplate);
   }
 
@@ -56,11 +57,12 @@ class OkapiRestTemplateTest {
   void testAt() {
     String okapiUrl = "http:://localhost:9130";
 
-    OkapiRestTemplate updated = okapiRestTemplate.at(okapiUrl);
+    okapiRestTemplate.at(okapiUrl);
 
-    verify(updated, times(1)).setUriTemplateHandler(any(DefaultUriBuilderFactory.class));
+    verify(okapiRestTemplate, times(1))
+      .setUriTemplateHandler(any(DefaultUriBuilderFactory.class));
 
-    assertTrue(((DefaultUriBuilderFactory) updated.getUriTemplateHandler()).hasBaseUri());
+    assertTrue(((DefaultUriBuilderFactory) okapiRestTemplate.getUriTemplateHandler()).hasBaseUri());
   }
 
   @Test
@@ -68,11 +70,12 @@ class OkapiRestTemplateTest {
     String tenant = "diku";
     String token = "token";
 
-    OkapiRestTemplate updated = okapiRestTemplate.with(tenant, token);
+    okapiRestTemplate.with(tenant, token);
 
-    verify(updated, times(1)).setInterceptors(any(List.class));
+    verify(okapiRestTemplate, times(1))
+      .setInterceptors(any(List.class));
 
-    List<ClientHttpRequestInterceptor> interceptor = updated.getInterceptors();
+    List<ClientHttpRequestInterceptor> interceptor = okapiRestTemplate.getInterceptors();
 
     assertNotNull(interceptor);
     assertEquals(1, interceptor.size());
@@ -89,8 +92,8 @@ class OkapiRestTemplateTest {
 
     interceptor.get(0).intercept(request, body, execution);
 
-    verify(headers).set(CamundaTenantInit.getHeaderName(), tenant);
-    verify(headers).set(CamundaTenantInit.OKAPI_TOKEN_HEADER, token);
+    verify(headers).set(tenantProperties.getHeaderName(), tenant);
+    verify(headers).set(OkapiRestTemplate.OKAPI_TOKEN_HEADER, token);
 
     verify(headers).setAccept(Arrays.asList(APPLICATION_JSON, TEXT_PLAIN));
     verify(headers).setContentType(APPLICATION_JSON);
