@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@RequestMapping({"/workflow-engine/workflows", "/workflow-engine/workflows/"})
+@RequestMapping("/workflow-engine/workflows")
 public class WorkflowController {
 
   private CamundaApiService camundaApiService;
@@ -25,14 +25,14 @@ public class WorkflowController {
     this.camundaApiService = camundaApiService;
   }
 
-  @PostMapping(value = {"/activate", "/activate/"}, produces = { MediaType.APPLICATION_JSON_VALUE })
+  @PostMapping(value = "/activate", produces = { MediaType.APPLICATION_JSON_VALUE })
   public Workflow activateWorkflow(@RequestBody Workflow workflow, @TenantHeader String tenant)
       throws WorkflowAlreadyActiveException, ScriptTaskDeserializeCodeFailure {
     log.debug("Activating Workflow: {}", workflow == null ? null : workflow.getId());
     return camundaApiService.deployWorkflow(workflow, tenant);
   }
 
-  @PostMapping(value = {"/deactivate", "/deactivate/"}, produces = { MediaType.APPLICATION_JSON_VALUE })
+  @PostMapping(value = "/deactivate", produces = { MediaType.APPLICATION_JSON_VALUE })
   public Workflow deactivateWorkflow(@RequestBody Workflow workflow) {
     log.debug("Deactivating Workflow: {}", workflow == null ? null : workflow.getId());
     return camundaApiService.undeployWorkflow(workflow);

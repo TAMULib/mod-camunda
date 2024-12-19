@@ -54,100 +54,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Workflow'
-  /workflow-engine/workflows/deactivate/:
-    post:
-      tags:
-      - workflow-controller
-      operationId: deactivateWorkflow_1
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Workflow'
-        required: true
-      responses:
-        "400":
-          description: Bad Request
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/ResponseErrors'
-        "500":
-          description: Internal Server Error
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/ResponseErrors'
-        "204":
-          description: No Content
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/ResponseErrors'
-        "404":
-          description: Not Found
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/ResponseErrors'
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Workflow'
-  /workflow-engine/workflows/activate/:
-    post:
-      tags:
-      - workflow-controller
-      operationId: activateWorkflow
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                workflow:
-                  $ref: '#/components/schemas/Workflow'
-                tenant:
-                  type: string
-        required: true
-      responses:
-        "400":
-          description: Bad Request
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/ResponseErrors'
-        "500":
-          description: Internal Server Error
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/ResponseErrors'
-        "204":
-          description: No Content
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/ResponseErrors'
-        "404":
-          description: Not Found
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/ResponseErrors'
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Workflow'
   /workflow-engine/workflows/activate:
     post:
       tags:
       - workflow-controller
-      operationId: activateWorkflow_1
+      operationId: activateWorkflow
       requestBody:
         content:
           application/json:

@@ -34,7 +34,7 @@ public class EventConsumer {
     concurrency = "${application.kafka.listener.events.concurrency}"
   )
   public void receive(Event event) {
-    logger.info("Receive: {}, {}, {}", event.getMethod(), event.getPath(), event.getPayload());
+    logger.debug("Receive: {}, {}, {}", event.getMethod(), event.getPath(), event.getPayload());
     logger.info("Event: {}, {}", event.getPathPattern(), event.getTriggerId());
 
     String tenant = event.getTenant();
