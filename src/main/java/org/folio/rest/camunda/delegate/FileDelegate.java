@@ -144,8 +144,7 @@ public class FileDelegate extends AbstractWorkflowIODelegate {
           getLogger().warn("The target parameter '{}' of the WRITE operation is missing from the {} '{}'.", targetInputVariable, getDelegateClass(), getDelegateName(execution));
         } else if (obj instanceof List) {
           List<?> objects = (List<?>) obj;
-          getLogger().info("{} {} has {} entries to write",
-            obj.getClass().getSimpleName(), targetInputVariable, objects.size());
+          getLogger().info("{} {} has {} entries to write", obj.getClass().getSimpleName(), targetInputVariable, objects.size());
 
           for (Object value : objects) {
               if (value instanceof String) {
@@ -155,6 +154,10 @@ public class FileDelegate extends AbstractWorkflowIODelegate {
               }
               content.append("\n");
             }
+        } else if (obj instanceof String) {
+          getLogger().info("{} {} has length {} to write", obj.getClass().getSimpleName(), targetInputVariable, ((String) obj).length());
+
+          content.append(obj);
         } else {
           getLogger().warn("The target parameter '{}' of the WRITE operation is unsupported for the {} '{}'.", targetInputVariable, getDelegateClass(), getDelegateName(execution));
         }
