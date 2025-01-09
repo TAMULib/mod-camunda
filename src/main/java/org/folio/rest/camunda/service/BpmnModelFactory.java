@@ -1,14 +1,14 @@
 package org.folio.rest.camunda.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.camunda.bpm.engine.delegate.Expression;
 import org.camunda.bpm.model.bpmn.Bpmn;
@@ -25,6 +25,7 @@ import org.camunda.bpm.model.bpmn.instance.camunda.CamundaField;
 import org.camunda.bpm.model.xml.instance.ModelElementInstance;
 import org.folio.rest.camunda.delegate.AbstractWorkflowDelegate;
 import org.folio.rest.camunda.exception.ScriptTaskDeserializeCodeFailure;
+import org.folio.rest.camunda.exception.WorkflowHasInvalidNode;
 import org.folio.rest.workflow.enums.StartEventType;
 import org.folio.rest.workflow.model.Condition;
 import org.folio.rest.workflow.model.ConnectTo;
@@ -80,7 +81,7 @@ public class BpmnModelFactory {
   @Autowired
   private List<AbstractWorkflowDelegate> workflowDelegates;
 
-  public BpmnModelInstance fromWorkflow(Workflow workflow) throws ScriptTaskDeserializeCodeFailure {
+  public BpmnModelInstance fromWorkflow(Workflow workflow) throws ScriptTaskDeserializeCodeFailure, WorkflowHasInvalidNode {
 
     // @formatter:off
     ProcessBuilder processBuilder = Bpmn.createExecutableProcess().name(workflow.getName())
@@ -103,7 +104,7 @@ public class BpmnModelFactory {
     // @formatter:on
 
     setup(model, workflow);
-    expressions(model, workflow.getNodes());
+    expressions(model, workflow, workflow.getNodes());
     return model;
   }
 
@@ -304,11 +305,11 @@ public class BpmnModelFactory {
             logger.warn("Subprocess named {} is of an unknown type.", node.getName());
             break;
           }
-
         }
 
         if (!(node instanceof Subprocess)) {
           builder = build(builder, ((Branch) node).getNodes(), Setup.NONE);
+          System.out.print("\n\n\nDEBUG: node, identifier = " + node.getIdentifier() + ", name = " + node.getName() + "\n\n\n");
         }
 
       } else if (node instanceof Condition) {
@@ -395,11 +396,17 @@ public class BpmnModelFactory {
     element.addChildElement(extensions);
   }
 
-  private void expressions(BpmnModelInstance model, List<Node> nodes) {
-    nodes.stream().forEach(node -> {
+  private void expressions(BpmnModelInstance model, Workflow workflow, List<Node> nodes) throws WorkflowHasInvalidNode {
+    Iterator<Node> iter = nodes.iterator();
+
+    while (iter.hasNext()) {
+      Node node = iter.next();
+      if (node == null) {
+        throw new WorkflowHasInvalidNode(workflow, node);
+      }
 
       Optional<AbstractWorkflowDelegate> delegate = workflowDelegates.stream()
-          .filter(d -> d.fromTask().equals(node.getClass())).findAny();
+        .filter(d -> d.fromTask().equals(node.getClass())).findAny();
 
       if (delegate.isPresent()) {
 
@@ -428,15 +435,15 @@ public class BpmnModelFactory {
         element.addChildElement(extensions);
       } else {
         if (node instanceof Branch) {
-          expressions(model, ((Branch) node).getNodes());
+          expressions(model, workflow, ((Branch) node).getNodes());
         } else if (node instanceof Subprocess) {
-          expressions(model, ((Subprocess) node).getNodes());
+          expressions(model, workflow, ((Subprocess) node).getNodes());
         } else if (node instanceof DelegateTask) {
           // TODO: create custom exception and controller advice to handle better
           throw new RuntimeException("Task must have delegate representation!");
         }
       }
-    });
+    }
   }
 
   private List<EmbeddedProcessor> getProcessorScripts(List<Node> nodes) {
@@ -449,10 +456,10 @@ public class BpmnModelFactory {
       } else if (node instanceof Subprocess) {
         scripts.addAll(getProcessorScripts(((Subprocess) node).getNodes()));
       } else if (node instanceof Task) {
-        logger.warn("Processor Script named {} is a non-processor task.", node.getName());
+        logger.warn("Processor Script named {} is a non-processor task.", node == null ? "" : node.getName());
       }
       else {
-        logger.warn("Processor Script named {} is of an unknown type.", node.getName());
+        logger.warn("Processor Script named {} is of an unknown type.", node == null ? "" : node.getName());
       }
     });
     return scripts;

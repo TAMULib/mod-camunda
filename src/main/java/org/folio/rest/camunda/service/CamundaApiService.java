@@ -12,6 +12,7 @@ import org.camunda.bpm.model.bpmn.Bpmn;
 import org.camunda.bpm.model.bpmn.BpmnModelInstance;
 import org.folio.rest.camunda.exception.ScriptTaskDeserializeCodeFailure;
 import org.folio.rest.camunda.exception.WorkflowAlreadyActiveException;
+import org.folio.rest.camunda.exception.WorkflowHasInvalidNode;
 import org.folio.rest.workflow.model.Workflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +27,7 @@ public class CamundaApiService {
   @Autowired
   private BpmnModelFactory bpmnModelFactory;
 
-  public Workflow deployWorkflow(Workflow workflow, String tenant) throws WorkflowAlreadyActiveException, ScriptTaskDeserializeCodeFailure {
+  public Workflow deployWorkflow(Workflow workflow, String tenant) throws WorkflowAlreadyActiveException, ScriptTaskDeserializeCodeFailure, WorkflowHasInvalidNode {
     if (Boolean.TRUE.equals(workflow.getActive())) {
       throw new WorkflowAlreadyActiveException(workflow.getId());
     }

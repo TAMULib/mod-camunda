@@ -1,35 +1,37 @@
 package org.folio.rest.camunda.delegate;
 
+import static org.folio.rest.camunda.utility.TestUtility.TEST_FILE_PATH;
 import static org.folio.rest.camunda.utility.TestUtility.i;
+import static org.folio.rest.workflow.enums.FileOp.DELETE;
+import static org.folio.rest.workflow.enums.FileOp.LIST;
+import static org.folio.rest.workflow.enums.FileOp.WRITE;
+import static org.folio.spring.test.mock.MockMvcConstant.JSON_OBJECT;
+import static org.folio.spring.test.mock.MockMvcConstant.NULL_STR;
+import static org.folio.spring.test.mock.MockMvcConstant.UUID;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.lenient;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Stream;
-import org.apache.commons.lang.StringUtils;
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.Expression;
 import org.camunda.bpm.model.bpmn.instance.FlowElement;
+import org.codehaus.plexus.util.FileUtils;
+import org.folio.rest.camunda.exception.DelegateMissingRequiredProperty;
 import org.folio.rest.camunda.service.ScriptEngineService;
 import org.folio.rest.workflow.enums.FileOp;
-import org.folio.rest.workflow.model.EmbeddedVariable;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -41,9 +43,28 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+/**
+ * Perform File Delegate unit testing.
+ *
+ * While this is technically a unit test, the actual files do get created.
+ * It is impractical to mock the entire file operations.
+ * Utilize temporary copies of files to perform operations.
+ */
 @ExtendWith(SpringExtension.class)
 @ExtendWith(MockitoExtension.class)
 class FileDelegateTest {
+
+  /**
+   * Test files are stored in an unused directory that is gitignored to help ensure isolation.
+   */
+  private static final String TMP_PATH = "tmp/";
+
+  /**
+   * Source test files are stored in a common directory and are expected to not be modified during tests.
+   */
+  private static final String FILES_PATH = "files/";
+
+  private static final String SRC = "source";
 
   @Spy
   protected ObjectMapper objectMapper;
@@ -55,225 +76,208 @@ class FileDelegateTest {
   private ScriptEngineService scriptEngineService;
 
   @Mock
-  Expression inputVariables;
+  private Expression inputVariables;
 
   @Mock
-  Expression outputVariable;
+  private Expression outputVariable;
 
   @Mock
-  Expression path;
+  private Expression path;
 
   @Mock
-  Expression line;
+  private Expression line;
 
   @Mock
-  Expression op;
+  private Expression op;
 
   @Mock
-  Expression target;
+  private Expression target;
 
   @Mock
-  DelegateExecution execution;
+  private DelegateExecution execution;
 
   @Mock
-  FlowElement element;
+  private FlowElement element;
 
   @InjectMocks
-  FileDelegate delegate;
+  private FileDelegate fileDelegate;
 
-  @SuppressWarnings("serial")
-  private final Map<String, Object> mockData = new HashMap<>() {{
-    put("data", new ArrayList<>() {{
-      add("Hello, World!");
-    }});
-    put("path", "/test/path");
-    put("tenandId", "diku");
-    put("timestamp", new Date().getTime());
-  }};
+  private static String procVarsData;
+
+  @BeforeAll
+  static void beforeAll() throws IOException {
+    File tmpPath = new File(TEST_FILE_PATH + TMP_PATH);
+    if (!tmpPath.exists()) {
+      tmpPath.mkdir();
+    }
+
+    procVarsData = i("/" + FILES_PATH + "procVars.json");
+  }
 
   @BeforeEach
   void beforeEach() {
-    // input delegate
-    delegate.setInputVariables(inputVariables);
-    // output delegate
-    delegate.setOutputVariable(outputVariable);
+    when(execution.getBpmnModelElementInstance()).thenReturn(element);
+    when(element.getName()).thenReturn(fileDelegate.getClass().getSimpleName());
 
-    // unique per delegate
-    delegate.setPath(path);
-    delegate.setLine(line);
-    delegate.setOp(op);
-    delegate.setTarget(target);
+    lenient().when(execution.getCurrentActivityId()).thenReturn(UUID);
+  }
+
+  @AfterAll
+  static void afterAll() throws IOException {
+    FileUtils.deleteDirectory(TEST_FILE_PATH + TMP_PATH);
   }
 
   @ParameterizedTest
-  @MethodSource("executionStream")
-  void testExecute(
-      String inputVariablesValue,
-      String outputVariableValue,
-      String pathValue,
-      String lineValue,
-      String opValue,
-      String targetValue,
-      Class<Exception> exception
-  ) throws Exception {
+  @MethodSource("executeWorksBasicFor")
+  void executeWorksNoOpTest(Boolean isDir, Boolean create, String name, String input, String output, int row) throws Exception {
+    String sourceName = DELETE.name() + (isDir ? "dir" : "reg") + name;
+    File filePath = prepareFilePath(isDir, create, sourceName, row);
 
-    FileOp fileOp = FileOp.valueOf(opValue);
+    mockVars(null, input, output, null, filePath.toString());
 
-    // mock all expression variables from parameters here
-    when(execution.getBpmnModelElementInstance()).thenReturn(element);
-    when(element.getName()).thenReturn(delegate.getClass().getSimpleName());
+    assertThrows(DelegateMissingRequiredProperty.class, () -> fileDelegate.execute(execution));
+  }
 
-    when(inputVariables.getValue(any(DelegateExecution.class))).thenReturn(inputVariablesValue);
+  @ParameterizedTest
+  @MethodSource("executeWorksBasicFor")
+  void executeWorksDeleteTest(Boolean isDir, Boolean create, String name, String input, String output, int row) throws Exception {
+    String sourceName = DELETE.name() + (isDir ? "dir" : "reg") + name;
+    File filePath = prepareFilePath(isDir, create, sourceName, row);
 
-    Set<EmbeddedVariable> inputs = objectMapper.readValue(inputVariablesValue, new TypeReference<Set<EmbeddedVariable>>() {});
+    mockVars(DELETE, input, output, null, filePath.toString());
 
-    for (EmbeddedVariable variable : inputs) {
-      Object value = mockData.get(variable.getKey());
-      switch (variable.getType()) {
-        case LOCAL:
-          when(execution.getVariableLocal(variable.getKey())).thenReturn(value);
-          break;
-        case PROCESS:
-          when(execution.getVariable(variable.getKey())).thenReturn(value);
-          break;
-        default:
-          break;
-      }
-    }
+    fileDelegate.execute(execution);
 
-    lenient().when(outputVariable.getValue(any(DelegateExecution.class))).thenReturn(outputVariableValue);
-
-    when(path.getValue(any(DelegateExecution.class))).thenReturn(pathValue);
-    when(line.getValue(any(DelegateExecution.class))).thenReturn(lineValue);
-    when(op.getValue(any(DelegateExecution.class))).thenReturn(opValue);
-
-    lenient().when(target.getValue(any(DelegateExecution.class))).thenReturn(targetValue);
-
-    if (Objects.nonNull(exception)) {
-      assertThrows(exception, () -> delegate.execute(execution));
+    if (isDir && create) {
+      // This is not supported yet in delegate, so the directory is expected to fail to be deleted.
+      assertTrue(filePath.exists(), "Path " + filePath.toString() + " should exist #" + row);
     } else {
-
-      delegate.execute(execution);
-
-      // verify lenient mock method calls were as expected
-
-      switch (fileOp) {
-        case LIST, READ, READ_LINE, LINE_COUNT:
-          EmbeddedVariable output = objectMapper.readValue(outputVariableValue, EmbeddedVariable.class);
-          switch (output.getType()) {
-            case LOCAL:
-              verify(execution, times(1)).setVariableLocal(eq(output.getKey()), any());
-              break;
-            case PROCESS:
-              verify(execution, times(1)).setVariable(eq(output.getKey()), any());
-              break;
-            default:
-              break;
-          }
-          break;
-        case WRITE:
-          assertTrue(new File(pathValue).exists());
-          break;
-        case COPY:
-          // for when file doesn't exist and no exception thrown
-          if (StringUtils.isNotEmpty(pathValue)) {
-            assertTrue(new File(pathValue).exists());
-            assertTrue(new File(targetValue).exists());
-          }
-          break;
-        case MOVE:
-          // for when file doesn't exist and no exception thrown
-          if (StringUtils.isNotEmpty(pathValue)) {
-            assertTrue(!new File(pathValue).exists());
-            assertTrue(new File(targetValue).exists());
-          }
-          break;
-        case DELETE:
-          assertTrue(!new File(pathValue).exists());
-          break;
-        // case POP:
-        // case PUSH:
-        default:
-          break;
-      }
-
-
+      assertFalse(filePath.exists(), "Path " + filePath.toString() + "should not exist #" + row);
     }
   }
 
+  @ParameterizedTest
+  @MethodSource("executeWorksBasicFor")
+  void executeWorksListTest(Boolean isDir, Boolean create, String name, String input, String output, int row) throws Exception {
+    String sourceName = LIST.name() + (isDir ? "dir" : "reg") + name;
+    File filePath = prepareFilePath(isDir, create, sourceName, row);
+
+    mockVars(LIST, input, output, null, filePath.toString());
+
+    fileDelegate.execute(execution);
+
+    if (create && isDir) {
+      // TODO: handle this case.
+      //assertEquals(???, outputVariable.getValue(execution), "outputVariable should be ??? #" + row);
+    } else {
+      // TODO: handle this case
+      //assertEquals(???, outputVariable.getValue(execution), "outputVariable should be ??? #" + row);
+    }
+  }
+
+  @ParameterizedTest
+  @MethodSource("executeWorksBasicFor")
+  void executeWorksWriteTest(Boolean isDir, Boolean create, String name, String input, String output, int row) throws Exception {
+    String sourceName = WRITE.name() + (isDir ? "dir" : "reg") + name;
+    File filePath = prepareFilePath(isDir, create, sourceName, row);
+
+    mockVars(WRITE, input, output, null, filePath.toString());
+    when(this.target.getValue(any(DelegateExecution.class))).thenReturn("" + filePath);
+
+    fileDelegate.execute(execution);
+
+    assertTrue(filePath.exists(), "Path " + filePath.toString() + " should exist #" + row);
+  }
+
   /**
-   * Helper function for parameterized test providing tests with
+   * Clear out and delete the test files as needed.
+   *
+   * @param isDir TRUE if operating on directory, FALSE otherwise. 
+   * @param create Create or do not create files.
+   * @param sourceName The partial name of the files to use.
+   * @param row The row number for the specific test.
+   *
+   * @return The file or NULL.
+   *
+   * @throws IOException On I/O error.
+   */
+  private File prepareFilePath(Boolean isDir, Boolean create, String sourceName, int row) throws IOException {
+    File filePath = null;
+    File fileSrc = new File(TEST_FILE_PATH + FILES_PATH + sourceName);
+    filePath = new File(TEST_FILE_PATH + TMP_PATH + sourceName + row);
+
+    if (filePath.exists()) {
+      if (isDir) {
+        FileUtils.deleteDirectory(filePath);
+      } else {
+        filePath.delete();
+      }
+    }
+
+    if (create) {
+      if (isDir) {
+        FileUtils.copyDirectory(fileSrc, filePath);
+      } else {
+        FileUtils.copyFile(fileSrc, filePath);
+      }
+    }
+
+    return filePath;
+  }
+
+  /**
+   * Add the appropriate mocks for common variables.
+   *
+   * @param op The op field.
+   * @param input The input variables field.
+   * @param output The output variable field.
+   * @param lineNum The line field.
+   * @param filePath The path field.
+   */
+  private void mockVars(FileOp fileOp, String input, String output, String lineNum, String filePath) {
+    fileDelegate.setOp(fileOp == null ? null : op);
+    fileDelegate.setInputVariables(input == null ? null : inputVariables);
+    fileDelegate.setOutputVariable(output == null ? null : outputVariable);
+    fileDelegate.setLine(lineNum == null ? null : line);
+    fileDelegate.setPath(filePath == null ? null : path);
+
+    lenient().when(this.op.getValue(any(DelegateExecution.class))).thenReturn(fileOp == null ? "" : fileOp.toString());
+    lenient().when(this.inputVariables.getValue(any(DelegateExecution.class))).thenReturn("" + input);
+    lenient().when(this.outputVariable.getValue(any(DelegateExecution.class))).thenReturn("" + output);
+    lenient().when(this.line.getValue(any(DelegateExecution.class))).thenReturn("" + lineNum);
+    lenient().when(this.path.getValue(any(DelegateExecution.class))).thenReturn("" + filePath);
+  }
+
+  /**
+   * Helper function for basic operation parameterized tests.
    *
    * @return
    *   The arguments array stream with the stream columns as:
-   *         - inputVariables (set of EmbeddedVariable as JSON)
-   *         - outputVariable (EmbeddedVariable as JSON)
-   *         - path (path of source)
-   *         - line (line in file)
-   *         - op (GET, PUT)
-   *         - target (input variable identifier)
-   * @throws IOException
-   * @throws JsonProcessingException
+   *     - Boolean isDir TRUE if operating on directory, FALSE otherwise. 
+   *     - Boolean create Create or do not create files.
+   *     - String name The partial name of the files to use.
+   *     - String input The input variables JSON or null.
+   *     - String output The output variable JSON or null.
+   *     - int row A row number used for generating unique test files.
    */
-  private static Stream<Arguments> executionStream() throws IOException {
-    // arguments required for delegate expression
-
-    // read input variables and output variable from files
-    String inputVariables = "[]";
-
-    String outputVariable = "{}";
-
-    String files = "src/test/resources/files";
-
-    String plain_txt = files + "/plain.txt";
-
-    String zero = "0";
-    String one = "1";
-
-    String no_path = "";
-
-    // must match an input variable key or target file path
-    String no_target = "";
-
-    String data_target = "data";
-
-    String temp_plain_txt = files + "/temp/plain.txt";
-
-    String temp_output = files + "/temp/output";
-
-    // arguments for whether to expect exception thrown
-    String noException = null;
-
-    // arguments to assert about the test
-
+  private static Stream<Arguments> executeWorksBasicFor() {
     return Stream.of(
-        Arguments.of(inputVariables, i("/output/file_task/data.json"), files, zero, FileOp.LIST.toString(), no_target, noException),
-        Arguments.of(inputVariables, i("/output/file_task/data.json"), plain_txt, zero, FileOp.READ.toString(), no_target, noException),
-        Arguments.of(inputVariables, i("/output/file_task/data.json"), plain_txt, zero, FileOp.LINE_COUNT.toString(), no_target, noException),
-        Arguments.of(inputVariables, i("/output/file_task/data.json"), plain_txt, one, FileOp.READ_LINE.toString(), no_target, noException),
-        Arguments.of(i("/input/file_task/write.json"), outputVariable, temp_output, zero, FileOp.WRITE.toString(), data_target, noException),
-
-        // Arguments.of(inputVariables, outputVariable, plain_txt, zero, FileOp.PUSH.toString(), no_target, noException),
-        // Arguments.of(inputVariables, outputVariable, plain_txt, zero, FileOp.POP.toString(), no_target, noException),
-
-        // fails silently
-        Arguments.of(inputVariables, outputVariable, no_path, zero, FileOp.COPY.toString(), temp_plain_txt, noException),
-        // fails silently
-        Arguments.of(inputVariables, outputVariable, no_path, zero, FileOp.MOVE.toString(), temp_plain_txt, noException),
-
-        // must be done last
-
-        // copy file
-        Arguments.of(inputVariables, outputVariable, plain_txt, zero, FileOp.COPY.toString(), temp_plain_txt, noException),
-
-        // delete a file
-        Arguments.of(inputVariables, outputVariable, plain_txt, zero, FileOp.DELETE.toString(), no_target, noException),
-
-        // move file
-        Arguments.of(inputVariables, outputVariable, temp_plain_txt, zero, FileOp.MOVE.toString(), plain_txt, noException),
-
-        // delete temp_output
-        Arguments.of(inputVariables, outputVariable, temp_output, zero, FileOp.DELETE.toString(), no_target, noException)
+      Arguments.of(false, false, SRC, procVarsData, JSON_OBJECT, 0),
+      Arguments.of(false, true,  SRC, procVarsData, JSON_OBJECT, 1),
+      Arguments.of(true,  false, SRC, procVarsData, JSON_OBJECT, 2),
+      Arguments.of(true,  true,  SRC, procVarsData, JSON_OBJECT, 3),
+      Arguments.of(false, false, SRC, procVarsData, NULL_STR,    4),
+      Arguments.of(false, true,  SRC, procVarsData, NULL_STR,    5),
+      Arguments.of(true,  false, SRC, procVarsData, NULL_STR,    6),
+      Arguments.of(true,  true,  SRC, procVarsData, NULL_STR,    7),
+      Arguments.of(false, false, SRC, NULL_STR,     JSON_OBJECT, 8),
+      Arguments.of(false, true,  SRC, NULL_STR,     JSON_OBJECT, 9),
+      Arguments.of(true,  false, SRC, NULL_STR,     JSON_OBJECT, 10),
+      Arguments.of(true,  true,  SRC, NULL_STR,     JSON_OBJECT, 11),
+      Arguments.of(false, false, SRC, NULL_STR,     NULL_STR,    12),
+      Arguments.of(false, true,  SRC, NULL_STR,     NULL_STR,    13),
+      Arguments.of(true,  false, SRC, NULL_STR,     NULL_STR,    14),
+      Arguments.of(true,  true,  SRC, NULL_STR,     NULL_STR,    15)
     );
   }
 

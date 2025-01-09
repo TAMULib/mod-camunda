@@ -3,6 +3,7 @@ package org.folio.rest.camunda.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.folio.rest.camunda.exception.ScriptTaskDeserializeCodeFailure;
 import org.folio.rest.camunda.exception.WorkflowAlreadyActiveException;
+import org.folio.rest.camunda.exception.WorkflowHasInvalidNode;
 import org.folio.rest.camunda.service.CamundaApiService;
 import org.folio.rest.workflow.model.Workflow;
 import org.folio.spring.tenant.annotation.TenantHeader;
@@ -27,7 +28,7 @@ public class WorkflowController {
 
   @PostMapping(value = "/activate", produces = { MediaType.APPLICATION_JSON_VALUE })
   public Workflow activateWorkflow(@RequestBody Workflow workflow, @TenantHeader String tenant)
-      throws WorkflowAlreadyActiveException, ScriptTaskDeserializeCodeFailure {
+      throws WorkflowAlreadyActiveException, ScriptTaskDeserializeCodeFailure, WorkflowHasInvalidNode {
     log.debug("Activating Workflow: {}", workflow == null ? null : workflow.getId());
     return camundaApiService.deployWorkflow(workflow, tenant);
   }

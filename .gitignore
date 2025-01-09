@@ -5,6 +5,9 @@ target/
 .settings/
 !.mvn/wrapper/maven-wrapper.jar
 
+# Temporary files created during delegate testing.
+src/test/resources/tmp/
+
 ### STS ###
 .apt_generated
 .classpath

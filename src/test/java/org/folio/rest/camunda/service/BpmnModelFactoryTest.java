@@ -30,6 +30,7 @@ import org.camunda.bpm.model.xml.instance.ModelElementInstance;
 import org.folio.rest.camunda.delegate.AbstractWorkflowDelegate;
 import org.folio.rest.camunda.delegate.InputDelegate;
 import org.folio.rest.camunda.exception.ScriptTaskDeserializeCodeFailure;
+import org.folio.rest.camunda.exception.WorkflowHasInvalidNode;
 import org.folio.rest.workflow.model.EndEvent;
 import org.folio.rest.workflow.model.InputTask;
 import org.folio.rest.workflow.model.Node;
@@ -141,7 +142,7 @@ class BpmnModelFactoryTest {
   }
 
   @Test
-  void testFromWorkflowExceptionDuringSetupUsingWarnings() throws ScriptTaskDeserializeCodeFailure, JsonProcessingException {
+  void testFromWorkflowExceptionDuringSetupUsingWarnings() throws ScriptTaskDeserializeCodeFailure, JsonProcessingException, WorkflowHasInvalidNode {
     try (MockedStatic<Bpmn> utility = Mockito.mockStatic(Bpmn.class)) {
       commonUnmockedProcessBuilder(utility);
       commonMockingsBasic();
@@ -156,7 +157,7 @@ class BpmnModelFactoryTest {
   }
 
   @Test
-  void testFromWorkflowNoNodesWorks() throws ScriptTaskDeserializeCodeFailure {
+  void testFromWorkflowNoNodesWorks() throws ScriptTaskDeserializeCodeFailure, WorkflowHasInvalidNode {
     try (MockedStatic<Bpmn> utility = Mockito.mockStatic(Bpmn.class)) {
       commonUnmockedProcessBuilder(utility);
       commonMockingsBasic();
@@ -185,7 +186,7 @@ class BpmnModelFactoryTest {
   }
 
   @Test
-  void testFromWorkflowForFullProcess() throws ScriptTaskDeserializeCodeFailure {
+  void testFromWorkflowForFullProcess() throws ScriptTaskDeserializeCodeFailure, WorkflowHasInvalidNode {
     nodes.add(startNode);
     nodes.add(inputNode);
     nodes.add(endNode);

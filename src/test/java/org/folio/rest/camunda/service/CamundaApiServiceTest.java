@@ -22,6 +22,7 @@ import org.camunda.bpm.model.bpmn.Bpmn;
 import org.camunda.bpm.model.bpmn.BpmnModelInstance;
 import org.folio.rest.camunda.exception.ScriptTaskDeserializeCodeFailure;
 import org.folio.rest.camunda.exception.WorkflowAlreadyActiveException;
+import org.folio.rest.camunda.exception.WorkflowHasInvalidNode;
 import org.folio.rest.workflow.model.Workflow;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -61,7 +62,7 @@ class CamundaApiServiceTest {
   private Workflow workflow;
 
   @BeforeEach
-  void setUp() throws ScriptTaskDeserializeCodeFailure {
+  void setUp() throws ScriptTaskDeserializeCodeFailure, WorkflowHasInvalidNode {
     workflow = new Workflow();
     workflow.setActive(false);
     workflow.setName("Test Workflow");
@@ -79,7 +80,7 @@ class CamundaApiServiceTest {
   }
 
   @Test
-  void testDeployWorkflow() throws ScriptTaskDeserializeCodeFailure, WorkflowAlreadyActiveException {
+  void testDeployWorkflow() throws ScriptTaskDeserializeCodeFailure, WorkflowAlreadyActiveException, WorkflowHasInvalidNode {
     try (
         MockedStatic<ProcessEngines> utilityProcessEngines = Mockito.mockStatic(ProcessEngines.class);
         MockedStatic<Bpmn> utilityBpmn = Mockito.mockStatic(Bpmn.class);
@@ -114,14 +115,14 @@ class CamundaApiServiceTest {
   }
 
   @Test
-  void testDeployWorkflowAlreadyActive() throws WorkflowAlreadyActiveException, ScriptTaskDeserializeCodeFailure {
+  void testDeployWorkflowAlreadyActive() throws WorkflowAlreadyActiveException, ScriptTaskDeserializeCodeFailure, WorkflowHasInvalidNode {
     testDeployWorkflow();
 
     assertThrows(WorkflowAlreadyActiveException.class, () -> camundaApiService.deployWorkflow(workflow, TENANT));
   }
 
   @Test
-  void testUndeployWorkflow() throws ScriptTaskDeserializeCodeFailure, WorkflowAlreadyActiveException {
+  void testUndeployWorkflow() throws ScriptTaskDeserializeCodeFailure, WorkflowAlreadyActiveException, WorkflowHasInvalidNode {
     testDeployWorkflow();
 
     try (MockedStatic<ProcessEngines> utilityProcessEngines = Mockito.mockStatic(ProcessEngines.class)) {

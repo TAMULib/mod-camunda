@@ -1,0 +1,9 @@
+[
+  {
+    "key": "data",
+    "type": "PROCESS",
+    "spin": false,
+    "asJson": false,
+    "asTransient": false
+  }
+]
