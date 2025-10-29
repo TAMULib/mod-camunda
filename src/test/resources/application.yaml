@@ -109,7 +109,7 @@ camunda:
       password: admin
       first-name: Camunda
       last-name: Admin
-      email: cadmin@mailinator.com
+      email: test@localhost
     # authorization.enabled: true
     default-number-of-retries: 1
     job-execution:
@@ -174,9 +174,9 @@ okapi.url: http://localhost:9130
 error:
   handling:
     environment: DEV
-    emailFrom: noReply@mailinator.com
+    emailFrom: test@localhost
     # comma seperated email addresses
-    emailTo: support@mailinator.com
+    emailTo: test@localhost
 
 # https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html
 management:

@@ -122,7 +122,7 @@ camunda:
       password: admin
       first-name: Camunda
       last-name: Admin
-      email: cadmin@mailinator.com
+      email: admin@localhost
     # authorization.enabled: true
     default-number-of-retries: 1
     job-execution:
@@ -231,9 +231,9 @@ management:
 error:
   handling:
     environment: DEV
-    emailFrom: noReply@mailinator.com
+    emailFrom: admin@localhost
     # comma seperated email addresses
-    emailTo: support@mailinator.com
+    emailTo: admin@localhost
 
 info:
   build:

@@ -155,6 +155,11 @@ public class FileDelegate extends AbstractWorkflowIODelegate {
               }
               content.append("\n");
             }
+        } else if (obj instanceof String) {
+          getLogger().info("{} {} has a single string to write.", obj.getClass().getSimpleName(), targetInputVariable);
+
+          content.append(obj);
+          content.append("\n");
         } else {
           getLogger().warn("The target parameter '{}' of the WRITE operation is unsupported for the {} '{}'.", targetInputVariable, getDelegateClass(), getDelegateName(execution));
         }

@@ -7,7 +7,6 @@ import org.camunda.bpm.engine.delegate.DelegateTask;
 import org.folio.spring.tenant.exception.NoTenantException;
 import org.folio.spring.tenant.properties.TenantProperties;
 import org.folio.spring.tenant.storage.ThreadLocalStorage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Aspect
@@ -16,7 +15,6 @@ public class TenantInjectionDelegateAspect {
 
   private TenantProperties tenantProperties;
 
-  @Autowired
   public TenantInjectionDelegateAspect(TenantProperties tenantProperties) {
     this.tenantProperties = tenantProperties;
   }

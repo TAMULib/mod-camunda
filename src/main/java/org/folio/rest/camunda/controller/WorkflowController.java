@@ -6,7 +6,6 @@ import org.folio.rest.camunda.exception.WorkflowAlreadyActiveException;
 import org.folio.rest.camunda.service.CamundaApiService;
 import org.folio.rest.workflow.model.Workflow;
 import org.folio.spring.tenant.annotation.TenantHeader;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +19,6 @@ public class WorkflowController {
 
   private CamundaApiService camundaApiService;
 
-  @Autowired
   public WorkflowController(CamundaApiService camundaApiService) {
     this.camundaApiService = camundaApiService;
   }

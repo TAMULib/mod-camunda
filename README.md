@@ -13,10 +13,9 @@ See the file ["LICENSE"](LICENSE) for more information.
 2. [Manual Build and Run](#manual-build-and-run)
 3. [Camunda Module Dependencies](#camunda-module-dependencies)
 4. [Workflow Project Structure](#workflow-project-structure)
-5. [App Deployment](#deploy-and-run-the-application)
-6. [Camunda APIs](#camunda-apis)
-7. [Kafka Message Broker](#kafka-message-broker)
-8. [Issue Tracker](#issue-tracker)
+5. [Camunda APIs](#camunda-apis)
+6. [Kafka Message Broker](#kafka-message-broker)
+7. [Issue Tracker](#issue-tracker)
 
 
 ## Docker deployment
@@ -117,14 +116,9 @@ The [pom.xml](pom.xml) described these versions and dependencies.
 
 ## Workflow Project Structure
 
-Business Process Models and Decision Models are built using the [Camunda Modeler](https://camunda.com/products/modeler/) which impelements BPMN 2.0 and DMN 1.1 specifications.
+Business Process Models and Decision Models are built using the [Camunda Modeler](https://camunda.com/products/modeler/) which implements **BPMN 2.0** and **DMN 1.1** specifications.
 
 The UI module [ui-workflow](https://github.com/folio-org/ui-workflow) provides a way to facilitate building, activating, and running individual workflows.
-
-There are also local resources that can be used to manually perform this process.
-
-- The local resources for `.bpmn` files are stored in `src/main/resources/workflows`
-- The local resources for `.dmn` files are stored in `src/main/resources/decisions`
 
 Any Java code that is executed in the context of a process is usually written in a Java Delegate.
 These classes are stored in `src/main/java/org/folio/rest/camunda/delegate`.
@@ -133,9 +127,8 @@ These classes are stored in `src/main/java/org/folio/rest/camunda/delegate`.
 ## Accessing the Application
 
 1. Start `mod-camunda` either through the Docker interface or through the manual `mvn clean spring-boot:run` command.
-2. Deploy all the processes, such as by running `scripts/deploy.sh` file.
-3. Navigate to Camunda Portal, such as `https://localhost:9000/ui/welcome/default/#/welcome` for a local execution.
-4. Log in as admin user: `admin`, password: `admin` (which can be changed using environment variables or by tweaking the `application.yml` file).
+2. Navigate to the Camunda Portal, such as `https://localhost:9000/ui/welcome/default/#/welcome` for a local execution.
+3. Log in as admin user: `admin`, password: `admin` (which can be changed using environment variables or by tweaking the `application.yml` file).
 
 
 ## Camunda APIs
@@ -221,6 +214,9 @@ The following is a summary of many of them.
 | KAFKA_SSL_TRUSTSTORE_LOCATION     |             -               | The location of the Kafka trust store file.
 | KAFKA_SSL_TRUSTSTORE_PASSWORD     |             -               | The password for the Kafka trust store file. If a password is not set, trust store file configured will still be used, but integrity checking is disabled.
 | OKAPI_URL                         |     `http://okapi:9130`     | OKAPI URL used to login system user, required (can be used to point directly to `mod-workflow`).
+| OKAPI_AUTH_ACCESSCOOKIENAME       |     `folioAccessToken`      | The OKAPI cookie name for the Access token; This is generally never changed.
+| OKAPI_AUTH_REFRESHCOOKIENAME      |     `folioRefreshToken`     | The OKAPI cookie name for the Refresh token; This is generally never changed.
+| OKAPI_AUTH_TOKENHEADERNAME        |     `x-okapi-token`         | The OKAPI header token name; This is generally never changed.
 | SERVER_PORT                       |           8081              | The port the `mod-camunda` service listens on.
 | SERVER_SERVLET_CONTEXTPATH        |           `/`               | The context path, or base path, to host at.
 | SPRING_FLYWAY_ENABLED             |           false             | Database migration support via Spring Flyway.

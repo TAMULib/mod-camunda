@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import org.folio.rest.camunda.config.CamundaTenantInit;
+import org.folio.rest.camunda.config.TokenConfig;
 import org.folio.spring.tenant.properties.TenantProperties;
 import org.folio.spring.tenant.service.SqlTemplateService;
 import org.junit.jupiter.api.Test;
@@ -90,7 +91,7 @@ class OkapiRestTemplateTest {
     interceptor.get(0).intercept(request, body, execution);
 
     verify(headers).set(CamundaTenantInit.getHeaderName(), tenant);
-    verify(headers).set(CamundaTenantInit.OKAPI_TOKEN_HEADER, token);
+    verify(headers).set(TokenConfig.getTokenHeaderName(), token);
 
     verify(headers).setAccept(Arrays.asList(APPLICATION_JSON, TEXT_PLAIN));
     verify(headers).setContentType(APPLICATION_JSON);

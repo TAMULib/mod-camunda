@@ -86,6 +86,7 @@ class FileDelegateTest {
     put("data", new ArrayList<>() {{
       add("Hello, World!");
     }});
+    put("simple", "Hello, World!");
     put("path", "/test/path");
     put("tenandId", "diku");
     put("timestamp", new Date().getTime());
@@ -107,15 +108,8 @@ class FileDelegateTest {
 
   @ParameterizedTest
   @MethodSource("executionStream")
-  void testExecute(
-      String inputVariablesValue,
-      String outputVariableValue,
-      String pathValue,
-      String lineValue,
-      String opValue,
-      String targetValue,
-      Class<Exception> exception
-  ) throws Exception {
+  void testExecute(String inputVariablesValue, String outputVariableValue, String pathValue, String lineValue,
+      String opValue, String targetValue, Class<Exception> exception ) throws Exception {
 
     FileOp fileOp = FileOp.valueOf(opValue);
 
@@ -196,8 +190,6 @@ class FileDelegateTest {
         default:
           break;
       }
-
-
     }
   }
 
@@ -206,74 +198,66 @@ class FileDelegateTest {
    *
    * @return
    *   The arguments array stream with the stream columns as:
-   *         - inputVariables (set of EmbeddedVariable as JSON)
-   *         - outputVariable (EmbeddedVariable as JSON)
-   *         - path (path of source)
-   *         - line (line in file)
-   *         - op (GET, PUT)
-   *         - target (input variable identifier)
+   *     - String inputVariables (set of EmbeddedVariable as JSON)
+   *     - String outputVariable (EmbeddedVariable as JSON)
+   *     - String path (path of source)
+   *     - String line (line in file)
+   *     - String op (GET, PUT)
+   *     - Class<Exception> target (input variable identifier)
+   *
    * @throws IOException
    * @throws JsonProcessingException
    */
   private static Stream<Arguments> executionStream() throws IOException {
-    // arguments required for delegate expression
 
-    // read input variables and output variable from files
+    // Read input variables and output variable from files.
     String inputVariables = "[]";
-
     String outputVariable = "{}";
-
     String files = "src/test/resources/files";
-
-    String plain_txt = files + "/plain.txt";
-
+    String plainTxt = files + "/plain.txt";
     String zero = "0";
     String one = "1";
-
     String no_path = "";
 
-    // must match an input variable key or target file path
-    String no_target = "";
+    // Must match an input variable key or target file path.
+    String noTarget = "";
+    String dataTarget = "data";
+    String simpleTarget = "simple";
+    String tempPlainTxt = files + "/temp/plain.txt";
+    String tempOutput = files + "/temp/output";
 
-    String data_target = "data";
-
-    String temp_plain_txt = files + "/temp/plain.txt";
-
-    String temp_output = files + "/temp/output";
-
-    // arguments for whether to expect exception thrown
+    // Arguments for whether to expect exception thrown.
     String noException = null;
 
-    // arguments to assert about the test
-
     return Stream.of(
-        Arguments.of(inputVariables, i("/output/file_task/data.json"), files, zero, FileOp.LIST.toString(), no_target, noException),
-        Arguments.of(inputVariables, i("/output/file_task/data.json"), plain_txt, zero, FileOp.READ.toString(), no_target, noException),
-        Arguments.of(inputVariables, i("/output/file_task/data.json"), plain_txt, zero, FileOp.LINE_COUNT.toString(), no_target, noException),
-        Arguments.of(inputVariables, i("/output/file_task/data.json"), plain_txt, one, FileOp.READ_LINE.toString(), no_target, noException),
-        Arguments.of(i("/input/file_task/write.json"), outputVariable, temp_output, zero, FileOp.WRITE.toString(), data_target, noException),
+      Arguments.of(inputVariables, i("/output/file_task/data.json"), files, zero, FileOp.LIST.toString(), noTarget, noException),
+      Arguments.of(inputVariables, i("/output/file_task/data.json"), plainTxt, zero, FileOp.READ.toString(), noTarget, noException),
+      Arguments.of(inputVariables, i("/output/file_task/data.json"), plainTxt, zero, FileOp.LINE_COUNT.toString(), noTarget, noException),
+      Arguments.of(inputVariables, i("/output/file_task/data.json"), plainTxt, one, FileOp.READ_LINE.toString(), noTarget, noException),
+      Arguments.of(i("/input/file_task/write.json"), outputVariable, tempOutput, zero, FileOp.WRITE.toString(), dataTarget, noException),
+      Arguments.of(i("/input/file_task/write_simple.json"), outputVariable, tempOutput, zero, FileOp.WRITE.toString(), simpleTarget, noException),
 
-        // Arguments.of(inputVariables, outputVariable, plain_txt, zero, FileOp.PUSH.toString(), no_target, noException),
-        // Arguments.of(inputVariables, outputVariable, plain_txt, zero, FileOp.POP.toString(), no_target, noException),
+      // Arguments.of(inputVariables, outputVariable, plain_txt, zero, FileOp.PUSH.toString(), no_target, noException),
+      // Arguments.of(inputVariables, outputVariable, plain_txt, zero, FileOp.POP.toString(), no_target, noException),
 
-        // fails silently
-        Arguments.of(inputVariables, outputVariable, no_path, zero, FileOp.COPY.toString(), temp_plain_txt, noException),
-        // fails silently
-        Arguments.of(inputVariables, outputVariable, no_path, zero, FileOp.MOVE.toString(), temp_plain_txt, noException),
+      // fails silently
+      Arguments.of(inputVariables, outputVariable, no_path, zero, FileOp.COPY.toString(), tempPlainTxt, noException),
+      // fails silently
+      Arguments.of(inputVariables, outputVariable, no_path, zero, FileOp.MOVE.toString(), tempPlainTxt, noException),
 
-        // must be done last
+      // must be done last
 
-        // copy file
-        Arguments.of(inputVariables, outputVariable, plain_txt, zero, FileOp.COPY.toString(), temp_plain_txt, noException),
+      // copy file
+      Arguments.of(inputVariables, outputVariable, plainTxt, zero, FileOp.COPY.toString(), tempPlainTxt, noException),
 
-        // delete a file
-        Arguments.of(inputVariables, outputVariable, plain_txt, zero, FileOp.DELETE.toString(), no_target, noException),
+      // delete a file
+      Arguments.of(inputVariables, outputVariable, plainTxt, zero, FileOp.DELETE.toString(), noTarget, noException),
 
-        // move file
-        Arguments.of(inputVariables, outputVariable, temp_plain_txt, zero, FileOp.MOVE.toString(), plain_txt, noException),
+      // move file
+      Arguments.of(inputVariables, outputVariable, tempPlainTxt, zero, FileOp.MOVE.toString(), plainTxt, noException),
 
-        // delete temp_output
-        Arguments.of(inputVariables, outputVariable, temp_output, zero, FileOp.DELETE.toString(), no_target, noException)
+      // delete temp_output
+      Arguments.of(inputVariables, outputVariable, tempOutput, zero, FileOp.DELETE.toString(), noTarget, noException)
     );
   }
 

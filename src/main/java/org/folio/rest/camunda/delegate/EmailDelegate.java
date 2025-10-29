@@ -10,7 +10,6 @@ import java.util.Optional;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.Expression;
 import org.folio.rest.workflow.model.EmailTask;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -42,7 +41,6 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
 
   private Expression includeAttachment;
 
-  @Autowired
   public EmailDelegate(JavaMailSender emailSender) {
     this.emailSender = emailSender;
   }

@@ -8,16 +8,10 @@ import java.util.UUID;
 import org.folio.spring.tenant.hibernate.HibernateTenantInit;
 import org.folio.spring.tenant.properties.TenantProperties;
 import org.folio.spring.tenant.service.SqlTemplateService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CamundaTenantInit implements HibernateTenantInit {
-
-  /**
-   * HTTP header name for providing the authentication token.
-   */
-  public static final String OKAPI_TOKEN_HEADER = "X-Okapi-Token";
 
   private static final String SCHEMA_IMPORT_TENANT = "import/tenant";
 
@@ -29,7 +23,6 @@ public class CamundaTenantInit implements HibernateTenantInit {
 
   private TenantProperties tenantProperties;
 
-  @Autowired
   public CamundaTenantInit(SqlTemplateService sqlTemplateService, TenantProperties tenantProperties) {
     this.sqlTemplateService = sqlTemplateService;
     this.tenantProperties = tenantProperties;
@@ -61,9 +54,9 @@ public class CamundaTenantInit implements HibernateTenantInit {
    * The OkapiRestTemplate design prevents auto-injection because non-Java code will run the static methods via the MappingUtility.
    * Load the settings in such a way that a static method may access settings injected by Spring.
    *
-   * These settings are normally defined in the Spring-Module-Core Spring-Tenant `TenantProperties` class
+   * These settings are normally defined in the Spring-Module-Core Spring-Tenant `TenantProperties` class.
    *
-   * @return the tenant header.
+   * @return The tenant header.
    */
   public static String getHeaderName() {
     return tenantHeaderName;
