@@ -78,8 +78,6 @@ public class RequestDelegate extends AbstractWorkflowIODelegate {
     getLogger().debug("content-type: {}", contentType);
     getLogger().debug("tenant: {}", tenant);
 
-    getLogger().debug("body: {}", body);
-
     HttpHeaders headers = new HttpHeaders();
     headers.add("Accept", accept);
     headers.add("Content-Type", contentType);
