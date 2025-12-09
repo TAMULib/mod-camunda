@@ -2,6 +2,7 @@ package org.folio.rest.camunda.delegate;
 
 import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
+import jakarta.mail.internet.AddressException;
 import jakarta.mail.internet.MimeMessage;
 import java.io.File;
 import java.util.Map;
@@ -9,6 +10,7 @@ import java.util.Objects;
 import java.util.Optional;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.Expression;
+import org.folio.rest.camunda.exception.EmailDelegateAddressFailure;
 import org.folio.rest.workflow.model.EmailTask;
 import org.springframework.context.annotation.Scope;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -80,14 +82,26 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
     Optional<String> bcc = Objects.nonNull(this.mailBcc) ? Optional.ofNullable(this.mailBcc.getValue(execution).toString()) : Optional.empty();
     Optional<String> attachmentPathValue = Objects.nonNull(this.attachmentPath) ? Optional.ofNullable(FreeMarkerTemplateUtils.processTemplateIntoString(cfg.getTemplate("attachmentPath"), inputs)) : Optional.empty();
 
+    getLogger().debug("E-mail To: {}, E-mail From: {}, E-mail Subject: {}, Has Attachment: {}", to, from, subject, attachmentPathValue.isPresent());
+
     MimeMessagePreparator preparator = new MimeMessagePreparator() {
       public void prepare(MimeMessage mimeMessage) throws Exception {
         MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 
-        message.setFrom(from);
-        for (String ct : to.split(",")) {
-          message.addTo(ct);
+        try {
+          message.setFrom(from);
+        } catch (AddressException e) {
+          throw new EmailDelegateAddressFailure("from", from, e.getMessage(), e);
         }
+
+        for (String ct : to.split(",")) {
+          try {
+            message.addTo(ct);
+          } catch (AddressException e) {
+            throw new EmailDelegateAddressFailure("to", ct, e.getMessage(), e);
+          }
+        }
+
         message.setSubject(subject);
 
         if (Objects.nonNull(mailMarkup)) {
@@ -102,13 +116,21 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
 
         if (cc.isPresent()) {
           for (String ccc : cc.get().split(",")) {
-            message.addCc(ccc);
+            try {
+              message.addCc(ccc);
+            } catch (AddressException e) {
+              throw new EmailDelegateAddressFailure("cc", ccc, e.getMessage(), e);
+            }
           }
         }
 
         if (bcc.isPresent()) {
           for (String cbcc : bcc.get().split(",")) {
-            message.addCc(cbcc);
+            try {
+              message.addCc(cbcc);
+            } catch (AddressException e) {
+              throw new EmailDelegateAddressFailure("bcc", cbcc, e.getMessage(), e);
+            }
           }
         }
 
