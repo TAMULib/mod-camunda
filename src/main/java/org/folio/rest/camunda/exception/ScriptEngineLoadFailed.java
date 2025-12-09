@@ -10,4 +10,8 @@ public class ScriptEngineLoadFailed extends Exception {
     super(String.format(MESSAGE, extension));
   }
 
+  public ScriptEngineLoadFailed(String extension, Exception e) {
+    super(String.format(MESSAGE, extension), e);
+  }
+
 }
