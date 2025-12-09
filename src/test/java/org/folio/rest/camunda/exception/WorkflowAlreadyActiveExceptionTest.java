@@ -22,4 +22,15 @@ class WorkflowAlreadyActiveExceptionTest {
     assertNotNull(exception);
     assertTrue(exception.getMessage().contains(VALUE));
   }
+
+  @Test
+  void workflowAlreadyActiveExceptionWorksWithParameterTest() throws IOException {
+    WorkflowAlreadyActiveException exception = Assertions.assertThrows(WorkflowAlreadyActiveException.class, () -> {
+      throw new WorkflowAlreadyActiveException(VALUE, new RuntimeException());
+    });
+
+    assertNotNull(exception);
+    assertTrue(exception.getMessage().contains(VALUE));
+  }
+
 }

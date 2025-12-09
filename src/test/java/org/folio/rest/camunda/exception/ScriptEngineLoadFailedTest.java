@@ -22,4 +22,15 @@ class ScriptEngineLoadFailedTest {
     assertNotNull(exception);
     assertTrue(exception.getMessage().contains(VALUE));
   }
+
+  @Test
+  void scriptEngineLoadFailedWorksWithParameterTest() throws IOException {
+    ScriptEngineLoadFailed exception = Assertions.assertThrows(ScriptEngineLoadFailed.class, () -> {
+      throw new ScriptEngineLoadFailed(VALUE, new RuntimeException());
+    });
+
+    assertNotNull(exception);
+    assertTrue(exception.getMessage().contains(VALUE));
+  }
+
 }

@@ -32,4 +32,5 @@ class ScriptTaskDeserializeCodeFailureTest {
     assertNotNull(exception);
     assertTrue(exception.getMessage().contains(UUID));
   }
+
 }

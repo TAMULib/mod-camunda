@@ -22,4 +22,15 @@ class ScriptEngineUnsupportedTest {
     assertNotNull(exception);
     assertTrue(exception.getMessage().contains(VALUE));
   }
+
+  @Test
+  void scriptEngineUnsupportedWorksWithParameterTest() throws IOException {
+    ScriptEngineUnsupported exception = Assertions.assertThrows(ScriptEngineUnsupported.class, () -> {
+      throw new ScriptEngineUnsupported(VALUE, new RuntimeException());
+    });
+
+    assertNotNull(exception);
+    assertTrue(exception.getMessage().contains(VALUE));
+  }
+
 }
