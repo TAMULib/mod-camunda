@@ -10,4 +10,8 @@ public class WorkflowAlreadyActiveException extends Exception {
     super(String.format(WORKFLOW_ALREADY_ACTIVE_MESSAGE, id));
   }
 
+  public WorkflowAlreadyActiveException(String id, Exception e) {
+    super(String.format(WORKFLOW_ALREADY_ACTIVE_MESSAGE, id), e);
+  }
+
 }

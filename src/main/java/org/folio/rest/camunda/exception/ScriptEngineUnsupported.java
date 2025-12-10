@@ -10,4 +10,8 @@ public class ScriptEngineUnsupported extends Exception {
     super(String.format(MESSAGE, extension));
   }
 
+  public ScriptEngineUnsupported(String extension, Exception e) {
+    super(String.format(MESSAGE, extension), e);
+  }
+
 }
