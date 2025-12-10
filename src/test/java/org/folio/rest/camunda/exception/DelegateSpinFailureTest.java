@@ -14,7 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class DelegateSpinFailureTest {
 
-  final static Exception EXCEPTION = new RuntimeException();
+  private static final Exception EXCEPTION = new RuntimeException();
 
   @Test
   void delegateSpinFailureWorksTest() {
@@ -28,7 +28,7 @@ class DelegateSpinFailureTest {
   }
 
   @Test
-  void delegateSpinFailureWorksWorksWithParameterTest() throws IOException {
+  void delegateSpinFailureWorksWithParameterTest() throws IOException {
     DelegateSpinFailure exception = Assertions.assertThrows(DelegateSpinFailure.class, () -> {
       throw new DelegateSpinFailure(UUID, ID, EXCEPTION);
     });

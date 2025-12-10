@@ -14,6 +14,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class EmailDelegateAddressFailureTest {
 
+  private static final Exception EXCEPTION = new RuntimeException();
+
   @Test
   void emailDelegateAddressFailureWorksTest() {
     EmailDelegateAddressFailure exception = Assertions.assertThrows(EmailDelegateAddressFailure.class, () -> {
@@ -27,9 +29,9 @@ class EmailDelegateAddressFailureTest {
   }
 
   @Test
-  void delegateSpinFailureWorksWorksWithParameterTest() {
+  void delegateSpinFailureWorksWithParameterTest() {
     EmailDelegateAddressFailure exception = Assertions.assertThrows(EmailDelegateAddressFailure.class, () -> {
-      throw new EmailDelegateAddressFailure(VALUE, UUID, ID, new RuntimeException());
+      throw new EmailDelegateAddressFailure(VALUE, UUID, ID, EXCEPTION);
     });
 
     assertNotNull(exception);

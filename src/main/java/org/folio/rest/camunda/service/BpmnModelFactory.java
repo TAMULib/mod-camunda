@@ -61,12 +61,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class BpmnModelFactory {
 
-  private final static Logger logger = LoggerFactory.getLogger(BpmnModelFactory.class);
+  private static final Logger logger = LoggerFactory.getLogger(BpmnModelFactory.class);
 
-  private final static String SETUP_TASK_ID = "setup_task_98832611_3d33_476b_adcc_fcb6c4e8718b";
+  private static final String SETUP_TASK_ID = "setup_task_98832611_3d33_476b_adcc_fcb6c4e8718b";
 
   // @formatter:off
-  private final static Class<?>[] SERIALIZABLE_TYPES = new Class<?>[] {
+  private static final Class<?>[] SERIALIZABLE_TYPES = new Class<?>[] {
     String.class,
     Number.class,
     Boolean.class,

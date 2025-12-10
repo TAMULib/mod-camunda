@@ -12,7 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class ScriptTaskDeserializeCodeFailureTest {
 
-  final static Exception EXCEPTION = new RuntimeException();
+  private static final Exception EXCEPTION = new RuntimeException();
 
   @Test
   void scriptEngineLoadFailedWorksTest() {

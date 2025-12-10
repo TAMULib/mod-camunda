@@ -18,7 +18,7 @@ import org.springframework.http.ResponseEntity;
  */
 public class TestUtility {
 
-  private final static ObjectMapper om = new ObjectMapper();
+  private static final ObjectMapper om = new ObjectMapper();
 
   private TestUtility() {
 

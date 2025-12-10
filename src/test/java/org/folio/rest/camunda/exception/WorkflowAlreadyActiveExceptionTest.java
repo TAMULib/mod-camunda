@@ -12,7 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class WorkflowAlreadyActiveExceptionTest {
 
-  final static Exception EXCEPTION = new RuntimeException();
+  private static final Exception EXCEPTION = new RuntimeException();
 
   @Test
   void workflowAlreadyActiveExceptionWorksTest() {

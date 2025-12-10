@@ -19,7 +19,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ExtendWith(MockitoExtension.class)
 class TenantInjectionDelegateAspectTest {
 
-  private final static String MOCK_TENANT = "diku";
+  private static final String MOCK_TENANT = "diku";
 
   @Mock
   private DelegateExecution execution;
