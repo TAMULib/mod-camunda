@@ -5,7 +5,6 @@ import static org.folio.spring.test.mock.MockMvcConstant.UUID;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,7 +27,7 @@ class DelegateSpinFailureTest {
   }
 
   @Test
-  void delegateSpinFailureWorksWithParameterTest() throws IOException {
+  void delegateSpinFailureWorksWithParameterTest() {
     DelegateSpinFailure exception = Assertions.assertThrows(DelegateSpinFailure.class, () -> {
       throw new DelegateSpinFailure(UUID, ID, EXCEPTION);
     });
