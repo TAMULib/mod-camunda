@@ -4,7 +4,6 @@ import static org.folio.spring.test.mock.MockMvcConstant.UUID;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,8 +12,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class ScriptTaskDeserializeCodeFailureTest {
 
+  final static Exception EXCEPTION = new RuntimeException();
+
   @Test
-  void scriptEngineLoadFailedWorksTest() throws IOException {
+  void scriptEngineLoadFailedWorksTest() {
       ScriptTaskDeserializeCodeFailure exception = Assertions.assertThrows(ScriptTaskDeserializeCodeFailure.class, () -> {
       throw new ScriptTaskDeserializeCodeFailure(UUID);
     });
@@ -24,9 +25,9 @@ class ScriptTaskDeserializeCodeFailureTest {
   }
 
   @Test
-  void scriptEngineLoadFailedWorksWithParameterTest() throws IOException {
+  void scriptEngineLoadFailedWorksWithParameterTest() {
       ScriptTaskDeserializeCodeFailure exception = Assertions.assertThrows(ScriptTaskDeserializeCodeFailure.class, () -> {
-      throw new ScriptTaskDeserializeCodeFailure(UUID, new RuntimeException());
+      throw new ScriptTaskDeserializeCodeFailure(UUID, EXCEPTION);
     });
 
     assertNotNull(exception);

@@ -6,7 +6,6 @@ import static org.folio.spring.test.mock.MockMvcConstant.VALUE;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,7 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 class EmailDelegateAddressFailureTest {
 
   @Test
-  void emailDelegateAddressFailureWorksTest() throws IOException {
+  void emailDelegateAddressFailureWorksTest() {
     EmailDelegateAddressFailure exception = Assertions.assertThrows(EmailDelegateAddressFailure.class, () -> {
       throw new EmailDelegateAddressFailure(VALUE, UUID, ID);
     });
@@ -28,7 +27,7 @@ class EmailDelegateAddressFailureTest {
   }
 
   @Test
-  void delegateSpinFailureWorksWorksWithParameterTest() throws IOException {
+  void delegateSpinFailureWorksWorksWithParameterTest() {
     EmailDelegateAddressFailure exception = Assertions.assertThrows(EmailDelegateAddressFailure.class, () -> {
       throw new EmailDelegateAddressFailure(VALUE, UUID, ID, new RuntimeException());
     });
