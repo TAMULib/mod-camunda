@@ -75,7 +75,7 @@ import org.springframework.web.client.RestClientException;
 @ExtendWith(MockitoExtension.class)
 class MappingUtilityTest {
 
-  private final static String OKAPI_URL = "http://localhost:9130";
+  private static final String OKAPI_URL = "http://localhost:9130";
 
   @Spy
   private OkapiRestTemplate mockRestTemplate;
