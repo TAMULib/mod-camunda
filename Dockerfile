@@ -5,10 +5,10 @@ USER root
 RUN apk upgrade --no-cache
 USER folio
 
-ENV VERTICLE_FILE mod-camunda.jar
+ENV VERTICLE_FILE=mod-camunda.jar
 
 # Set the location of the verticles.
-ENV VERTICLE_HOME /usr/verticles
+ENV VERTICLE_HOME=/usr/verticles
 
 # Copy your jar to the container.
 COPY target/mod-camunda*.jar ${VERTICLE_HOME}/${VERTICLE_FILE}
