@@ -9,12 +9,12 @@
         {
           "methods": ["GET"],
           "pathPattern": "/camunda/history/process-instance",
-          "permissionsRequired": ["camunda.history.process-instance.collection.get"]
+          "permissionsRequired": ["camunda.history_process_instance.collection.get"]
         },
         {
           "methods": ["GET"],
           "pathPattern": "/camunda/history/incident",
-          "permissionsRequired": ["camunda.history.incident.collection.get"]
+          "permissionsRequired": ["camunda.history_incident.collection.get"]
         }
       ]
     },
@@ -51,22 +51,22 @@
         {
           "methods": ["GET"],
           "pathPattern": "/camunda/process-definition",
-          "permissionsRequired": ["camunda.process-definition.collection.get"]
+          "permissionsRequired": ["camunda.process_definition.collection.get"]
         },
         {
           "methods": ["GET"],
           "pathPattern": "/camunda/process-definition/{id}",
-          "permissionsRequired": ["camunda.process-definition.item.get"]
+          "permissionsRequired": ["camunda.process_definition.item.get"]
         },
         {
           "methods": ["POST"],
           "pathPattern": "/camunda/process-definition/{id}/start",
-          "permissionsRequired": ["camunda.process-definition.start.post"]
+          "permissionsRequired": ["camunda.process_definition.start.post"]
         },
         {
           "methods": ["POST"],
           "pathPattern": "/camunda/process-definition/key/{key}/tenant-id/{tenant-id}/start",
-          "permissionsRequired": ["camunda.process-definition.start.post"]
+          "permissionsRequired": ["camunda.process_definition_key.start.post"]
         }
       ]
     },
@@ -77,12 +77,12 @@
         {
           "methods": ["GET"],
           "pathPattern": "/camunda/decision-definition",
-          "permissionsRequired": ["camunda.decision-definition.collection.get"]
+          "permissionsRequired": ["camunda.decision_definition.collection.get"]
         },
         {
           "methods": ["GET"],
           "pathPattern": "/camunda/decision-definition/{id}",
-          "permissionsRequired": ["camunda.decision-definition.item.get"]
+          "permissionsRequired": ["camunda.decision_definition.item.get"]
         }
       ]
     },
@@ -103,17 +103,17 @@
         {
           "methods": ["POST"],
           "pathPattern": "/camunda/task/{id}/claim",
-          "permissionsRequired": ["camunda.task.claim.post"]
+          "permissionsRequired": ["camunda.task_claim.item.post"]
         },
         {
           "methods": ["POST"],
           "pathPattern": "/camunda/task/{id}/unclaim",
-          "permissionsRequired": ["camunda.task.unclaim.post"]
+          "permissionsRequired": ["camunda.task_unclaim.item.post"]
         },
         {
           "methods": ["POST"],
           "pathPattern": "/camunda/task/{id}/complete",
-          "permissionsRequired": ["camunda.task.complete.post"]
+          "permissionsRequired": ["camunda.task_complete.item.post"]
         }
       ]
     },
@@ -135,13 +135,13 @@
         {
           "methods": ["POST"],
           "pathPattern": "/workflow-engine/workflows/activate",
-          "permissionsRequired": ["camunda.workflow-engine.workflows.activate"],
+          "permissionsRequired": ["camunda.workflow_engine_workflows_activate.item.post"],
           "permissionsDesired": ["camunda.workflow-engine.workflows.*"]
         },
         {
           "methods": ["POST"],
           "pathPattern": "/workflow-engine/workflows/deactivate",
-          "permissionsRequired": ["camunda.workflow-engine.workflows.deactivate"],
+          "permissionsRequired": ["camunda.workflow_engine_workflows_deactivate.item.post"],
           "permissionsDesired": ["camunda.workflow-engine.workflows.*"]
         }
       ]
@@ -182,24 +182,14 @@
   ],
   "permissionSets" : [
     {
-      "permissionName": "camunda.history.process-instance.collection.get",
+      "permissionName": "camunda.history_process_instance.collection.get",
       "displayName": "Camunda - history - get history process instance collection",
       "description": "Get history process instance collection"
     },
     {
-      "permissionName": "camunda.history.incident.collection.get",
+      "permissionName": "camunda.history_incident.collection.get",
       "displayName": "Camunda - history - get history incident collection",
       "description": "Get history incident collection"
-    },
-    {
-      "permissionName": "camunda.history.all",
-      "displayName": "Camunda - history - all permissions",
-      "description": "Entire set of permissions needed to use the camunda history",
-      "subPermissions": [
-        "camunda.history.process-instance.collection.get",
-        "camunda.history.incident.collection.get"
-      ],
-      "visible": false
     },
     {
       "permissionName": "camunda.process.collection.get",
@@ -222,65 +212,37 @@
       "description": "Create process"
     },
     {
-      "permissionName": "camunda.process.all",
-      "displayName": "Camunda - process - all permissions",
-      "description": "Entire set of permissions needed to use the camunda processes",
-      "subPermissions": [
-        "camunda.process.collection.get",
-        "camunda.process.item.delete",
-        "camunda.process.item.get",
-        "camunda.process.item.post"
-      ],
-      "visible": false
-    },
-    {
-      "permissionName": "camunda.process-definition.collection.get",
+      "permissionName": "camunda.process_definition.collection.get",
       "displayName": "Process definition - get process definition collection",
       "description": "Get process definition collection"
     },
     {
-      "permissionName": "camunda.process-definition.item.get",
+      "permissionName": "camunda.process_definition.item.get",
       "displayName": "Process definition - get individual process definition from storage",
       "description": "Get individual process definition"
     },
     {
-      "permissionName": "camunda.process-definition.start.post",
-      "displayName": "Process definition - start process definition by id or key and tenant-id",
-      "description": "Start process definition"
+      "permissionName": "camunda.process_definition.start.post",
+      "displayName": "Process definition - start process definition by id and tenant-id",
+      "description": "Start process definition using id"
     },
     {
-      "permissionName": "camunda.process-definition.all",
-      "displayName": "Camunda - process definition - all permissions",
-      "description": "Entire set of permissions needed to use the camunda process definitions",
-      "subPermissions": [
-        "camunda.process-definition.collection.get",
-        "camunda.process-definition.item.get",
-        "camunda.process-definition.start.post"
-      ],
-      "visible": false
+      "permissionName": "camunda.process_definition_key.start.post",
+      "displayName": "Process definition key - start process definition by key and tenant-id",
+      "description": "Start process definition using key"
     },
     {
-      "permissionName": "camunda.decision-definition.collection.get",
+      "permissionName": "camunda.decision_definition.collection.get",
       "displayName": "Camunda - decision definition - get decision definition collection",
       "description": "Get decision definition collection"
     },
     {
-      "permissionName": "camunda.decision-definition.item.get",
+      "permissionName": "camunda.decision_definition.item.get",
       "displayName": "Camunda - decision definition - get individual decision definition from storage",
       "description": "Get individual decision definition"
     },
     {
-      "permissionName": "camunda.decision-definition.all",
-      "displayName": "Camunda - decision definition - all permissions",
-      "description": "Entire set of permissions needed to use the camunda decision definitions",
-      "subPermissions": [
-        "camunda.decision-definition.collection.get",
-        "camunda.decision-definition.item.get"
-      ],
-      "visible": false
-    },
-    {
-      "permissionName": "camunda.task.claim.post",
+      "permissionName": "camunda.task_claim.item.post",
       "displayName": "Camunda - task - claim task",
       "description": "Claim task"
     },
@@ -290,7 +252,7 @@
       "description": "Get task collection"
     },
     {
-      "permissionName": "camunda.task.complete.post",
+      "permissionName": "camunda.task_complete.item.post",
       "displayName": "Camunda - task - complete task",
       "description": "Complete task"
     },
@@ -300,22 +262,9 @@
       "description": "Get individual task"
     },
     {
-      "permissionName": "camunda.task.unclaim.post",
+      "permissionName": "camunda.task_unclaim.item.post",
       "displayName": "Camunda - task - unclaim task",
       "description": "Unclaim task"
-    },
-    {
-      "permissionName": "camunda.task.all",
-      "displayName": "Camunda - task - all permissions",
-      "description": "Entire set of permissions needed to use the camunda tasks",
-      "subPermissions": [
-        "camunda.task.claim.post",
-        "camunda.task.collection.get",
-        "camunda.task.complete.post",
-        "camunda.task.item.get",
-        "camunda.task.unclaim.post"
-      ],
-      "visible": false
     },
     {
       "permissionName": "camunda.message.item.post",
@@ -323,33 +272,14 @@
       "description": "Create message"
     },
     {
-      "permissionName": "camunda.message.all",
-      "displayName": "Camunda - message - all permissions",
-      "description": "Entire set of permissions needed to use the camunda messages",
-      "subPermissions": [
-        "camunda.message.item.post"
-      ],
-      "visible": false
-    },
-    {
-      "permissionName": "camunda.workflow-engine.workflows.activate",
+      "permissionName": "camunda.workflow_engine_workflows_activate.item.post",
       "displayName": "Camunda - workflow engine - activate workflow",
       "description": "Activate workflow"
     },
     {
-      "permissionName": "camunda.workflow-engine.workflows.deactivate",
+      "permissionName": "camunda.workflow_engine_workflows_deactivate.item.post",
       "displayName": "Camunda - workflow engine - deactivate workflow",
       "description": "Deactivate workflow"
-    },
-    {
-      "permissionName": "camunda.workflow-engine.workflows.all",
-      "displayName": "Camunda - workflow engine - all permissions",
-      "description": "Entire set of permissions needed to use the camunda workflow engines",
-      "subPermissions": [
-        "camunda.workflow-engine.workflows.activate",
-        "camunda.workflow-engine.workflows.deactivate"
-      ],
-      "visible": false
     }
   ],
   "requires": [
