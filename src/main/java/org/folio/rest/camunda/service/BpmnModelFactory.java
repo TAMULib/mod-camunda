@@ -1,14 +1,15 @@
 package org.folio.rest.camunda.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.TimeZone;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.camunda.bpm.engine.delegate.Expression;
 import org.camunda.bpm.model.bpmn.Bpmn;
@@ -55,7 +56,6 @@ import org.folio.rest.workflow.model.components.Task;
 import org.folio.rest.workflow.model.components.Wait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -74,11 +74,24 @@ public class BpmnModelFactory {
   };
   // @formatter:on
 
-  @Autowired
   private ObjectMapper objectMapper;
 
-  @Autowired
   private List<AbstractWorkflowDelegate> workflowDelegates;
+
+  /**
+   * Constructor.
+   *
+   * @param objectMapper The object mapper.
+   * @param workflowDelegates The workflow delegate.
+   */
+  BpmnModelFactory(ObjectMapper objectMapper, List<AbstractWorkflowDelegate> workflowDelegates) {
+    this.objectMapper = objectMapper;
+    this.workflowDelegates = workflowDelegates;
+
+    objectMapper.findAndRegisterModules();
+    objectMapper.disable(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE);
+    objectMapper.setTimeZone(TimeZone.getTimeZone("UTC"));
+  }
 
   public BpmnModelInstance fromWorkflow(Workflow workflow) throws ScriptTaskDeserializeCodeFailure {
 
