@@ -1,10 +1,16 @@
 package org.folio.rest.camunda.utility;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.StreamReadFeature;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import io.vertx.core.json.JsonObject;
 import java.io.IOException;
 import java.util.Map;
@@ -43,7 +49,14 @@ public class MappingUtility {
   private static final MarcToInstanceMapper marcToInstanceMapper = new MarcToInstanceMapper();
 
   /** Jackson ObjectMapper for JSON serialization and deserialization. */
-  private static final ObjectMapper objectMapper = new ObjectMapper();
+  private static final ObjectMapper objectMapper = JsonMapper.builder()
+    .enable(StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION)
+    .enable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+    .disable(MapperFeature.REQUIRE_TYPE_ID_FOR_SUBTYPES)
+    .disable(DeserializationFeature.FAIL_ON_MISSING_EXTERNAL_TYPE_ID_PROPERTY)
+    .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+    .addModule(new JavaTimeModule())
+    .build();
 
   /** Rest template for making Okapi-based REST calls. */
   static OkapiRestTemplate restTemplate = new OkapiRestTemplate();
