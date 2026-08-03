@@ -10,6 +10,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
+import freemarker.template.TemplateException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -31,18 +33,23 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
+/**
+ * A delegate for performing already logged in FOLIO HTTP requests.
+ *
+ * For FOLIO related requests other than logging, use the FolioRequestDelegate instead.
+ */
 @Service
 @Scope("prototype")
 public class RequestDelegate extends AbstractWorkflowIODelegate {
 
   @Value("${okapi.url}")
-  private String okapiUrl;
+  protected String okapiUrl;
 
-  private HttpService httpService;
+  protected HttpService httpService;
 
-  private Expression request;
+  protected Expression request;
 
-  private Expression headerOutputVariables;
+  protected Expression headerOutputVariables;
 
   public RequestDelegate(HttpService httpService) {
     this.httpService = httpService;
@@ -50,37 +57,24 @@ public class RequestDelegate extends AbstractWorkflowIODelegate {
 
   @Override
   public void execute(DelegateExecution execution) throws Exception {
-    final long startTime = determineStartTime(execution);
 
-    final Request requestValue = objectMapper.readValue(this.request.getValue(execution).toString(), Request.class);
+    final long startTime = determineStartTime(execution);
 
     final Map<String, Object> inputs = getInputs(execution);
     final Configuration cfg = new Configuration(Configuration.VERSION_2_3_23);
 
-    final String bodyTemplate = requestValue.getBodyTemplate();
+    final Request requestValue = objectMapper.readValue(this.request.getValue(execution).toString(), Request.class);
     final Boolean sendEmptyBody = requestValue.getSendEmptyBody();
 
-    final StringTemplateLoader stringLoader = new StringTemplateLoader();
-    stringLoader.putTemplate("url", requestValue.getUrl());
+    final StringTemplateLoader loader = new StringTemplateLoader();
+    cfg.setTemplateLoader(loader);
 
-    cfg.setTemplateLoader(stringLoader);
-
-    String body = null;
-
-    if (bodyTemplate != null) {
-      stringLoader.putTemplate("body", requestValue.getBodyTemplate());
-
-      body = FreeMarkerTemplateUtils.processTemplateIntoString(cfg.getTemplate("body"), inputs);
-    }
-
-    final String url = FreeMarkerTemplateUtils.processTemplateIntoString(cfg.getTemplate("url"), inputs);
+    final String body = performExecuteBuildBody(requestValue.getBodyTemplate(), loader, cfg, inputs);
+    final String url = performExecuteBuildUrl(requestValue.getUrl(), loader, cfg, inputs);
 
     final HttpMethod method = HttpMethod.valueOf(requestValue.getMethod().toString());
     final String accept = requestValue.getAccept();
     final String contentType = requestValue.getContentType();
-
-    final String tenant = execution.getTenantId();
-    final Object token = execution.getVariable("X-Okapi-Token");
 
     getLogger().info("url: {}", url);
     getLogger().debug("method: {}", method);
@@ -88,17 +82,10 @@ public class RequestDelegate extends AbstractWorkflowIODelegate {
 
     getLogger().debug("accept: {}", accept);
     getLogger().debug("content-type: {}", contentType);
-    getLogger().debug("tenant: {}", tenant);
 
     final HttpHeaders headers = new HttpHeaders();
     headers.add("Accept", accept);
     headers.add("Content-Type", contentType);
-    headers.add("X-Okapi-Tenant", tenant);
-    headers.add("X-Okapi-Url", okapiUrl);
-
-    if (token != null) {
-      headers.add("X-Okapi-Token", token.toString());
-    }
 
     final HttpEntity<Object> entity = shouldSendBody(body, sendEmptyBody, method)
       ? new HttpEntity<>(body, headers)
@@ -135,12 +122,62 @@ public class RequestDelegate extends AbstractWorkflowIODelegate {
   }
 
   /**
+   * Build the body from the body template.
+   *
+   * @param template The body template.
+   * @param loader   The string loader.
+   * @param cfg      The configuration.
+   * @param inputs   The inputs.
+   *
+   * @return The built body or NULL if there is no template.
+   *
+   * @throws IOException       On error.
+   * @throws TemplateException On error.
+   */
+  protected String performExecuteBuildBody(final String template, final StringTemplateLoader loader, final Configuration cfg, final Map<String, Object> inputs)
+      throws IOException, TemplateException {
+
+    if (template == null) {
+      return null;
+    }
+
+    loader.putTemplate("body", template);
+
+    return FreeMarkerTemplateUtils.processTemplateIntoString(cfg.getTemplate("body"), inputs);
+  }
+
+  /**
+   * Build the body from the URL.
+   *
+   * @param template The URL.
+   * @param loader   The string loader.
+   * @param cfg      The configuration.
+   * @param inputs   The inputs.
+   *
+   * @return The built URL or NULL if there is no URL.
+   *
+   * @throws IOException       On error.
+   * @throws TemplateException On error.
+   */
+  protected String performExecuteBuildUrl(final String url, final StringTemplateLoader loader, final Configuration cfg, final Map<String, Object> inputs)
+      throws IOException, TemplateException {
+
+    if (url == null) {
+      return null;
+    }
+
+    loader.putTemplate("url", url);
+
+    return FreeMarkerTemplateUtils.processTemplateIntoString(cfg.getTemplate("url"), inputs);
+  }
+
+  /**
    * Perform the delegate execution relating to header output variables.
    *
    * @param execution            The delegate execution data.
    * @param headerOutputVariable The embedded variable.
    */
-  private void performExecuteHeaderOutputVariables(
+  protected void performExecuteHeaderOutputVariables(
     final DelegateExecution execution, final EmbeddedVariable headerOutputVariable, final ResponseEntity<Object> response
   ) {
 
@@ -182,7 +219,7 @@ public class RequestDelegate extends AbstractWorkflowIODelegate {
    *
    * @return The value, after "spinning".
    */
-  private Object performExecuteHeaderOutputVariablesSpin(final EmbeddedVariable headerOutputVariable, final HttpHeaders headers, final String key) {
+  protected Object performExecuteHeaderOutputVariablesSpin(final EmbeddedVariable headerOutputVariable, final HttpHeaders headers, final String key) {
 
     if (Boolean.TRUE.equals(headerOutputVariable.getAsArray())) {
       final List<String> valueList = new ArrayList<>();
@@ -211,7 +248,7 @@ public class RequestDelegate extends AbstractWorkflowIODelegate {
    *
    * @return TRUE on send body and FALSE otherwise.
    */
-  private boolean shouldSendBody(final String body, final Boolean sendEmptyBody, final HttpMethod method) {
+  protected boolean shouldSendBody(final String body, final Boolean sendEmptyBody, final HttpMethod method) {
 
     if (TRACE.equals(method)) return false;
 
@@ -233,7 +270,7 @@ public class RequestDelegate extends AbstractWorkflowIODelegate {
    *
    * @throws DelegateSpinFailure On spin error.
    */
-  private Object spinValue(EmbeddedVariable variable, Object value) throws DelegateSpinFailure {
+  protected Object spinValue(EmbeddedVariable variable, Object value) throws DelegateSpinFailure {
     try {
       return variable.getSpin() ? JSON(objectMapper.writeValueAsString(value)) : value;
     } catch (JsonProcessingException e) {

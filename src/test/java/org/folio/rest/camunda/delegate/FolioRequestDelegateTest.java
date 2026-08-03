@@ -7,6 +7,7 @@ import static org.folio.spring.test.mock.MockMvcConstant.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -22,7 +23,7 @@ import org.camunda.bpm.model.bpmn.instance.FlowElement;
 import org.folio.rest.workflow.dto.Request;
 import org.folio.rest.workflow.enums.VariableType;
 import org.folio.rest.workflow.model.EmbeddedVariable;
-import org.folio.rest.workflow.model.RequestTask;
+import org.folio.rest.workflow.model.FolioRequestTask;
 import org.folio.spring.web.service.HttpService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,7 +38,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 @ExtendWith(MockitoExtension.class)
-class RequestDelegateTest {
+class FolioRequestDelegateTest {
 
   private static final String TOKEN_HEADER_NAME = "X-Okapi-Token";
 
@@ -57,7 +58,7 @@ class RequestDelegateTest {
   private Expression requestExpression;
 
   @InjectMocks
-  private RequestDelegate requestDelegate;
+  private FolioRequestDelegate delegate;
 
   @Mock
   ResponseEntity<Object> responseEntity;
@@ -75,7 +76,7 @@ class RequestDelegateTest {
   private HttpHeaders httpHeaders;
 
   @BeforeEach
-  void beforeEach() throws JsonProcessingException {
+  void beforeEach() {
     mapper = new ObjectMapper();
 
     request = new Request();
@@ -101,7 +102,7 @@ class RequestDelegateTest {
 
     when(httpService.exchange(anyString(), any(HttpMethod.class), any(), any())).thenReturn(responseEntity);
 
-    requestDelegate.execute(delegateExecution);
+    delegate.execute(delegateExecution);
 
     verify(delegateExecution, never()).setVariable(anyString(), any());
     verify(delegateExecution, never()).setVariableLocal(anyString(), any());
@@ -115,7 +116,7 @@ class RequestDelegateTest {
 
     setupExecuteMocking(true);
 
-    requestDelegate.execute(delegateExecution);
+    delegate.execute(delegateExecution);
 
     verify(delegateExecution).setVariable(anyString(), any());
     verify(delegateExecution, never()).setVariableLocal(anyString(), any());
@@ -130,7 +131,7 @@ class RequestDelegateTest {
 
     setupExecuteMocking(true);
 
-    requestDelegate.execute(delegateExecution);
+    delegate.execute(delegateExecution);
 
     verify(delegateExecution).setVariable(anyString(), any());
     verify(delegateExecution, never()).setVariableLocal(anyString(), any());
@@ -143,7 +144,7 @@ class RequestDelegateTest {
 
     setupExecuteMocking(true);
 
-    requestDelegate.execute(delegateExecution);
+    delegate.execute(delegateExecution);
 
     verify(delegateExecution, never()).setVariable(anyString(), any());
     verify(delegateExecution).setVariableLocal(anyString(), any());
@@ -156,7 +157,7 @@ class RequestDelegateTest {
 
     setupExecuteMocking(true);
 
-    requestDelegate.execute(delegateExecution);
+    delegate.execute(delegateExecution);
 
     verify(delegateExecution).setVariable(anyString(), any());
     verify(delegateExecution, never()).setVariableLocal(anyString(), any());
@@ -170,7 +171,20 @@ class RequestDelegateTest {
 
     when(httpService.exchange(anyString(), any(HttpMethod.class), any(), any())).thenReturn(responseEntity);
 
-    requestDelegate.execute(delegateExecution);
+    delegate.execute(delegateExecution);
+
+    verify(delegateExecution, never()).setVariable(anyString(), any());
+    verify(delegateExecution, never()).setVariableLocal(anyString(), any());
+  }
+
+  @Test
+  void testExecuteWorksWithToken() throws Exception {
+    setupExecuteMocking(false);
+
+    when(delegateExecution.getVariable(eq(TOKEN_HEADER_NAME))).thenReturn(UUID);
+    when(httpService.exchange(anyString(), any(HttpMethod.class), any(), any())).thenReturn(responseEntity);
+
+    delegate.execute(delegateExecution);
 
     verify(delegateExecution, never()).setVariable(anyString(), any());
     verify(delegateExecution, never()).setVariableLocal(anyString(), any());
@@ -184,7 +198,7 @@ class RequestDelegateTest {
 
     setupExecuteMocking(true);
 
-    requestDelegate.execute(delegateExecution);
+    delegate.execute(delegateExecution);
 
     verify(delegateExecution, never()).setVariable(anyString(), any());
     verify(delegateExecution, never()).setVariableLocal(anyString(), any());
@@ -192,23 +206,23 @@ class RequestDelegateTest {
 
   @Test
   void testSetHeaderOutputVariablesWorks() {
-    setField(requestDelegate, "headerOutputVariables", null);
+    setField(delegate, "headerOutputVariables", null);
 
-    requestDelegate.setHeaderOutputVariables(requestExpression);
-    assertEquals(requestExpression, getField(requestDelegate, "headerOutputVariables"));
+    delegate.setHeaderOutputVariables(requestExpression);
+    assertEquals(requestExpression, getField(delegate, "headerOutputVariables"));
   }
 
   @Test
   void testSetRequestWorks() {
-    setField(requestDelegate, "request", null);
+    setField(delegate, "request", null);
 
-    requestDelegate.setRequest(requestExpression);
-    assertEquals(requestExpression, getField(requestDelegate, "request"));
+    delegate.setRequest(requestExpression);
+    assertEquals(requestExpression, getField(delegate, "request"));
   }
 
   @Test
   void testFromTaskWorks() {
-    assertEquals(RequestTask.class, requestDelegate.fromTask());
+    assertEquals(FolioRequestTask.class, delegate.fromTask());
   }
 
   /**
@@ -219,15 +233,16 @@ class RequestDelegateTest {
    * @throws JsonProcessingException
    */
   private void setupExecuteMocking(boolean hasKey) throws JsonProcessingException {
-    setField(requestDelegate, "headerOutputVariables", headerOutputVariablesExpression);
-    setField(requestDelegate, "httpService", httpService);
-    setField(requestDelegate, "request", requestExpression);
-    setField(requestDelegate, "objectMapper", mapper);
+    setField(delegate, "headerOutputVariables", headerOutputVariablesExpression);
+    setField(delegate, "httpService", httpService);
+    setField(delegate, "request", requestExpression);
+    setField(delegate, "objectMapper", mapper);
 
     if (hasKey) {
       embeddedVariable.setKey(TOKEN_HEADER_NAME);
       setField(responseEntity, "headers", httpHeaders);
 
+      when(delegateExecution.getVariable(eq(TOKEN_HEADER_NAME))).thenReturn(UUID);
       when(httpService.exchange(anyString(), any(HttpMethod.class), any(), any())).thenReturn(responseEntity);
     }
 
