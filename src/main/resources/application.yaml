@@ -8,6 +8,7 @@ logging:
         hikari: INFO
     org:
       camunda: INFO
+      camunda.bpm.engine.jobexecutor: ERROR
       folio: INFO
       hibernate: INFO
       springframework: INFO
