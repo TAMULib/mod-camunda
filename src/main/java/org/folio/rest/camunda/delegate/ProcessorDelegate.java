@@ -1,13 +1,14 @@
 package org.folio.rest.camunda.delegate;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Map;
+import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.Expression;
 import org.folio.rest.camunda.service.ScriptEngineService;
 import org.folio.rest.workflow.model.EmbeddedProcessor;
 import org.folio.rest.workflow.model.ProcessorTask;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +16,25 @@ import org.springframework.stereotype.Service;
 @Scope("prototype")
 public class ProcessorDelegate extends AbstractWorkflowIODelegate {
 
-  @Autowired
   private ScriptEngineService scriptEngineService;
 
   private Expression processor;
 
+  /**
+   * Initializer.
+   */
+  public ProcessorDelegate(ObjectMapper objectMapper, RuntimeService runtimeService, ScriptEngineService scriptEngineService) {
+
+    super(objectMapper, runtimeService);
+
+    this.scriptEngineService = scriptEngineService;
+  }
+
+  /**
+   * Perform the execution.
+   *
+   * @param execution The execution data.
+   */
   @Override
   public void execute(DelegateExecution execution) throws Exception {
     final long startTime = determineStartTime(execution);

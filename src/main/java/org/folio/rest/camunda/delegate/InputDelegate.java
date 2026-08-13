@@ -1,5 +1,7 @@
 package org.folio.rest.camunda.delegate;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.folio.rest.workflow.model.InputTask;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,7 +15,12 @@ public class InputDelegate extends AbstractWorkflowIODelegate {
   @Value("${okapi.url}")
   private String okapiUrl;
 
-  public InputDelegate() {
+  /**
+   * Initializer.
+   */
+  public InputDelegate(ObjectMapper objectMapper, RuntimeService runtimeService) {
+
+    super(objectMapper, runtimeService);
   }
 
   @Override

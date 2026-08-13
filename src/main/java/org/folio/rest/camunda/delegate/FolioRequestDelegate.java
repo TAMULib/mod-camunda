@@ -1,8 +1,10 @@
 package org.folio.rest.camunda.delegate;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
 import java.util.Map;
+import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.folio.rest.workflow.dto.Request;
 import org.folio.rest.workflow.model.FolioRequestTask;
@@ -23,8 +25,12 @@ import org.springframework.stereotype.Service;
 @Scope("prototype")
 public class FolioRequestDelegate extends RequestDelegate {
 
-  public FolioRequestDelegate(HttpService httpService) {
-    super(httpService);
+  /**
+   * Initializer.
+   */
+  public FolioRequestDelegate(ObjectMapper objectMapper, RuntimeService runtimeService, HttpService httpService) {
+
+    super(objectMapper, runtimeService, httpService);
   }
 
   @Override

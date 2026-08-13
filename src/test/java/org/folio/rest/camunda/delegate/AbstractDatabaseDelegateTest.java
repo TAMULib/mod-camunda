@@ -4,8 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.util.ReflectionTestUtils.getField;
 import static org.springframework.test.util.ReflectionTestUtils.setField;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.Expression;
+import org.folio.rest.camunda.service.DatabaseConnectionService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -30,6 +33,14 @@ class AbstractDatabaseDelegateTest {
   }
 
   private static class Impl extends AbstractDatabaseDelegate {
+
+    Impl() {
+      super(null, null, null);
+    }
+
+    Impl(ObjectMapper objectMapper, RuntimeService runtimeService, DatabaseConnectionService connectionService) {
+      super(objectMapper, runtimeService, connectionService);
+    }
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {

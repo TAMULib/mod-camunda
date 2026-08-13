@@ -96,12 +96,17 @@ spring:
   # this must be `camunda` to match module descriptor path patterns
   jersey.application-path: camunda
 
-camunda:
-  # see: https://docs.camunda.org/manual/7.20/user-guide/spring-boot-integration/configuration/
+operaton:
+  # see: https://docs.camunda.org/manual/latest/user-guide/spring-boot-integration/configuration/
   bpm:
+    webapp:
+      application-path: ui
     auto-deployment-enabled: false
     database:
-      schema-update: false
+      schema-name: ${DB_SCHEMA:diku_mod_camunda}
+      schema-update: true
+      table-prefix: ${DB_SCHEMA:diku_mod_camunda}.
+      type: postgres
     filter:
       create: All Tasks
     admin-user:
@@ -134,6 +139,8 @@ camunda:
         enable-script-compilation: true
         enable-script-engine-nashorn-compatibility: true
         enable-fetch-script-engine-from-process-application: false
+    metrics:
+      enabled: false
 
 springdoc:
   api-docs:
@@ -151,6 +158,36 @@ application:
         concurrency: 1
         topic-pattern: ${ENV:folio}.(.*\.)?camunda.events
         group-id: ${ENV:folio}-mod-camunda-events-group
+
+folio:
+  sql.schema: ${DB_SCHEMA:diku_mod_camunda}
+
+  env:
+    defaults:
+      - name: logLevel
+        type: literal
+        value: INFO
+      - name: folioUser
+        type: secure
+        expose: false
+      - name: folioPass
+        type: secure
+        expose: false
+      - name: gatewayLoginPath
+        type: url_path
+        value: /authn/login-with-expiry
+      - name: gatewayUrl
+        type: url
+        value: http://kong:8000
+      - name: folioAccessToken
+        type: literal
+      - name: folioRefreshToken
+        type: literal
+      - name: folioTenant
+        type: literal
+        value: diku
+      - name: folioToken
+        type: literal
 
 tenant:
   header-name: X-Okapi-Tenant

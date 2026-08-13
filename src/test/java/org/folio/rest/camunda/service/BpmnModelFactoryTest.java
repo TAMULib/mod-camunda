@@ -16,6 +16,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
 import java.util.List;
+import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.model.bpmn.Bpmn;
 import org.camunda.bpm.model.bpmn.BpmnModelInstance;
 import org.camunda.bpm.model.bpmn.builder.EndEventBuilder;
@@ -88,6 +89,9 @@ class BpmnModelFactoryTest {
 
   @Spy
   private ObjectMapper objectMapper;
+
+  @Mock
+  private RuntimeService runtimeService;
 
   @Spy
   private List<AbstractWorkflowDelegate> workflowDelegates;
@@ -173,7 +177,7 @@ class BpmnModelFactoryTest {
     try (MockedStatic<Bpmn> utility = Mockito.mockStatic(Bpmn.class)) {
       commonMockedProcessBuilder(utility);
 
-      when(processBuilderMocked.startEvent()).thenReturn(startEventBuilder);
+      when(processBuilderMocked.startEvent(anyString())).thenReturn(startEventBuilder);
 
       RuntimeException exception = Assertions.assertThrows(RuntimeException.class, () -> {
         bpmnModelFactory.fromWorkflow(workflow);
@@ -195,11 +199,11 @@ class BpmnModelFactoryTest {
       commonMockedProcessBuilder(utility);
       commonMockingsBasic();
 
-      when(processBuilderMocked.startEvent()).thenReturn(startEventBuilder);
+      when(processBuilderMocked.startEvent(anyString())).thenReturn(startEventBuilder);
 
       when(workflowDelegates.stream()).thenAnswer(invocation -> {
         List<AbstractWorkflowDelegate> mockDelegates = new ArrayList<>();
-        mockDelegates.add(new InputDelegate());
+        mockDelegates.add(new InputDelegate(objectMapper, runtimeService));
         return mockDelegates.stream();
       });
 
@@ -249,7 +253,7 @@ class BpmnModelFactoryTest {
     lenient().when(endEventBuilder.name(anyString())).thenReturn(endEventBuilder);
     lenient().when(endEventBuilder.done()).thenReturn(bpmnModelInstance);
 
-    lenient().when(processBuilderMocked.startEvent()).thenReturn(startEventBuilder);
+    lenient().when(processBuilderMocked.startEvent(anyString())).thenReturn(startEventBuilder);
 
     lenient().when(processBuilderMocked.getElement()).thenReturn(process);
     lenient().when(processBuilderMocked.name(any())).thenReturn(processBuilderMocked);

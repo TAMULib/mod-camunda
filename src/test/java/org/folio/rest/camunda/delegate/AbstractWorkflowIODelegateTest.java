@@ -12,6 +12,7 @@ import static org.springframework.test.util.ReflectionTestUtils.setField;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.Expression;
 import org.folio.rest.workflow.enums.VariableType;
@@ -101,8 +102,17 @@ class AbstractWorkflowIODelegateTest {
 
   private static class Impl extends AbstractWorkflowIODelegate {
 
+    Impl() {
+      super(null, null);
+    }
+
+    Impl(ObjectMapper objectMapper, RuntimeService runtimeService) {
+      super(objectMapper, runtimeService);
+    }
+
     @Override
     public void execute(DelegateExecution execution) throws Exception {
+      // Do nothing.
     }
 
     @Override

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.util.ReflectionTestUtils.setField;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -46,9 +47,18 @@ class AbstractDelegateTest {
 
   private static class Impl extends AbstractDelegate {
 
+    Impl() {
+      super(null, null);
+    }
+
+    Impl(ObjectMapper objectMapper, RuntimeService runtimeService) {
+      super(objectMapper, runtimeService);
+    }
+
     @Override
     public void execute(DelegateExecution execution) throws Exception {
+      // Do nothing.
     }
-  };
+  }
 
 }

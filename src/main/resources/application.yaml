@@ -177,6 +177,32 @@ application:
 folio:
   sql.schema: ${DB_SCHEMA:diku_mod_camunda}
 
+  env:
+    defaults:
+      - name: logLevel
+        type: literal
+        value: INFO
+      - name: folioUser
+        type: secure
+        expose: false
+      - name: folioPass
+        type: secure
+        expose: false
+      - name: gatewayLoginPath
+        type: url_path
+        value: /authn/login-with-expiry
+      - name: gatewayUrl
+        type: url
+      - name: folioAccessToken
+        type: literal
+      - name: folioRefreshToken
+        type: literal
+      - name: folioTenant
+        type: literal
+        value: diku
+      - name: folioToken
+        type: literal
+
 tenant:
   header-name: X-Okapi-Tenant
   force-tenant: false

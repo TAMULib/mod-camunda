@@ -1,14 +1,13 @@
 package org.folio.rest.camunda.delegate;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Objects;
-
+import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.Expression;
 import org.folio.rest.camunda.service.DatabaseConnectionService;
 import org.folio.rest.workflow.model.EmbeddedVariable;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
 
 /**
  * This class probably should be called AbstractDatabaseIODelegate to align with AbstractWorkflowIODelegate.
@@ -21,8 +20,17 @@ public abstract class AbstractDatabaseOutputDelegate extends AbstractWorkflowInp
 
   private Expression outputVariable;
 
-  @Autowired
   DatabaseConnectionService connectionService;
+
+  /**
+   * Initializer.
+   */
+  AbstractDatabaseOutputDelegate(ObjectMapper objectMapper, RuntimeService runtimeService, DatabaseConnectionService connectionService) {
+
+    super(objectMapper, runtimeService);
+
+    this.connectionService = connectionService;
+  }
 
   public void setDesignation(Expression designation) {
     this.designation = designation;

@@ -1,15 +1,25 @@
 package org.folio.rest.camunda.delegate;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.delegate.Expression;
 import org.folio.rest.camunda.service.DatabaseConnectionService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class AbstractDatabaseDelegate extends AbstractWorkflowDelegate {
 
   Expression designation;
 
-  @Autowired
   DatabaseConnectionService connectionService;
+
+  /**
+   * Initializer.
+   */
+  AbstractDatabaseDelegate(ObjectMapper objectMapper, RuntimeService runtimeService, DatabaseConnectionService connectionService) {
+
+    super(objectMapper, runtimeService);
+
+    this.connectionService = connectionService;
+  }
 
   public void setDesignation(Expression designation) {
     this.designation = designation;

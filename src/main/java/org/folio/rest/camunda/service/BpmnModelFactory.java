@@ -26,6 +26,7 @@ import org.camunda.bpm.model.bpmn.instance.camunda.CamundaField;
 import org.camunda.bpm.model.xml.instance.ModelElementInstance;
 import org.folio.rest.camunda.delegate.AbstractWorkflowDelegate;
 import org.folio.rest.camunda.exception.ScriptTaskDeserializeCodeFailure;
+import org.folio.rest.camunda.listener.ScriptListener;
 import org.folio.rest.workflow.enums.StartEventType;
 import org.folio.rest.workflow.model.Condition;
 import org.folio.rest.workflow.model.ConnectTo;
@@ -65,7 +66,8 @@ public class BpmnModelFactory {
 
   private static final String SETUP_TASK_ID = "setup_task_98832611_3d33_476b_adcc_fcb6c4e8718b";
 
-  // @formatter:off
+  private static final String START_EVENT = "start";
+
   private static final Class<?>[] SERIALIZABLE_TYPES = new Class<?>[] {
     String.class,
     Number.class,
@@ -95,11 +97,10 @@ public class BpmnModelFactory {
 
   public BpmnModelInstance fromWorkflow(Workflow workflow) throws ScriptTaskDeserializeCodeFailure {
 
-    // @formatter:off
-    ProcessBuilder processBuilder = Bpmn.createExecutableProcess().name(workflow.getName())
-        .camundaHistoryTimeToLive(workflow.getHistoryTimeToLive())
-        .camundaVersionTag(workflow.getVersionTag());
-    // @formatter:on
+    ProcessBuilder processBuilder = Bpmn.createExecutableProcess()
+      .name(workflow.getName())
+      .camundaHistoryTimeToLive(workflow.getHistoryTimeToLive())
+      .camundaVersionTag(workflow.getVersionTag());
 
     BpmnModelInstance model = build(processBuilder, workflow);
 
@@ -127,7 +128,7 @@ public class BpmnModelFactory {
       return processBuilder.done();
     }
 
-    AbstractFlowNodeBuilder<?, ?> builder = processBuilder.startEvent();
+    AbstractFlowNodeBuilder<?, ?> builder = processBuilder.startEvent(START_EVENT);
 
     if (!(nodes.get(0) instanceof StartEvent)) {
       // TODO: create custom exception and controller advice to handle better
@@ -352,8 +353,11 @@ public class BpmnModelFactory {
             throw new ScriptTaskDeserializeCodeFailure(node.getId(), e);
           }
 
-          builder = builder.scriptTask(node.getIdentifier()).name(node.getName())
-            .scriptFormat(((ScriptTask) node).getScriptFormat()).scriptText(code);
+          builder = builder.scriptTask(((ScriptTask) node).getIdentifier())
+            .name(((ScriptTask) node).getName())
+            .scriptFormat(((ScriptTask) node).getScriptFormat())
+            .scriptText(code)
+            .camundaExecutionListenerClass(START_EVENT, ScriptListener.class);
 
           if (((ScriptTask) node).hasResultVariable()) {
             builder = ((ScriptTaskBuilder) builder).camundaResultVariable(((ScriptTask) node).getResultVariable());
