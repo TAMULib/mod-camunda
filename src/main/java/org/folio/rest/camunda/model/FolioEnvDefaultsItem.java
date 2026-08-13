@@ -269,7 +269,7 @@ public class FolioEnvDefaultsItem {
         REGX_SLASH_LEAD.matcher(value).replaceAll("/")
       ).replaceAll("");
 
-      final String url = (LOCALHOST + fixed);
+      final String url = LOCALHOST + fixed;
 
       new URI(url).toURL();
 
