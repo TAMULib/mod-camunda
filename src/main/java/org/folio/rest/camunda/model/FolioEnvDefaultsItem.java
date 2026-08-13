@@ -9,6 +9,7 @@ import jakarta.annotation.PreDestroy;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.regex.Pattern;
 import org.folio.rest.camunda.exception.FolioEnvDefaultsItemFieldException;
 import org.folio.rest.camunda.model.enums.FolioEnvDefaultsItemType;
 import org.identityconnectors.common.security.GuardedString;
@@ -24,9 +25,9 @@ public class FolioEnvDefaultsItem {
 
   private static final Logger LOG = LoggerFactory.getLogger(FolioEnvDefaultsItem.class);
 
-  static final String REGX_SLASH_LEAD  = "^/+";
-  static final String REGX_SLASH_TRAIL = "/+$";
-  static final String REGX_WORD = "[^\\d]\\w+";
+  private static final Pattern REGX_SLASH_LEAD = Pattern.compile("^/++");
+  private static final Pattern REGX_SLASH_TRAIL = Pattern.compile("/++$");
+  private static final Pattern REGX_WORD = Pattern.compile("[^\\d]\\w+");
 
   static final String ERR_BAD_FORMAT = "Field named '%s' may only contain word characters without leading digits";
   static final String ERR_NOT_NULL = "Field is required but got NULL";
@@ -193,7 +194,7 @@ public class FolioEnvDefaultsItem {
       throw new FolioEnvDefaultsItemFieldException(NAME, ERR_NOT_NULL);
     }
 
-    if (!name.matches(REGX_WORD)) {
+    if (!REGX_WORD.matcher(name).matches()) {
       throw new FolioEnvDefaultsItemFieldException(NAME, String.format(ERR_BAD_FORMAT, name));
     }
 
@@ -264,9 +265,9 @@ public class FolioEnvDefaultsItem {
     if (value == null) return;
 
     try {
-      final String fixed = value
-        .replaceAll(REGX_SLASH_LEAD, "/")
-        .replaceAll(REGX_SLASH_TRAIL, "");
+      final String fixed = REGX_SLASH_TRAIL.matcher(
+        REGX_SLASH_LEAD.matcher(value).replaceAll("/")
+      ).replaceAll("");
 
       final String url = (LOCALHOST + fixed);
 

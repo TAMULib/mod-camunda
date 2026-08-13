@@ -58,7 +58,7 @@ public class FolioEnvDefaultsItemFieldException extends RuntimeException {
    */
   public FolioEnvDefaultsItemFieldException(FolioEnvDefaultsItemField field, String name, String message, Exception e) {
 
-    super(String.format(MSG_NAMED, name, field.getName(), message));
+    super(String.format(MSG_NAMED, name, field.getName(), message), e);
   }
 
 }
