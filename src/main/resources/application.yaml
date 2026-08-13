@@ -57,7 +57,7 @@ spring:
     #url: jdbc:h2:./target/mod-camunda;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     #driverClassName: org.h2.Driver
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_DATABASE:mod_camunda}
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_DATABASE:mod_camunda}?currentSchema=${DB_SCHEMA:diku_mod_camunda},public
 
     username: ${DB_USERNAME:folio_admin}
     password: ${DB_PASSWORD:folio_admin}
@@ -77,7 +77,9 @@ spring:
     #database-platform: org.hibernate.dialect.H2Dialect
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
-    properties.hibernate.jdbc.lob.non_contextual_creation: true
+    properties.hibernate:
+      jdbc.lob.non_contextual_creation: true
+      default_schema: ${DB_SCHEMA:diku_mod_camunda}
     generate-ddl: false
     hibernate.ddl-auto: update
     #hibernate.hbm2ddl.auto: none
@@ -115,7 +117,10 @@ camunda:
       application-path: ui
     auto-deployment-enabled: false
     database:
+      schema-name: ${DB_SCHEMA:diku_mod_camunda}
       schema-update: true
+      table-prefix: ${DB_SCHEMA:diku_mod_camunda}.
+      type: postgres
     filter:
       create: All Tasks
     admin-user:
