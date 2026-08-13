@@ -205,6 +205,10 @@ The following is a summary of many of them.
 | DB_PORT                           |           5432              | Postgres port.
 | DB_QUERYTIMEOUT                   |           60000             | Database query timeout.
 | DB_USERNAME                       |        folio_admin          | Postgres user name.
+| FOLIO_ENV_DEFAULTS_0_EXPOSE       |           true              | Set the `logLevel` variable expose value.
+| FOLIO_ENV_DEFAULTS_0_NAME         |          logLevel           | Set the `logLevel` variable name.
+| FOLIO_ENV_DEFAULTS_0_TYPE         |          literal            | Set the `logLevel` variable type.
+| FOLIO_ENV_DEFAULTS_0_VALUE        |           DEBUG             | Set the `logLevel` variable value.
 | JAVA_OPTIONS                      | `-XX:MaxRAMPercentage=75.0` | Java options.
 | KAFKA_HOST                        |           kafka             | Kafka broker host name.
 | KAFKA_PORT                        |           9092              | Kafka broker port.
@@ -225,6 +229,57 @@ The following is a summary of many of them.
 | TENANT_FORCETENANT                |           false             | Forcibly add or overwrite the tenant name using the default tenant.
 | TENANT_INITIALIZEDEFAULTENANT     |           true              | Perform initial auto-creation of tenant in the database (schema, tables, etc..).
 | TENANT_RECREATEDEFAULTTENANT      |           false             | When `TENANT_INITIALIZEDEFAULTTENANT` is true and the database already exists, then drop and re-create the database on start.
+
+The `folio.env.defaults`, which maps to `FOLIO_ENV_DEFAULTS`, supports an array of objects with a structure similar to the **JSON** below that is also shown in the table above:
+```json
+{
+  "name": "logLevel",
+  "type": "literal",
+  "expose": true,
+  "lock": false,
+  "value": "DEBUG"
+}
+```
+
+The environment variable is not stored as **JSON**, however, but is instead stored using the following format:
+```
+  FOLIO_ENV_DEFAULTS_[row number]_[field name]
+```
+Where `[row number]` is replaced, with a number like `0`, `1`, etc...
+Where `[field name]` is replaced with a field name like `name`, `type`, etc...
+
+The `folio.env.defaults` items have the following fields:
+- `expose`
+- `name`
+- `type`
+- `value`
+
+The `expose` may either be `true` or `false` and represents whether or not to expose the variable to a **Script Task**.
+The `name` may only be word characters without leading numbers that represents a variable name to use.
+The `type` is a specific list of known types that determine how the `value` is handled and validated.
+The `value` is the value to initially store, which is allowed to change over time and can also be **NULL**.
+
+The `folio.env.defaults` is intended to be dynamically generated through environment variables as needed for any given environment.
+The following types are provided:
+- `literal`
+- `secure`
+- `url`
+- `url_path`
+
+The `literal` is simple a raw string value that is not processed in any way.
+The `secure` is a string value that gets stored into memory in an encrypted form once loaded.
+The `url` is a string that gets verified to be a valid **URL** on start.
+The `url_path` is a string that gets verified to be a valid **URL** path on start and requires a leading slash (`/`) and no trailing slash.
+
+
+#### Secure FOLIO Env Defaults
+
+The `secure` type for `folio.env.defaults` is designed around **Java** security classes.
+This does not expose the secure variables to **Operaton**.
+
+Each delegate must be configured to fetch and handle these secure variables as needed.
+These will generally be reserved by each delegate and might even be required for the delegate to operate as intended.
+Each reserved variable can be overriden using the usual **Operaton** functionality.
 
 
 ### Permissions

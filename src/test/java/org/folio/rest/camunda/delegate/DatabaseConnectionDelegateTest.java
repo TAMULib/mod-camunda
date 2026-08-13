@@ -23,8 +23,8 @@ import org.folio.rest.camunda.service.DatabaseConnectionService;
 import org.folio.rest.workflow.model.DatabaseConnectionTask;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
@@ -58,7 +58,7 @@ class DatabaseConnectionDelegateTest {
   @Mock
   private Expression usernameExpression;
 
-  @Spy
+  @InjectMocks
   private DatabaseConnectionDelegate databaseConnectionDelegate;
 
   @Test

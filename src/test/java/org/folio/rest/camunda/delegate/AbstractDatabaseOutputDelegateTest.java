@@ -12,8 +12,10 @@ import static org.springframework.test.util.ReflectionTestUtils.setField;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.Expression;
+import org.folio.rest.camunda.service.DatabaseConnectionService;
 import org.folio.rest.workflow.enums.VariableType;
 import org.folio.rest.workflow.model.EmbeddedVariable;
 import org.junit.jupiter.api.Test;
@@ -97,6 +99,14 @@ class AbstractDatabaseOutputDelegateTest {
   }
 
   private static class Impl extends AbstractDatabaseOutputDelegate {
+
+    Impl() {
+      super(null, null, null);
+    }
+
+    Impl(ObjectMapper objectMapper, RuntimeService runtimeService, DatabaseConnectionService connectionService) {
+      super(objectMapper, runtimeService, connectionService);
+    }
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {

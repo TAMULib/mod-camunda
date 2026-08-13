@@ -1,5 +1,6 @@
 package org.folio.rest.camunda.delegate;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.net.URI;
 import java.util.Objects;
@@ -8,6 +9,7 @@ import org.apache.commons.vfs2.FileObject;
 import org.apache.commons.vfs2.FileSystemManager;
 import org.apache.commons.vfs2.Selectors;
 import org.apache.commons.vfs2.VFS;
+import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.Expression;
 import org.folio.rest.workflow.enums.SftpOp;
@@ -35,6 +37,21 @@ public class FtpDelegate extends AbstractWorkflowIODelegate {
 
   private Expression password;
 
+  /**
+   * Initializer.
+   */
+  public FtpDelegate(ObjectMapper objectMapper, RuntimeService runtimeService) {
+
+    super(objectMapper, runtimeService);
+  }
+
+  /**
+   * Perform the execution.
+   *
+   * @param execution The execution data.
+   * @param name      The delegate name.
+   * @param id        The delegate ID.
+   */
   @Override
   public void execute(DelegateExecution execution) throws Exception {
     final long startTime = determineStartTime(execution);

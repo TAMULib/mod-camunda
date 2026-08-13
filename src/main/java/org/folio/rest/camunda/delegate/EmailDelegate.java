@@ -1,5 +1,6 @@
 package org.folio.rest.camunda.delegate;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
 import jakarta.mail.internet.AddressException;
@@ -8,6 +9,7 @@ import java.io.File;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.Expression;
 import org.folio.rest.camunda.exception.EmailDelegateAddressFailure;
@@ -43,7 +45,13 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
 
   private Expression includeAttachment;
 
-  public EmailDelegate(JavaMailSender emailSender) {
+  /**
+   * Initializer.
+   */
+  public EmailDelegate(ObjectMapper objectMapper, RuntimeService runtimeService, JavaMailSender emailSender) {
+
+    super(objectMapper, runtimeService);
+
     this.emailSender = emailSender;
   }
 

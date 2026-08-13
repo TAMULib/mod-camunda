@@ -15,6 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.Expression;
 import org.folio.rest.workflow.enums.VariableType;
@@ -99,8 +100,17 @@ class AbstractWorkflowInputDelegateTest {
 
   private static class Impl extends AbstractWorkflowInputDelegate {
 
+    Impl() {
+      super(null, null);
+    }
+
+    Impl(ObjectMapper objectMapper, RuntimeService runtimeService) {
+      super(objectMapper, runtimeService);
+    }
+
     @Override
     public void execute(DelegateExecution execution) throws Exception {
+      // Do nothing.
     }
 
     @Override

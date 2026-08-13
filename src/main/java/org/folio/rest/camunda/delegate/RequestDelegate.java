@@ -8,6 +8,7 @@ import static org.springframework.http.HttpMethod.TRACE;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.TemplateException;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.Expression;
 import org.folio.rest.camunda.exception.DelegateSpinFailure;
@@ -51,7 +53,13 @@ public class RequestDelegate extends AbstractWorkflowIODelegate {
 
   protected Expression headerOutputVariables;
 
-  public RequestDelegate(HttpService httpService) {
+  /**
+   * Initializer.
+   */
+  public RequestDelegate(ObjectMapper objectMapper, RuntimeService runtimeService, HttpService httpService) {
+
+    super(objectMapper, runtimeService);
+
     this.httpService = httpService;
   }
 
