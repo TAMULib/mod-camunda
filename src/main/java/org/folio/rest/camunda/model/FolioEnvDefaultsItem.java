@@ -108,6 +108,12 @@ public class FolioEnvDefaultsItem {
       return false;
     }
 
+    if (guard == null) {
+      LOG.warn("Attempted secure fetch of FOLIO env defaults item '{}', but value is NULL.", name);
+
+      return false;
+    }
+
     guard.access(accessor);
 
     return true;
@@ -234,9 +240,9 @@ public class FolioEnvDefaultsItem {
    */
   void prepareByTypeForSecure(String value) {
 
-    if (value == null) return;
-
-    guard = new GuardedString(value.toCharArray());
+    guard = value == null
+      ? new GuardedString()
+      : new GuardedString(value.toCharArray());
   }
 
   /**

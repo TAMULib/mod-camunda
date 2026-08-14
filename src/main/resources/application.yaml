@@ -194,14 +194,14 @@ folio:
       - name: gatewayUrl
         type: url
       - name: folioAccessToken
-        type: literal
+        type: secure
       - name: folioRefreshToken
-        type: literal
+        type: secure
       - name: folioTenant
         type: literal
         value: diku
       - name: folioToken
-        type: literal
+        type: secure
 
 tenant:
   header-name: X-Okapi-Tenant
