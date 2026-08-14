@@ -89,6 +89,18 @@ class FolioEnvDefaultsItemTest {
     verify(guard, never()).access(accessor);
   }
 
+  @Test
+  void getSecureHandlesNullTest() {
+
+    setField(item, TYPE.getName(), SECURE);
+    setField(item, GUARD, null);
+
+    final boolean result = item.getSecure(accessor);
+
+    assertFalse(result);
+    verify(guard, never()).access(accessor);
+  }
+
   @ParameterizedTest
   @MethodSource("provideGettersWorksValues")
   void gettersWorkTest(String field, Object initial, Object expect, String name)
