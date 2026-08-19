@@ -93,33 +93,6 @@ public class FolioEnvDefaultsItem {
   }
 
   /**
-   * Get the string for the given name if and only if it is a SECURE type.
-   *
-   * This accessor method should be wrapped in a call that clears any local variables via something like SecurityUtil.clear().
-   *
-   * @param accessor The method used to handle processing the decrypted value.
-   *
-   * @return TRUE if a secure variable and the accessor has been executed and FALSE otherwise.
-   */
-  public boolean getSecure(final Accessor accessor) {
-
-    if (!SECURE.equals(type)) {
-      LOG.warn("Attempted secure fetch of non-secure FOLIO env defaults item '{}'.", name);
-      return false;
-    }
-
-    if (guard == null) {
-      LOG.warn("Attempted secure fetch of FOLIO env defaults item '{}', but value is NULL.", name);
-
-      return false;
-    }
-
-    guard.access(accessor);
-
-    return true;
-  }
-
-  /**
    * Get the type.
    *
    * @return The type value.
@@ -132,9 +105,19 @@ public class FolioEnvDefaultsItem {
   /**
    * Get the value.
    *
+   * This handles extracting the secure value if necessary.
+   *
    * @return The value value.
    */
   public String getValue() {
+
+    if (SECURE.equals(type)) {
+      final StringBuilder builder = new StringBuilder();
+
+      getSecure(builder::append);
+
+      return builder.toString();
+    }
 
     return value;
   }
@@ -166,6 +149,22 @@ public class FolioEnvDefaultsItem {
   }
 
   /**
+   * Set value specifically for SECURE type.
+   *
+   * This stores the data in a different location.
+   *
+   * @param value The value to store in the guarded string.
+   */
+  public void setSecure(String value) {
+
+    guard = value == null
+      ? new GuardedString()
+      : new GuardedString(value.toCharArray());
+
+    this.value = null;
+  }
+
+  /**
    * Set the type.
    *
    * @param type The value to set.
@@ -192,7 +191,7 @@ public class FolioEnvDefaultsItem {
    *
    * This should be called if the setters are explicitly called to ensure proper data structure.
    *
-   * @param value The value to assign to the appropraite location based on the type.
+   * @param value The value to assign to the appropriate location based on the type.
    */
   public void prepareByType(String value) {
 
@@ -213,7 +212,7 @@ public class FolioEnvDefaultsItem {
     }
 
     switch (type) {
-      case SECURE -> prepareByTypeForSecure(value);
+      case SECURE -> setSecure(value);
 
       case URL -> {
         this.value = value;
@@ -232,17 +231,30 @@ public class FolioEnvDefaultsItem {
   }
 
   /**
-   * Prepare specifically for SECURE type.
+   * Get the string for the given name if and only if it is a SECURE type.
    *
-   * This stores the data in a different location.
+   * This accessor method should be wrapped in a call that clears any local variables via something like SecurityUtil.clear().
    *
-   * @param value The value to store in the guarded string.
+   * @param accessor The method used to handle processing the decrypted value.
+   *
+   * @return TRUE if a secure variable and the accessor has been executed and FALSE otherwise.
    */
-  void prepareByTypeForSecure(String value) {
+   boolean getSecure(final Accessor accessor) {
 
-    guard = value == null
-      ? new GuardedString()
-      : new GuardedString(value.toCharArray());
+    if (!SECURE.equals(type)) {
+      LOG.warn("Attempted secure fetch of non-secure FOLIO env defaults item '{}'.", name);
+      return false;
+    }
+
+    if (guard == null) {
+      LOG.warn("Attempted secure fetch of FOLIO env defaults item '{}', but value is NULL.", name);
+
+      return false;
+    }
+
+    guard.access(accessor);
+
+    return true;
   }
 
   /**

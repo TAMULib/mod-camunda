@@ -12,6 +12,7 @@ logging:
       folio: INFO
       hibernate: INFO
       springframework: INFO
+      springframework.test: WARN
 
     # Enable logging of BPMN if activation fails.
     #org.folio.rest.camunda.service.CamundaApiService: DEBUG
@@ -175,33 +176,46 @@ application:
         group-id: ${ENV:folio}-mod-camunda-events-group
 
 folio:
-  sql.schema: ${DB_SCHEMA:diku_mod_camunda}
+  gateway:
+    loginPath: /authn/login-with-expiry
+    tokenExpireOffset: 15
 
   env:
     defaults:
-      - name: logLevel
+      logLevel:
+        name: logLevel
         type: literal
         value: INFO
-      - name: folioUser
-        type: secure
-        expose: false
-      - name: folioPass
-        type: secure
-        expose: false
-      - name: gatewayLoginPath
+      folioLoginPath:
+        name: gatewayLoginPath
         type: url_path
         value: /authn/login-with-expiry
-      - name: gatewayUrl
-        type: url
-      - name: folioAccessToken
+      folioPass:
+        name: folioPass
         type: secure
-      - name: folioRefreshToken
-        type: secure
-      - name: folioTenant
+        expose: false
+      folioUser:
+        name: folioUser
         type: literal
-        value: diku
-      - name: folioToken
+        expose: false
+      gatewayUrl:
+        name: gatewayUrl
+        type: url
+        value: http://localhost:9130
+      folioAccessToken: # Value will be overridden.
+        name: folioAccessToken
         type: secure
+      folioAccessTokenExpire: # Value will be overridden.
+        name: folioAccessTokenExpire
+        type: literal
+      folioRefreshToken: # Value will be overridden.
+        name: folioRefreshToken
+        type: secure
+      folioRefreshTokenExpire: # Value will be overridden.
+        name: folioRefreshTokenExpire
+        type: literal
+
+  sql.schema: ${DB_SCHEMA:diku_mod_camunda}
 
 tenant:
   header-name: X-Okapi-Tenant

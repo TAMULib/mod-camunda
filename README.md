@@ -44,8 +44,8 @@ docker push [docker repo]/folio/mod-camunda:[version]
 ## Manual Build and Run
 
 The `mod-camunda` project may also be built and run directly on a local machine.
-There are external services that are still needed and it is recommended that a remote OKAPI and a remote Kafka are used.
-This example describes the local build and run process using an already configured local Postgresql server with already configured remote OKAPI, remote Kafka servers, and a remote (or local) `mod-workflow`.
+There are external services that are still needed and it is recommended that a remote gateway and a remote Kafka are used.
+This example describes the local build and run process using an already configured local Postgresql server with already configured remote gateway, remote Kafka servers, and a remote (or local) `mod-workflow`.
 This example uses environment variables to configure the `mod-camunda` service, however these configurations may be directly applied to the `application.yml`.
 
 ```shell
@@ -53,7 +53,7 @@ DB_USERNAME=folio \
 DB_PASSWORD=folio \
 DB_PORT=5432 \
 SERVER_PORT=9000 \
-OKAPI_URL=http://remote_okapi:9130 \
+GATEWAY_URL=http://remote_gateway:8000 \
 SPRING_JPA_HIBERNATE_DDLAUTO="update" \
 CAMUNDA_BPM_DATABASE_SCHEMAUPDATE=true \
 TENANT_INITIALIZEDEFAULTENANT=true \
@@ -80,15 +80,15 @@ The `APPLICATION_KAFKA_LISTENER_EVENTS_TOPIC_PATTERN` and `APPLICATION_KAFKA_LIS
 This helps ensure isolation between different systems.
 It is recommended to use a unique topic pattern and group id for each local instance (as in for each developer machine running this locally).
 
-The `OKAPI_URL`, `KAFKA_HOST`, and `KAFKA_PORT` are standard server configuration variables for the remote systems.
+The `GATEWAY_URL`, `KAFKA_HOST`, and `KAFKA_PORT` are standard server configuration variables for the remote systems.
 The values assigned to these are for example purposes and likely will not work without being changed to a proper address.
 
 The `SERVER_PORT` is provided because the `mod-workflow` might be run on the same local machine.
 They both default to port `8081` and that could be changed to something like `9000` to prevent conflicts.
 
-The `OKAPI_URL` may be changed to point directly to a local `mod-workflow` to bypass OKAPI.
+The `GATEWAY_URL` may be changed to point directly to a local `mod-workflow` to bypass the gateway.
 This can help make development easier in certain situations.
-In such a case, this could be set to the local `mod-workflow` instance, such as `OKAPI_URL=http://localhost:9001`.
+In such a case, this could be set to the local `mod-workflow` instance, such as `GATEWAY_URL=http://localhost:9001`.
 
 
 ## Camunda Module Dependencies
@@ -190,56 +190,60 @@ The most notable environment variables for deployment are described in the [Modu
 
 The following is a summary of many of them.
 
-| Name                              |       Default value         | Description
-|:----------------------------------|:---------------------------:|:-------------------------------------------------------
-| CAMUNDA_BPM_ADMINUSER_EMAIL       |       `admin@localhost`     | The e-mail address of the Camunda administration user.
-| CAMUNDA_BPM_ADMINUSER_ID          |           admin             | The account name of the Camunda administration user.
-| CAMUNDA_BPM_ADMINUSER_PASSWORD    |           admin             | The password of the Camunda administration user.
-| CAMUNDA_BPM_DATABASE_SCHEMAUPDATE |            true             | If Camunda should auto-update the BPM database schema (may result in dropping existing data).
-| CAMUNDA_BPM_METRICS               |           false             | Enable or disable Camunda metrics by default.
-| DB_CHARSET                        |           UTF-8             | Database charset.
-| DB_DATABASE                       |       okapi_modules         | Postgres database name.
-| DB_HOST                           |         postgres            | Postgres host name.
-| DB_MAXPOOLSIZE                    |             5               | Database max pool size.
-| DB_PASSWORD                       |         folio_admin         | Postgres user password (be sure to change this).
-| DB_PORT                           |           5432              | Postgres port.
-| DB_QUERYTIMEOUT                   |           60000             | Database query timeout.
-| DB_USERNAME                       |        folio_admin          | Postgres user name.
-| FOLIO_ENV_DEFAULTS_0_EXPOSE       |           true              | Set the `logLevel` variable expose value.
-| FOLIO_ENV_DEFAULTS_0_NAME         |          logLevel           | Set the `logLevel` variable name.
-| FOLIO_ENV_DEFAULTS_0_TYPE         |          literal            | Set the `logLevel` variable type.
-| FOLIO_ENV_DEFAULTS_0_VALUE        |           DEBUG             | Set the `logLevel` variable value.
-| JAVA_OPTIONS                      | `-XX:MaxRAMPercentage=75.0` | Java options.
-| KAFKA_HOST                        |           kafka             | Kafka broker host name.
-| KAFKA_PORT                        |           9092              | Kafka broker port.
-| KAFKA_SECURITY_PROTOCOL           |         PLAINTEXT           | Kafka security protocol used to communicate with brokers (SSL or PLAINTEXT).
-| KAFKA_SSL_KEYSTORE_LOCATION       |             -               | The location of the Kafka key store file. This is optional for client and can be used for two-way authentication for client.
-| KAFKA_SSL_KEYSTORE_PASSWORD       |             -               | The store password for the Kafka key store file. This is optional for client and only needed if `ssl.keystore.location` is configured.
-| KAFKA_SSL_TRUSTSTORE_LOCATION     |             -               | The location of the Kafka trust store file.
-| KAFKA_SSL_TRUSTSTORE_PASSWORD     |             -               | The password for the Kafka trust store file. If a password is not set, trust store file configured will still be used, but integrity checking is disabled.
-| OKAPI_URL                         |     `http://okapi:9130`     | OKAPI URL used to login system user, required (can be used to point directly to `mod-workflow`).
-| OKAPI_AUTH_ACCESSCOOKIENAME       |     `folioAccessToken`      | The OKAPI cookie name for the Access token; This is generally never changed.
-| OKAPI_AUTH_REFRESHCOOKIENAME      |     `folioRefreshToken`     | The OKAPI cookie name for the Refresh token; This is generally never changed.
-| OKAPI_AUTH_TOKENHEADERNAME        |     `x-okapi-token`         | The OKAPI header token name; This is generally never changed.
-| SERVER_PORT                       |           8081              | The port the `mod-camunda` service listens on.
-| SERVER_SERVLET_CONTEXTPATH        |           `/`               | The context path, or base path, to host at.
-| SPRING_FLYWAY_ENABLED             |           false             | Database migration support via Spring Flyway.
-| SPRING_JPA_HIBERNATE_DDLAUTO      |           update            | Auto-configure database on startup.
-| TENANT_DEFAULTTENANT              |           diku              | The name of the default tenant to use.
-| TENANT_FORCETENANT                |           false             | Forcibly add or overwrite the tenant name using the default tenant.
-| TENANT_INITIALIZEDEFAULTENANT     |           true              | Perform initial auto-creation of tenant in the database (schema, tables, etc..).
-| TENANT_RECREATEDEFAULTTENANT      |           false             | When `TENANT_INITIALIZEDEFAULTTENANT` is true and the database already exists, then drop and re-create the database on start.
+| Name                                 |       Default value         | Description
+|:-------------------------------------|:----------------------------|:-------------------------------------------------------
+| DB_CHARSET                           | UTF-8                       | Database charset.
+| DB_DATABASE                          | okapi_modules               | Postgres database name.
+| DB_SCHEMA                            | diku_mod_camunda            | Postgres database schema name.
+| DB_HOST                              | postgres                    | Postgres host name.
+| DB_MAXPOOLSIZE                       | 5                           | Database max pool size.
+| DB_PASSWORD                          | folio_admin                 | Postgres user password (be sure to change this).
+| DB_PORT                              | 5432                        | Postgres port.
+| DB_QUERYTIMEOUT                      | 60000                       | Database query timeout.
+| DB_USERNAME                          | folio_admin                 | Postgres user name.
+| FOLIO_ENV_DEFAULTS_LOGLEVEL_EXPOSE   | true                        | Set the `logLevel` variable expose value.
+| FOLIO_ENV_DEFAULTS_LOGLEVEL_NAME     | logLevel                    | Set the `logLevel` variable name.
+| FOLIO_ENV_DEFAULTS_LOGLEVEL_TYPE     | literal                     | Set the `logLevel` variable type.
+| FOLIO_ENV_DEFAULTS_LOGLEVEL_VALUE    | INFO                        | Set the `logLevel` variable value.
+| FOLIO_ENV_DEFAULTS_GATEWAYURL_VALUE  | `http://localhost:9130`     | Set to the same value as `OKAPI_URL`, something like `https://kong:8000`.
+| FOLIO_LOGIN_PATH                     | `/authn/login-with-expiry`  | Set the log in path.
+| JAVA_OPTIONS                         | `-XX:MaxRAMPercentage=75.0` | Java options.
+| KAFKA_HOST                           | kafka                       | Kafka broker host name.
+| KAFKA_PORT                           | 9092                        | Kafka broker port.
+| KAFKA_SECURITY_PROTOCOL              | PLAINTEXT                   | Kafka security protocol used to communicate with brokers (SSL or PLAINTEXT).
+| KAFKA_SSL_KEYSTORE_LOCATION          | -                           | The location of the Kafka key store file. This is optional for client and can be used for two-way authentication for client.
+| KAFKA_SSL_KEYSTORE_PASSWORD          | -                           | The store password for the Kafka key store file. This is optional for client and only needed if `ssl.keystore.location` is configured.
+| KAFKA_SSL_TRUSTSTORE_LOCATION        | -                           | The location of the Kafka trust store file.
+| KAFKA_SSL_TRUSTSTORE_PASSWORD        | -                           | The password for the Kafka trust store file. If a password is not set, trust store file configured will still be used, but integrity checking is disabled.
+| OKAPI_AUTH_ACCESSCOOKIENAME          | `folioAccessToken`          | The OKAPI cookie name for the Access token; This is generally never changed.
+| OKAPI_AUTH_REFRESHCOOKIENAME         | `folioRefreshToken`         | The OKAPI cookie name for the Refresh token; This is generally never changed.
+| OKAPI_AUTH_TOKENHEADERNAME           | `x-okapi-token`             | The OKAPI header token name; This is generally never changed.
+| OKAPI_URL                            | `http://localhost:9130`     | Gateway URL, such as `https://kong:8000`.
+| CAMUNDA_BPM_ADMINUSER_EMAIL          | `admin@localhost`           | The e-mail address of the Camunda administration user.
+| CAMUNDA_BPM_ADMINUSER_ID             | admin                       | The account name of the Camunda administration user.
+| CAMUNDA_BPM_ADMINUSER_PASSWORD       | admin                       | The password of the Camunda administration user.
+| CAMUNDA_BPM_DATABASE_SCHEMAUPDATE    | true                        | If Camunda should auto-update the BPM database schema (may result in dropping existing data).
+| CAMUNDA_BPM_METRICS                  | false                       | Enable or disable Camunda metrics by default.
+| SERVER_PORT                          | 8081                        | The port the `mod-camunda` service listens on.
+| SERVER_SERVLET_CONTEXTPATH           | `/`                         | The context path, or base path, to host at.
+| SPRING_FLYWAY_ENABLED                | false                       | Database migration support via Spring Flyway.
+| SPRING_JPA_HIBERNATE_DDLAUTO         | update                      | Auto-configure database on startup.
+| TENANT_DEFAULTTENANT                 | diku                        | The name of the default tenant to use.
+| TENANT_FORCETENANT                   | false                       | Forcibly add or overwrite the tenant name using the default tenant.
+| TENANT_INITIALIZEDEFAULTENANT        | true                        | Perform initial auto-creation of tenant in the database (schema, tables, etc..).
+| TENANT_RECREATEDEFAULTTENANT         | false                       | When `TENANT_INITIALIZEDEFAULTTENANT` is true and the database already exists, then drop and re-create the database on start.
 
-The `folio.env.defaults`, which maps to `FOLIO_ENV_DEFAULTS`, supports an array of objects with a structure similar to the **JSON** below that is also shown in the table above:
+The `folio.env.defaults`, which maps to `FOLIO_ENV_DEFAULTS`, supports a set of named objects with a structure similar to the **JSON** below that is also shown in the table above:
 ```json
-{
+"logLevel": {
   "name": "logLevel",
   "type": "literal",
   "expose": true,
-  "lock": false,
   "value": "DEBUG"
 }
 ```
+
+The key name must match the `name` value.
 
 The environment variable is not stored as **JSON**, however, but is instead stored using the following format:
 ```
@@ -275,11 +279,11 @@ The `url_path` is a string that gets verified to be a valid **URL** path on star
 #### Secure FOLIO Env Defaults
 
 The `secure` type for `folio.env.defaults` is designed around **Java** security classes.
-This does not expose the secure variables to **Operaton**.
+This does not expose the secure variables to **Camunda**.
 
 Each delegate must be configured to fetch and handle these secure variables as needed.
 These will generally be reserved by each delegate and might even be required for the delegate to operate as intended.
-Each reserved variable can be overriden using the usual **Operaton** functionality.
+Each reserved variable can be overriden using the usual **Camunda** functionality.
 
 
 ### Permissions

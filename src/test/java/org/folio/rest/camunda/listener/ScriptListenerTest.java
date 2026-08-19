@@ -14,6 +14,8 @@ import static org.springframework.test.util.ReflectionTestUtils.setField;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Stream;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.folio.rest.camunda.config.FolioEnvConfig;
@@ -46,7 +48,7 @@ class ScriptListenerTest {
 
   @ParameterizedTest
   @MethodSource("provideNotifyEnvDefaultsValues")
-  void notifyEnvDefaultsTest(final List<FolioEnvDefaultsItem> defaults, final VerificationMode times, final Scope scope) throws Exception {
+  void notifyEnvDefaultsTest(final ConcurrentMap<String, FolioEnvDefaultsItem> defaults, final VerificationMode times, final Scope scope) throws Exception {
 
     setField(folioEnvConfig, "defaults", defaults);
 
@@ -84,24 +86,25 @@ class ScriptListenerTest {
   private static Stream<Arguments> provideNotifyEnvDefaultsValues() {
 
     final List<Arguments> arguments = new ArrayList<>();
-    final List<FolioEnvDefaultsItem> defaultsNull = null;
-    final List<FolioEnvDefaultsItem> defaultsEmpty = new ArrayList<>();
-    final List<FolioEnvDefaultsItem> defaults1 = new ArrayList<>();
-    final List<FolioEnvDefaultsItem> defaults2 = new ArrayList<>();
+    final ConcurrentMap<String, FolioEnvDefaultsItem> mapNull = null;
+    final ConcurrentMap<String, FolioEnvDefaultsItem> mapEmpty = new ConcurrentHashMap<>();
+    final ConcurrentMap<String, FolioEnvDefaultsItem> map1 = new ConcurrentHashMap<>();
+    final ConcurrentMap<String, FolioEnvDefaultsItem> map2 = new ConcurrentHashMap<>();
+
     final FolioEnvDefaultsItem item1 = new FolioEnvDefaultsItem(false, VALUE, LITERAL, UUID);
     final FolioEnvDefaultsItem item2 = new FolioEnvDefaultsItem(true, VALUE, LITERAL, UUID);
 
-    defaults1.add(item1);
-    defaults2.add(item1);
-    defaults2.add(item2);
+    map1.compute("item1", (key, existing) -> item1);
+    map2.compute("item1", (key, existing) -> item1);
+    map2.compute("item2", (key, existing) -> item2);
 
-    arguments.add(Arguments.of(defaultsNull,  never(),  Scope.NONE));
-    arguments.add(Arguments.of(defaultsEmpty, never(),  Scope.NONE));
-    arguments.add(Arguments.of(defaults1,     times(1), Scope.NONE));
-    arguments.add(Arguments.of(defaults2,     times(2), Scope.NONE));
-    arguments.add(Arguments.of(defaults1,     times(1), Scope.PROCESS));
-    arguments.add(Arguments.of(defaults1,     times(1), Scope.LOCAL));
-    arguments.add(Arguments.of(defaults1,     times(1), Scope.BOTH));
+    arguments.add(Arguments.of(mapNull,  never(),  Scope.NONE));
+    arguments.add(Arguments.of(mapEmpty, never(),  Scope.NONE));
+    arguments.add(Arguments.of(map1,     times(1), Scope.NONE));
+    arguments.add(Arguments.of(map2,     times(2), Scope.NONE));
+    arguments.add(Arguments.of(map1,     times(1), Scope.PROCESS));
+    arguments.add(Arguments.of(map1,     times(1), Scope.LOCAL));
+    arguments.add(Arguments.of(map1,     times(1), Scope.BOTH));
 
     return arguments.stream();
   }
