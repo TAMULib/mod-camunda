@@ -1,8 +1,11 @@
 package org.folio.rest.camunda.utility;
 
+import static org.folio.rest.camunda.cache.FolioTokenCache.GATEWAY_URL;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.StreamReadFeature;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,10 +18,13 @@ import io.vertx.core.json.JsonObject;
 import java.io.IOException;
 import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
+import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.folio.Instance;
 import org.folio.processing.mapping.defaultmapper.MarcToInstanceMapper;
 import org.folio.processing.mapping.defaultmapper.processor.parameters.MappingParameters;
+import org.folio.rest.camunda.cache.FolioTokenCache;
 import org.springframework.lang.NonNull;
+import org.springframework.stereotype.Component;
 
 /**
  * Utility class for mapping between different data formats and transforming
@@ -28,6 +34,7 @@ import org.springframework.lang.NonNull;
  * MARC records to FOLIO Instance records using predefined mapping rules and
  * parameters.
  */
+@Component
 public class MappingUtility {
 
   /** Error message for null or empty CSV input. */
@@ -36,14 +43,8 @@ public class MappingUtility {
   /** Error message for null or empty MARC JSON input. */
   private static final String ILLEGAL_MARC_JSON_ARGUMENT_MESSAGE = "MARC JSON record cannot be null or empty";
 
-  /** Error message for null or empty Okapi URL input. */
-  private static final String ILLEGAL_OKAPI_URL_ARGUMENT_MESSAGE = "Okapi URL cannot be null or empty";
-
-  /** Error message for null or empty tenant identifier input. */
-  private static final String ILLEGAL_TENANT_ARGUMENT_MESSAGE = "Tenant identifier cannot be null or empty";
-
-  /** Error message for null or empty authentication token input. */
-  private static final String ILLEGAL_TOKEN_ARGUMENT_MESSAGE = "Authentication token cannot be null or empty";
+  /** Error message for null delegate execution input. */
+  private static final String ILLEGAL_EXECUTION_ARGUMENT_MESSAGE = "Delegate execution cannot be null";
 
   /** Mapper for converting MARC records to FOLIO Instance records. */
   private static final MarcToInstanceMapper marcToInstanceMapper = new MarcToInstanceMapper();
@@ -66,6 +67,7 @@ public class MappingUtility {
    */
   private MappingUtility() {
 
+    // Should do nothing.
   }
 
   /**
@@ -108,50 +110,70 @@ public class MappingUtility {
    * <li>Applying the MARC to Instance mapping</li>
    * </ol>
    *
-   * @param marcJson The MARC record in JSON format
-   * @param okapiUrl The base URL for Okapi services
-   * @param tenant   The FOLIO tenant identifier
-   * @param token    Authentication token for Okapi services
-   * @return A JSON string representation of the mapped FOLIO Instance
-   * @throws JsonProcessingException  If there's an error processing the JSON
-   * @throws IllegalArgumentException If any of the input parameters are null or
-   *                                  empty
+   * @param marcJson The MARC record in JSON format.
+   * @param okapiUrl The base URL for OKAPI services.
+   * @param tenant   The FOLIO tenant identifier.
+   * @param token    (optional) Authentication token for OKAPI services. If NULL then use the currently active one.
+   *
+   * @return A JSON string representation of the mapped FOLIO Instance.
+   *
+   * @throws JsonProcessingException On error. 
+   *
+   * @throws IllegalArgumentException If any of the input parameters are null or empty.
    */
-  public static String mapRecordToInsance(String marcJson, String okapiUrl, String tenant, String token)
-      throws JsonProcessingException {
+  public static String mapRecordToInstance(String marcJson, final DelegateExecution execution) throws JsonProcessingException {
+
     if (StringUtils.isEmpty(marcJson)) {
       throw new IllegalArgumentException(ILLEGAL_MARC_JSON_ARGUMENT_MESSAGE);
     }
-    if (StringUtils.isEmpty(okapiUrl)) {
-      throw new IllegalArgumentException(ILLEGAL_OKAPI_URL_ARGUMENT_MESSAGE);
-    }
-    if (StringUtils.isEmpty(tenant)) {
-      throw new IllegalArgumentException(ILLEGAL_TENANT_ARGUMENT_MESSAGE);
-    }
-    if (StringUtils.isEmpty(token)) {
-      throw new IllegalArgumentException(ILLEGAL_TOKEN_ARGUMENT_MESSAGE);
+
+    if (execution == null) {
+      throw new IllegalArgumentException(ILLEGAL_EXECUTION_ARGUMENT_MESSAGE);
     }
 
-    return mapRecordToInsance(restTemplate.at(okapiUrl).with(tenant, token), marcJson);
+    final FolioTokenCache folioTokenCache = getFolioTokenCache();
+
+    final String tenant = execution.getTenantId();
+    final String gatewayUrl = (String) execution.getVariable(GATEWAY_URL);
+
+    final String accessToken = folioTokenCache.verifyTokens(execution);
+
+    return mapRecordToInstance(restTemplate.at(gatewayUrl).with(tenant, accessToken), marcJson);
   }
 
   /**
-   * Internal method to map a MARC record to a FOLIO Instance using a
-   * pre-configured rest template.
+   * Internal method to map a MARC record to a FOLIO Instance using a pre-configured rest template.
    *
-   * @param restTemplate The configured OkapiRestTemplate
-   * @param marcJson     The MARC record in JSON format (must not be null)
+   * @param restTemplate The configured OkapiRestTemplate.
+   * @param marcJson     The MARC record in JSON format (must not be null).
+   *
    * @return A JSON string representation of the mapped FOLIO Instance
-   * @throws JsonProcessingException If there's an error processing the JSON
+   *
+   * @throws JsonProcessingException On error.
    */
-  private static String mapRecordToInsance(OkapiRestTemplate restTemplate, @NonNull String marcJson)
-      throws JsonProcessingException {
+  private static String mapRecordToInstance(OkapiRestTemplate restTemplate, @NonNull String marcJson) throws JsonProcessingException {
+
     JsonObject parsedRecord = new JsonObject(marcJson);
-    JsonObject mappingRules = MappingParametersUtility.fetchRules(restTemplate);
+    JsonObject mappingRulesObject = MappingParametersUtility.fetchRules(restTemplate);
+    JsonNode mappingRulesNode = objectMapper.valueToTree(mappingRulesObject);
+    JsonObject mappingRules = mappingRulesNode == null
+        ? JsonObject.of()
+        : new JsonObject(objectMapper.writeValueAsString(mappingRulesNode));
+
     MappingParameters mappingParameters = MappingParametersUtility.getMappingParamaters(restTemplate);
     Instance instance = marcToInstanceMapper.mapRecord(parsedRecord, mappingParameters, mappingRules);
 
     return objectMapper.writeValueAsString(instance);
+  }
+
+  /**
+   * Retrieve the instantiated FolioTokenCache.
+   *
+   * @return The instantiated FolioTokenCache.
+   */
+  private static FolioTokenCache getFolioTokenCache() {
+
+    return MappingUtilityContext.getBean(FolioTokenCache.class);
   }
 
 }

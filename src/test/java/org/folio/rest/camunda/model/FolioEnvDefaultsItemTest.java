@@ -22,6 +22,7 @@ import static org.mockito.Mockito.verify;
 import static org.springframework.test.util.ReflectionTestUtils.getField;
 import static org.springframework.test.util.ReflectionTestUtils.setField;
 
+import jakarta.annotation.PostConstruct;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ import java.util.List;
 import java.util.stream.Stream;
 import org.folio.rest.camunda.exception.FolioEnvDefaultsItemFieldException;
 import org.folio.rest.camunda.model.enums.FolioEnvDefaultsItemType;
+import org.folio.rest.camunda.record.FolioTokensRecord;
 import org.identityconnectors.common.security.GuardedString;
 import org.identityconnectors.common.security.GuardedString.Accessor;
 import org.junit.jupiter.api.BeforeEach;
@@ -175,7 +177,7 @@ class FolioEnvDefaultsItemTest {
   }
 
   @Test
-  void prepareByTypeForSecureDoesNothingTest() {
+  void prepareByTypeForSecureCallsSetSecureTest() {
 
     item = spy(new FolioEnvDefaultsItem());
 
@@ -185,7 +187,7 @@ class FolioEnvDefaultsItemTest {
     item.prepareByType(null);
 
     assertNull(getField(item, VALUE.getName()));
-    verify(item).prepareByTypeForSecure(any());
+    verify(item).setSecure(any());
   }
 
   @Test
@@ -199,7 +201,7 @@ class FolioEnvDefaultsItemTest {
     item.prepareByType(UUID);
 
     assertNotNull(getField(item, GUARD));
-    verify(item).prepareByTypeForSecure(UUID);
+    verify(item).setSecure(UUID);
   }
 
   @ParameterizedTest

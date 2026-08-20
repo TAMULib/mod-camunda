@@ -20,6 +20,8 @@ import java.util.Set;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.Expression;
 import org.camunda.bpm.model.bpmn.instance.FlowElement;
+import org.folio.rest.camunda.cache.FolioTokenCache;
+import org.folio.rest.camunda.model.FolioEnvDefaultsItem;
 import org.folio.rest.workflow.dto.Request;
 import org.folio.rest.workflow.enums.VariableType;
 import org.folio.rest.workflow.model.EmbeddedVariable;
@@ -49,6 +51,12 @@ class FolioRequestDelegateTest {
   private FlowElement flowElementBpmn;
 
   @Mock
+  private FolioEnvDefaultsItem folioEnvDefaultsItem;
+
+  @Mock
+  private FolioTokenCache folioTokenCache;
+
+  @Mock
   private DelegateExecution delegateExecution;
 
   @Mock
@@ -57,11 +65,11 @@ class FolioRequestDelegateTest {
   @Mock
   private Expression requestExpression;
 
+  @Mock
+  private ResponseEntity<Object> responseEntity;
+
   @InjectMocks
   private FolioRequestDelegate delegate;
-
-  @Mock
-  ResponseEntity<Object> responseEntity;
 
   private EmbeddedVariable embeddedVariable;
 
@@ -94,6 +102,8 @@ class FolioRequestDelegateTest {
     embeddedVariables = Set.of(embeddedVariable);
 
     httpHeaders = new HttpHeaders();
+
+    setField(delegate, "folioTokenCache", folioTokenCache);
   }
 
   @Test
@@ -181,7 +191,7 @@ class FolioRequestDelegateTest {
   void testExecuteWorksWithToken() throws Exception {
     setupExecuteMocking(false);
 
-    when(delegateExecution.getVariable(eq(TOKEN_HEADER_NAME))).thenReturn(UUID);
+    when(folioTokenCache.verifyTokens(any())).thenReturn(UUID);
     when(httpService.exchange(anyString(), any(HttpMethod.class), any(), any())).thenReturn(responseEntity);
 
     delegate.execute(delegateExecution);
@@ -242,7 +252,6 @@ class FolioRequestDelegateTest {
       embeddedVariable.setKey(TOKEN_HEADER_NAME);
       setField(responseEntity, "headers", httpHeaders);
 
-      when(delegateExecution.getVariable(eq(TOKEN_HEADER_NAME))).thenReturn(UUID);
       when(httpService.exchange(anyString(), any(HttpMethod.class), any(), any())).thenReturn(responseEntity);
     }
 

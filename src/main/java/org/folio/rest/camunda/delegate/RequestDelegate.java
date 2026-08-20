@@ -21,6 +21,8 @@ import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.Expression;
 import org.folio.rest.camunda.exception.DelegateSpinFailure;
+import org.folio.rest.camunda.exception.ExternalRequestException;
+import org.folio.rest.camunda.record.FolioErrorsRecord;
 import org.folio.rest.workflow.dto.Request;
 import org.folio.rest.workflow.enums.VariableType;
 import org.folio.rest.workflow.model.EmbeddedVariable;
@@ -31,9 +33,13 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.ResourceAccessException;
 
 /**
  * A delegate for performing already logged in FOLIO HTTP requests.
@@ -99,14 +105,20 @@ public class RequestDelegate extends AbstractWorkflowIODelegate {
       ? new HttpEntity<>(body, headers)
       : new HttpEntity<>(headers);
 
-    final ResponseEntity<Object> response = httpService.exchange(url, method, entity, Object.class);
-
-    setOutput(execution, response.getBody());
-
-    getHeaderOutputVariables(execution)
-      .forEach(headerOutputVariable -> performExecuteHeaderOutputVariables(execution, headerOutputVariable, response));
-
-    determineEndTime(execution, startTime);
+    try {
+      final ResponseEntity<Object> response = httpService.exchange(url, method, entity, Object.class);
+  
+      setOutput(execution, response.getBody());
+  
+      getHeaderOutputVariables(execution)
+        .forEach(headerOutputVariable -> performExecuteHeaderOutputVariables(execution, headerOutputVariable, response));
+    } catch (ResourceAccessException e) {
+      throwExternalRequestException(execution.getTenantId(), url, null, null, e.getMessage(), e);
+    } catch (HttpClientErrorException | HttpServerErrorException e) {
+      throwExternalRequestException(execution.getTenantId(), url, e.getResponseHeaders(), e.getStatusCode(), e.getResponseBodyAsString(), e);
+    } finally {
+      determineEndTime(execution, startTime);
+    }
   }
 
   public void setRequest(Expression request) {
@@ -285,5 +297,59 @@ public class RequestDelegate extends AbstractWorkflowIODelegate {
       throw new DelegateSpinFailure(variable.getKey(), RequestDelegate.class.getName(), e);
     }
   }
+
+  /**
+   * Throw external request exception.
+   *
+   * @param tenant       The tenant ID.
+   * @param url          The request URL.
+   * @param headers      (optional) The HTTP headers, if any.
+   * @param statusCode   (optional) The HTTP response status code, if any.
+   * @param responseBody (optional) The HTTP response body or response error message.
+   * @param e            (optional) The exception to bundle.
+   */
+  protected void throwExternalRequestException(
+    final String tenant, final String url, final HttpHeaders headers, final HttpStatusCode statusCode,
+    final String responseBody, final Exception e
+  ) {
+
+    String body = responseBody;
+    String rawResponseBody = responseBody;
+
+    try {
+      final FolioErrorsRecord errors = objectMapper.readValue(responseBody, FolioErrorsRecord.class);
+
+      if (!errors.errors().isEmpty()) {
+        body = errors.errors().getFirst().message();
+      }
+    } catch (Exception ignore) {
+      final String folioDetail = getLogger().isDebugEnabled()
+        ? String.format(", deserialized exception is: '%s'", ignore.getMessage())
+        : "";
+
+      // Use raw values when the response body is unknown or for any other error.
+      getLogger().warn(String.format("FOLIO HTTP error response failed to deserialize, using raw values insead%s", folioDetail));
+    }
+
+    final String details = String.format(
+      "%sTenant '%s' from '%s' with body response of %s: %s",
+      statusCode == null ? "" : String.format("Got HTTP Response%s for ", statusCode),
+      tenant,
+      url,
+      headers == null ? "" : String.format(" (type is %s)", headers.getContentType()),
+      rawResponseBody
+    );
+
+    throw new ExternalRequestException(
+      String.format(
+        "%s%s; details: %s",
+        statusCode == null ? "" : String.format("Received HTTP %s: ", statusCode),
+        body,
+        details
+      ),
+      e
+    );
+  }
+
 
 }

@@ -1,6 +1,5 @@
 package org.folio.rest.camunda.listener;
 
-import java.util.List;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.ExecutionListener;
 import org.folio.rest.camunda.config.FolioEnvConfig;
@@ -25,10 +24,8 @@ public class ScriptListener implements ExecutionListener {
   @Override
   public void notify(DelegateExecution execution) throws Exception {
 
-    final List<FolioEnvDefaultsItem> defaults = folioEnvConfig.getDefaults();
-
-    if (defaults != null) {
-      folioEnvConfig.getDefaults().forEach(item -> processEnvConfig(execution, item));
+    if (folioEnvConfig.hasDefaults()) {
+      folioEnvConfig.getDefaults().forEach((key, existing) -> processEnvConfig(execution, existing));
     }
   }
 

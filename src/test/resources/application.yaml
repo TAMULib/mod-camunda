@@ -7,14 +7,19 @@ logging:
       zaxxer:
         hikari: ERROR
     org:
-      camunda: WARN
+      apache.kafka.clients: WARN
       folio: WARN
       hibernate: WARN
+      camunda: WARN
+      camunda.bpm.engine.jobexecutor: ERROR
       springframework: WARN
       springframework.test: WARN
 
       # Uncomment to enable MockMvc unit test logging.
       #springframework.test.web.servlet.result: DEBUG
+
+    # Enable logging of BPMN if activation fails.
+    #org.folio.rest.camunda.service.CamundaApiService: DEBUG
 
 server:
   port: 9100
@@ -96,7 +101,7 @@ spring:
   # this must be `camunda` to match module descriptor path patterns
   jersey.application-path: camunda
 
-operaton:
+camunda:
   # see: https://docs.camunda.org/manual/latest/user-guide/spring-boot-integration/configuration/
   bpm:
     webapp:
@@ -160,34 +165,46 @@ application:
         group-id: ${ENV:folio}-mod-camunda-events-group
 
 folio:
-  sql.schema: ${DB_SCHEMA:diku_mod_camunda}
+  gateway:
+    loginPath: /authn/login-with-expiry
+    tokenExpireOffset: 15
 
   env:
     defaults:
-      - name: logLevel
+      logLevel:
+        name: logLevel
         type: literal
         value: INFO
-      - name: folioUser
-        type: secure
-        expose: false
-      - name: folioPass
-        type: secure
-        expose: false
-      - name: gatewayLoginPath
+      folioLoginPath:
+        name: gatewayLoginPath
         type: url_path
         value: /authn/login-with-expiry
-      - name: gatewayUrl
+      folioPass:
+        name: folioPass
+        type: secure
+        expose: false
+      folioUser:
+        name: folioUser
+        type: literal
+        expose: false
+      gatewayUrl:
+        name: gatewayUrl
         type: url
-        value: http://kong:8000
-      - name: folioAccessToken
+        value: http://localhost:9130
+      folioAccessToken: # Value will be overridden.
+        name: folioAccessToken
+        type: secure
+      folioAccessTokenExpire: # Value will be overridden.
+        name: folioAccessTokenExpire
         type: literal
-      - name: folioRefreshToken
+      folioRefreshToken: # Value will be overridden.
+        name: folioRefreshToken
+        type: secure
+      folioRefreshTokenExpire: # Value will be overridden.
+        name: folioRefreshTokenExpire
         type: literal
-      - name: folioTenant
-        type: literal
-        value: diku
-      - name: folioToken
-        type: literal
+
+  sql.schema: ${DB_SCHEMA:diku_mod_camunda}
 
 tenant:
   header-name: X-Okapi-Tenant
@@ -206,7 +223,7 @@ tenant:
     - classpath:/org/camunda/bpm/engine/db/create/activiti.h2.create.decision.engine.sql
     - classpath:/org/camunda/bpm/engine/db/create/activiti.h2.create.decision.history.sql
 
-okapi.url: http://localhost:9130
+okapi.url: ${OKAPI_URL:http://localhost:9130}
 
 error:
   handling:
