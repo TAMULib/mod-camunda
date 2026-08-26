@@ -12,10 +12,11 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import org.camunda.bpm.engine.exception.NotValidException;
 import org.camunda.bpm.engine.ProcessEngine;
+import org.camunda.bpm.engine.ProcessEngineConfiguration;
 import org.camunda.bpm.engine.ProcessEngines;
 import org.camunda.bpm.engine.RepositoryService;
+import org.camunda.bpm.engine.exception.NotValidException;
 import org.camunda.bpm.engine.repository.Deployment;
 import org.camunda.bpm.engine.repository.DeploymentBuilder;
 import org.camunda.bpm.model.bpmn.Bpmn;
@@ -50,6 +51,9 @@ class CamundaApiServiceTest {
   private ProcessEngine processEngine;
 
   @Mock
+  ProcessEngineConfiguration processEngineConfiguration;
+
+  @Mock
   private RepositoryService repositoryService;
 
   @Mock
@@ -76,6 +80,9 @@ class CamundaApiServiceTest {
     lenient().when(deploymentBuilder.tenantId(anyString())).thenReturn(deploymentBuilder);
     lenient().when(deploymentBuilder.deploy()).thenReturn(deployment);
     lenient().when(deployment.getId()).thenReturn("deploymentId");
+    lenient().when(processEngine.getProcessEngineConfiguration()).thenReturn(processEngineConfiguration);
+    lenient().when(processEngineConfiguration.setClassLoader(any())).thenReturn(processEngineConfiguration);
+    lenient().when(processEngineConfiguration.setJobExecutorDeploymentAware(anyBoolean())).thenReturn(processEngineConfiguration);
   }
 
   @Test
