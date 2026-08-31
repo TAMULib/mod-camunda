@@ -15,6 +15,7 @@ public class CamundaEngineConfig implements CamundaProcessEngineConfiguration  {
   @Override
   public void preInit(ProcessEngineConfigurationImpl processEngineConfiguration) {
     processEngineConfiguration.setScriptEngineResolver(new ScriptEngineResolver(new ScriptEngineManager()));
+    processEngineConfiguration.setJobExecutorDeploymentAware(true);
   }
 
 }

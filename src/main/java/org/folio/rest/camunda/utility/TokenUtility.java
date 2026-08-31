@@ -9,7 +9,9 @@ import org.folio.rest.camunda.config.TokenConfig;
  *
  * This primarily supports the OKAPI `X-Okapi-Token` and the RTR HTTP Header Cookie tokens.
  *
- * This is intended to be extendable into newer FOLIO functionality, such as seen in Eureka.
+ * This is intended to be extendible into newer FOLIO functionality, such as seen in Eureka.
+ *
+ * This might be deprecated and removed in future releases.
  */
 public final class TokenUtility {
 
@@ -19,6 +21,7 @@ public final class TokenUtility {
    * This class is intended to be run using public static methods and should not be instantiated.
    */
   private TokenUtility() {
+    // This does nothing.
   }
 
   /**

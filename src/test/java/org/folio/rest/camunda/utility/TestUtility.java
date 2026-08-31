@@ -87,7 +87,7 @@ public class TestUtility {
    * @param json JSON String
    * @return JsonNode
    */
-  public static JsonNode om(String json) {
+  public static JsonNode treeNode(String json) {
     try {
       return om.readTree(json);
     } catch (JsonProcessingException e) {
@@ -103,7 +103,7 @@ public class TestUtility {
    * @return list of JsonNode
    */
   public static List<JsonNode> oml(List<String> json) {
-    return json.stream().map(n -> om(n)).toList();
+    return json.stream().map(n -> treeNode(n)).toList();
   }
 
 }

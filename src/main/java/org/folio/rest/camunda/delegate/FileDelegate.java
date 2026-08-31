@@ -1,5 +1,6 @@
 package org.folio.rest.camunda.delegate;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
 import java.io.BufferedReader;
@@ -14,6 +15,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.io.FileUtils;
+import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.Expression;
 import org.folio.rest.workflow.enums.FileOp;
@@ -38,6 +40,21 @@ public class FileDelegate extends AbstractWorkflowIODelegate {
 
   private Expression target;
 
+  /**
+   * Initializer.
+   */
+  public FileDelegate(ObjectMapper objectMapper, RuntimeService runtimeService) {
+
+    super(objectMapper, runtimeService);
+  }
+
+  /**
+   * Perform the execution.
+   *
+   * @param execution The execution data.
+   *
+   * @throws Exception On error.
+   */
   @Override
   public void execute(DelegateExecution execution) throws Exception {
     final FileOp fileOp = FileOp.valueOf(this.op.getValue(execution).toString());

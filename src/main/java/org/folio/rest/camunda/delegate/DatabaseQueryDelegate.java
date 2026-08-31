@@ -2,6 +2,7 @@ package org.folio.rest.camunda.delegate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
@@ -16,8 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.Expression;
+import org.folio.rest.camunda.service.DatabaseConnectionService;
 import org.folio.rest.workflow.model.DatabaseQueryTask;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -35,6 +38,19 @@ public class DatabaseQueryDelegate extends AbstractDatabaseOutputDelegate {
 
   private Expression includeHeader;
 
+  /**
+   * Initializer.
+   */
+  public DatabaseQueryDelegate(ObjectMapper objectMapper, RuntimeService runtimeService, DatabaseConnectionService connectionService) {
+
+    super(objectMapper, runtimeService, connectionService);
+  }
+
+  /**
+   * Perform the execution.
+   *
+   * @param execution The execution data.
+   */
   @Override
   public void execute(DelegateExecution execution) throws Exception {
     final long startTime = determineStartTime(execution);

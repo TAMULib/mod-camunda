@@ -2,7 +2,6 @@ package org.folio.rest.camunda.utility;
 
 import static java.lang.String.format;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import io.micrometer.common.lang.NonNull;
 import io.vertx.core.json.JsonObject;
 import org.folio.AlternativeTitleType;
@@ -124,7 +123,7 @@ public class MappingParametersUtility {
    * @throws RestClientException if there's an error communicating
    */
   public static JsonObject fetchRules(@NonNull OkapiRestTemplate restTemplate) {
-    ResponseEntity<JsonNode> response = restTemplate.getForEntity(MAPPING_RULES_PATH, JsonNode.class);
+    ResponseEntity<JsonObject> response = restTemplate.getForEntity(MAPPING_RULES_PATH, JsonObject.class);
 
     return response.hasBody()
       ? JsonObject.mapFrom(response.getBody())

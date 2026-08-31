@@ -20,8 +20,8 @@ import org.folio.rest.camunda.service.DatabaseConnectionService;
 import org.folio.rest.workflow.model.DatabaseDisconnectTask;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
@@ -39,7 +39,7 @@ class DatabaseDisconnectDelegateTest {
   @Mock
   private Expression designationExpression;
 
-  @Spy
+  @InjectMocks
   private DatabaseDisconnectDelegate databaseDisconnectDelegate;
 
   @Test

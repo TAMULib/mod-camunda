@@ -1,5 +1,6 @@
 package org.folio.rest.camunda.delegate;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
 import java.io.BufferedInputStream;
@@ -18,6 +19,7 @@ import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarArchiveOutputStream;
 import org.apache.commons.compress.compressors.CompressorOutputStream;
 import org.apache.commons.compress.compressors.CompressorStreamFactory;
+import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.Expression;
 import org.folio.rest.workflow.enums.CompressFileContainer;
@@ -48,6 +50,19 @@ public class CompressFileDelegate extends AbstractWorkflowIODelegate {
 
   private Expression container;
 
+  /**
+   * Initializer.
+   */
+  public CompressFileDelegate(ObjectMapper objectMapper, RuntimeService runtimeService) {
+
+    super(objectMapper, runtimeService);
+  }
+
+  /**
+   * Perform the execution.
+   *
+   * @param execution The execution data.
+   */
   @Override
   public void execute(DelegateExecution execution) throws Exception {
     final long startTime = determineStartTime(execution);
