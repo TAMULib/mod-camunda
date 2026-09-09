@@ -7,6 +7,7 @@ logging:
       zaxxer:
         hikari: INFO
     org:
+      apache.kafka.clients: ERROR
       camunda: INFO
       camunda.bpm.engine.jobexecutor: ERROR
       folio: INFO
