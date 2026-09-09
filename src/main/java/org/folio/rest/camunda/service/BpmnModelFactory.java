@@ -26,6 +26,7 @@ import org.camunda.bpm.model.bpmn.instance.camunda.CamundaField;
 import org.camunda.bpm.model.xml.instance.ModelElementInstance;
 import org.folio.rest.camunda.delegate.AbstractWorkflowDelegate;
 import org.folio.rest.camunda.exception.ScriptTaskDeserializeCodeFailure;
+import org.folio.rest.camunda.listener.LogListener;
 import org.folio.rest.camunda.listener.ScriptListener;
 import org.folio.rest.workflow.enums.StartEventType;
 import org.folio.rest.workflow.model.Condition;
@@ -109,9 +110,9 @@ public class BpmnModelFactory {
       .filter(node -> node instanceof EventSubprocess)
       .forEach(subprocess -> {
         try {
-            eventSubprocess(processBuilder, subprocess);
+          eventSubprocess(processBuilder, subprocess);
         } catch (ScriptTaskDeserializeCodeFailure e) {
-            throw new RuntimeException(e);
+          throw new RuntimeException(e);
         }
     });
     // @formatter:on
@@ -154,22 +155,25 @@ public class BpmnModelFactory {
 
       if (node instanceof Event) {
 
-        if (node instanceof StartEvent) {
-          if (Boolean.TRUE.equals(((StartEvent) node).getAsyncBefore())) {
+        if (node instanceof StartEvent startEvent) {
+          if (Boolean.TRUE.equals(startEvent.getAsyncBefore())) {
             builder = builder.camundaAsyncBefore();
           }
 
-          boolean interrupting = Boolean.TRUE.equals(((StartEvent) node).getInterrupting());
+          boolean interrupting = Boolean.TRUE.equals(startEvent.getInterrupting());
 
-          StartEventType type = ((StartEvent) node).getType();
-          String expression = ((StartEvent) node).getExpression();
+          StartEventType type = startEvent.getType();
+          String expression = startEvent.getExpression();
 
           if (type != StartEventType.NONE && expression == null) {
             // TODO: create custom exception and controller advice to handle better
             throw new RuntimeException(String.format("%s start event requires an expression", type));
           }
 
-          builder = ((StartEventBuilder) builder).id(node.getIdentifier()).name(node.getName());
+          builder = ((StartEventBuilder) builder)
+            .id(node.getIdentifier())
+            .name(node.getName())
+            .camundaExecutionListenerClass(START_EVENT, LogListener.class);
 
           switch (type) {
           case MESSAGE_CORRELATION:
@@ -212,7 +216,10 @@ public class BpmnModelFactory {
           }
 
         } else if (node instanceof EndEvent) {
-          builder = builder.endEvent(node.getIdentifier()).name(node.getName());
+          builder = builder
+            .endEvent(node.getIdentifier())
+            .name(node.getName())
+            .camundaExecutionListenerClass(START_EVENT, LogListener.class);
         } else {
           logger.warn("Event named {} is of an unknown type.", node.getName());
         }
