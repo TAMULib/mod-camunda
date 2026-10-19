@@ -73,7 +73,6 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
     String mailToTemplate = this.mailTo.getValue(execution).toString();
     String mailFromTemplate = this.mailFrom.getValue(execution).toString();
     String attachmentPathTemplate = Objects.nonNull(this.attachmentPath) ? this.attachmentPath.getValue(execution).toString() : "";
-    String includeAttachmentTemplate = Objects.nonNull(this.includeAttachment) ? this.includeAttachment.getValue(execution).toString() : "";
 
     StringTemplateLoader stringLoader = new StringTemplateLoader();
     stringLoader.putTemplate("subject", subjectTemplate);
@@ -82,7 +81,6 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
     stringLoader.putTemplate("mailFrom", mailFromTemplate);
     stringLoader.putTemplate("mailTo", mailToTemplate);
     stringLoader.putTemplate("attachmentPath", attachmentPathTemplate);
-    stringLoader.putTemplate("includeAttachment", includeAttachmentTemplate);
 
     Configuration cfg = new Configuration(Configuration.VERSION_2_3_23);
     cfg.setTemplateLoader(stringLoader);
@@ -96,6 +94,10 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
     final String cc;
     final String bcc;
     final String attachmentPathValue;
+    final Object includeAttachmentObject = this.includeAttachment.getValue(execution);
+    final Boolean includeAttachmentValue = includeAttachmentObject instanceof Boolean includeAttachmentBoolean
+      ? includeAttachmentBoolean
+      : Boolean.parseBoolean((String) includeAttachmentObject);
 
     try {
       subject = FreeMarkerTemplateUtils.processTemplateIntoString(cfg.getTemplate("subject"), inputs);
@@ -171,16 +173,20 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
           }
         }
 
-        // This is a hot fix to address an issue with the workflow not attaching e-mails.
-        if (attachmentPathValue != null) {
-          File attachment = createFile(attachmentPathValue);
-          if (attachment.exists() && attachment.isFile()) {
-            message.addAttachment(attachment.getName(), attachment);
+        if (Boolean.TRUE.equals(includeAttachmentValue)) {
+          if (attachmentPathValue == null) {
+            getLogger().error("Attachment is to be included but the attachment path is missing.");
           } else {
-            getLogger().info("{} does not exist", attachmentPathValue);
+            final File attachment = createFile(attachmentPathValue);
+  
+            if (attachment.exists() && attachment.isFile()) {
+              message.addAttachment(attachment.getName(), attachment);
+            } else {
+              getLogger().warn("Attachment {} does not exist.", attachmentPathValue);
+            }
           }
         } else {
-          getLogger().info("No attachment required");
+          getLogger().debug("No attachment required.");
         }
       }
     };
