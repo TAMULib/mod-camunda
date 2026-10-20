@@ -1,6 +1,7 @@
 package org.folio.rest.camunda.exception;
 
 import static org.folio.spring.test.mock.MockMvcConstant.UUID;
+import static org.folio.spring.test.mock.MockMvcConstant.VALUE;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -17,21 +18,23 @@ class ScriptTaskDeserializeCodeFailureTest {
   @Test
   void scriptEngineLoadFailedWorksTest() {
       ScriptTaskDeserializeCodeFailure exception = Assertions.assertThrows(ScriptTaskDeserializeCodeFailure.class, () -> {
-      throw new ScriptTaskDeserializeCodeFailure(UUID);
+      throw new ScriptTaskDeserializeCodeFailure(UUID, VALUE);
     });
 
     assertNotNull(exception);
     assertTrue(exception.getMessage().contains(UUID));
+    assertTrue(exception.getMessage().contains(VALUE));
   }
 
   @Test
   void scriptEngineLoadFailedWorksWithParameterTest() {
       ScriptTaskDeserializeCodeFailure exception = Assertions.assertThrows(ScriptTaskDeserializeCodeFailure.class, () -> {
-      throw new ScriptTaskDeserializeCodeFailure(UUID, EXCEPTION);
+      throw new ScriptTaskDeserializeCodeFailure(UUID, VALUE, EXCEPTION);
     });
 
     assertNotNull(exception);
     assertTrue(exception.getMessage().contains(UUID));
+    assertTrue(exception.getMessage().contains(VALUE));
   }
 
 }

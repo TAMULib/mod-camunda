@@ -178,7 +178,7 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
             getLogger().error("Attachment is to be included but the attachment path is missing.");
           } else {
             final File attachment = createFile(attachmentPathValue);
-  
+
             if (attachment.exists() && attachment.isFile()) {
               message.addAttachment(attachment.getName(), attachment);
             } else {

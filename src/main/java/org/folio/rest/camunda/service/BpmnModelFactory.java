@@ -210,7 +210,7 @@ public class BpmnModelFactory {
           try {
             code = mapper.readValue(scriptTask.getCode(), String.class);
           } catch (JacksonException e) {
-            throw new ScriptTaskDeserializeCodeFailure(scriptTask.getId(), e);
+            throw new ScriptTaskDeserializeCodeFailure(scriptTask.getId(), scriptTask.getCode(), e);
           }
 
           builder = builder.scriptTask(scriptTask.getIdentifier())
