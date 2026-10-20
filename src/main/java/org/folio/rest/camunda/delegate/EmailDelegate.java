@@ -73,6 +73,7 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
     String mailToTemplate = this.mailTo.getValue(execution).toString();
     String mailFromTemplate = this.mailFrom.getValue(execution).toString();
     String attachmentPathTemplate = Objects.nonNull(this.attachmentPath) ? this.attachmentPath.getValue(execution).toString() : "";
+    String includeAttachmentTemplate = Objects.nonNull(this.attachmentPath) ? this.attachmentPath.getValue(execution).toString() : "";
 
     StringTemplateLoader stringLoader = new StringTemplateLoader();
     stringLoader.putTemplate("subject", subjectTemplate);
@@ -81,6 +82,7 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
     stringLoader.putTemplate("mailFrom", mailFromTemplate);
     stringLoader.putTemplate("mailTo", mailToTemplate);
     stringLoader.putTemplate("attachmentPath", attachmentPathTemplate);
+    stringLoader.putTemplate("includeAttachment", includeAttachmentTemplate);
 
     Configuration cfg = new Configuration(Configuration.VERSION_2_3_23);
     cfg.setTemplateLoader(stringLoader);
@@ -94,10 +96,8 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
     final String cc;
     final String bcc;
     final String attachmentPathValue;
-    final Object includeAttachmentObject = this.includeAttachment.getValue(execution);
-    final Boolean includeAttachmentValue = includeAttachmentObject instanceof Boolean includeAttachmentBoolean
-      ? includeAttachmentBoolean
-      : Boolean.parseBoolean((String) includeAttachmentObject);
+    final String includeAttachmentValue;
+    final Boolean includeAttachment;
 
     try {
       subject = FreeMarkerTemplateUtils.processTemplateIntoString(cfg.getTemplate("subject"), inputs);
@@ -105,6 +105,11 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
       htmlMarkup = FreeMarkerTemplateUtils.processTemplateIntoString(cfg.getTemplate("markup"), inputs);
       to = FreeMarkerTemplateUtils.processTemplateIntoString(cfg.getTemplate("mailTo"), inputs);
       from = FreeMarkerTemplateUtils.processTemplateIntoString(cfg.getTemplate("mailFrom"), inputs);
+      includeAttachmentValue = FreeMarkerTemplateUtils.processTemplateIntoString(cfg.getTemplate("includeAttachment"), inputs);
+
+      includeAttachment = includeAttachmentValue == null
+        ? false
+        : Boolean.parseBoolean((String) includeAttachmentValue);
 
       cc = mailCc == null
         ? null
@@ -173,7 +178,7 @@ public class EmailDelegate extends AbstractWorkflowInputDelegate {
           }
         }
 
-        if (Boolean.TRUE.equals(includeAttachmentValue)) {
+        if (Boolean.TRUE.equals(includeAttachment)) {
           if (attachmentPathValue == null) {
             getLogger().error("Attachment is to be included but the attachment path is missing.");
           } else {
