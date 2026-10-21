@@ -22,7 +22,6 @@ import static org.mockito.Mockito.verify;
 import static org.springframework.test.util.ReflectionTestUtils.getField;
 import static org.springframework.test.util.ReflectionTestUtils.setField;
 
-import jakarta.annotation.PostConstruct;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -30,7 +29,6 @@ import java.util.List;
 import java.util.stream.Stream;
 import org.folio.rest.camunda.exception.FolioEnvDefaultsItemFieldException;
 import org.folio.rest.camunda.model.enums.FolioEnvDefaultsItemType;
-import org.folio.rest.camunda.record.FolioTokensRecord;
 import org.identityconnectors.common.security.GuardedString;
 import org.identityconnectors.common.security.GuardedString.Accessor;
 import org.junit.jupiter.api.BeforeEach;

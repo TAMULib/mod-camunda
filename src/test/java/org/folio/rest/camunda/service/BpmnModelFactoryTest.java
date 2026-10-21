@@ -21,6 +21,7 @@ import org.folio.rest.camunda.delegate.AbstractWorkflowDelegate;
 import org.folio.rest.camunda.delegate.InputDelegate;
 import org.folio.rest.camunda.exception.ScriptTaskDeserializeCodeFailure;
 import org.folio.rest.camunda.listener.LogListener;
+import org.folio.rest.workflow.enums.StartEventType;
 import org.folio.rest.workflow.model.EndEvent;
 import org.folio.rest.workflow.model.InputTask;
 import org.folio.rest.workflow.model.Node;
@@ -102,13 +103,13 @@ class BpmnModelFactoryTest {
 
   private ProcessBuilder processBuilder;
 
-  private Node endNode;
+  private EndEvent endEvent;
 
   private Node inputNode;
 
   private Node simpleNode;
 
-  private Node startNode;
+  private StartEvent startEvent;
 
   private List<Node> nodes;
 
@@ -122,17 +123,18 @@ class BpmnModelFactoryTest {
 
     bpmnModelFactory = new BpmnModelFactory(mapper, workflowDelegates);
 
-    startNode = new StartEvent();
-    startNode.setId(UUID_NODE_1);
-    startNode.setName(VALUE);
+    startEvent = new StartEvent();
+    startEvent.setId(UUID_NODE_1);
+    startEvent.setName(VALUE);
+    startEvent.setType(StartEventType.NONE);
 
     inputNode = new InputTask();
     inputNode.setId(UUID_NODE_2);
     inputNode.setName(VALUE);
 
-    endNode = new EndEvent();
-    endNode.setId(UUID_NODE_3);
-    endNode.setName(VALUE);
+    endEvent = new EndEvent();
+    endEvent.setId(UUID_NODE_3);
+    endEvent.setName(VALUE);
 
     simpleNode = new MyNode();
     simpleNode.setId(UUID_NODE_1);
@@ -195,9 +197,9 @@ class BpmnModelFactoryTest {
 
   @Test
   void testFromWorkflowForFullProcess() throws ScriptTaskDeserializeCodeFailure {
-    nodes.add(startNode);
+    nodes.add(startEvent);
     nodes.add(inputNode);
-    nodes.add(endNode);
+    nodes.add(endEvent);
     workflow.setNodes(nodes);
 
     try (MockedStatic<Bpmn> utility = mockStatic(Bpmn.class)) {
