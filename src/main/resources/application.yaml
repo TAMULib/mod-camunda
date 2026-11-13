@@ -183,9 +183,12 @@ application:
         group-id: ${ENV:folio}-mod-camunda-events-group
 
 folio:
-  gateway:
-    loginPath: /authn/login-with-expiry
-    tokenExpireOffset: 15
+  delegate:
+    database:
+      connectionTimeout: 30000
+      idleTimeout: 600000
+      maxLifetime: 7200000 # 2 hours as default is 30 minutes.
+      maxPoolSize: 8
 
   env:
     defaults:
@@ -222,6 +225,11 @@ folio:
         name: folioRefreshTokenExpire
         type: literal
 
+  gateway:
+    loginPath: /authn/login-with-expiry
+    tokenExpireOffset: 15
+    url: ${OKAPI_URL:http://localhost:9130}
+
 tenant:
   header-name: X-Okapi-Tenant
   force-tenant: false
@@ -232,6 +240,7 @@ tenant:
   initialize-default-tenant: true
 
   domain-packages:
+
   # https://github.com/camunda/camunda-bpm-platform/tree/master/engine/src/main/resources/org/camunda/bpm/engine/db/create
   # be sure to match datasource platform
   schema-scripts:
@@ -252,8 +261,6 @@ tenant:
   #  - classpath:/org/operaton/bpm/engine/db/create/activiti.h2.create.case.history.sql
   #  - classpath:/org/operaton/bpm/engine/db/create/activiti.h2.create.decision.engine.sql
   #  - classpath:/org/operaton/bpm/engine/db/create/activiti.h2.create.decision.history.sql
-
-okapi.url: ${OKAPI_URL:http://localhost:9130}
 
 # https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html
 management:

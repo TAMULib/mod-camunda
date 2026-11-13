@@ -1,12 +1,11 @@
 package org.folio.rest.camunda.delegate;
 
 import static org.folio.spring.test.mock.MockMvcConstant.KEY;
-import static org.folio.spring.test.mock.MockMvcConstant.URL;
 import static org.folio.spring.test.mock.MockMvcConstant.VALUE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
@@ -30,15 +29,20 @@ import org.operaton.bpm.model.bpmn.instance.FlowElement;
 @ExtendWith(MockitoExtension.class)
 class DatabaseConnectionDelegateTest {
 
-  private static final String USERNAME = "username";
+  private static final String CONNECTIONSERVICE = "connectionService";
+
+  private static final String DESIGNATION = "designation";
 
   private static final String PASSWORD = "password";
 
-  @Mock
-  private DatabaseConnectionService connectionService;
+  private static final String SEARCHPATH = "searchPath";
+
+  private static final String URL = "url";
+
+  private static final String USERNAME = "username";
 
   @Mock
-  private FlowElement flowElementBpmn;
+  private DatabaseConnectionService connectionService;
 
   @Mock
   private DelegateExecution delegateExecution;
@@ -47,10 +51,16 @@ class DatabaseConnectionDelegateTest {
   private Expression designationExpression;
 
   @Mock
+  private FlowElement flowElementBpmn;
+
+  @Mock
   private Expression genericExpression;
 
   @Mock
   private Expression passwordExpression;
+
+  @Mock
+  private Expression searchPathExpression;
 
   @Mock
   private Expression urlExpression;
@@ -59,74 +69,92 @@ class DatabaseConnectionDelegateTest {
   private Expression usernameExpression;
 
   @InjectMocks
-  private DatabaseConnectionDelegate databaseConnectionDelegate;
+  private DatabaseConnectionDelegate delegate;
 
   @Test
   void testExecuteWorks() throws Exception {
+
     setupExecuteMocking();
 
-    doNothing().when(connectionService).createPool(anyString(), anyString(), any(Properties.class));
+    doNothing().when(connectionService).createPool(anyBoolean(), any(Properties.class));
 
-    databaseConnectionDelegate.execute(delegateExecution);
+    delegate.execute(delegateExecution);
 
-    verify(connectionService).createPool(anyString(), anyString(), any(Properties.class));
+    verify(connectionService).createPool(anyBoolean(), any(Properties.class));
   }
 
   @Test
-  void testExecuteThrowsException() throws SQLException {
+  void testExecuteThrowsException() {
+
     setupExecuteMocking();
 
-    doThrow(SQLException.class).when(connectionService).createPool(anyString(), anyString(), any(Properties.class));
+    doThrow(SQLException.class).when(connectionService).createPool(anyBoolean(), any(Properties.class));
 
     assertThrows(Exception.class, () -> {
-      databaseConnectionDelegate.execute(delegateExecution);
+      delegate.execute(delegateExecution);
     });
   }
 
   @Test
-  void testSetUrlWorks() {
-    setField(databaseConnectionDelegate, "url", null);
+  void testSetPasswordWorks() {
 
-    databaseConnectionDelegate.setUrl(genericExpression);
-    assertEquals(genericExpression, getField(databaseConnectionDelegate, "url"));
+    setField(delegate, PASSWORD, null);
+
+    delegate.setPassword(genericExpression);
+    assertEquals(genericExpression, getField(delegate, PASSWORD));
+  }
+
+  @Test
+  void testSetSearchPathWorks() {
+
+    setField(delegate, SEARCHPATH, null);
+
+    delegate.setSearchPath(genericExpression);
+    assertEquals(genericExpression, getField(delegate,SEARCHPATH));
+  }
+
+  @Test
+  void testSetUrlWorks() {
+
+    setField(delegate, URL, null);
+
+    delegate.setUrl(genericExpression);
+    assertEquals(genericExpression, getField(delegate, URL));
   }
 
   @Test
   void testSetUsernameWorks() {
-    setField(databaseConnectionDelegate, "username", null);
 
-    databaseConnectionDelegate.setUsername(genericExpression);
-    assertEquals(genericExpression, getField(databaseConnectionDelegate, "username"));
-  }
+    setField(delegate, USERNAME, null);
 
-  @Test
-  void testSetPasswordWorks() {
-    setField(databaseConnectionDelegate, "password", null);
-
-    databaseConnectionDelegate.setPassword(genericExpression);
-    assertEquals(genericExpression, getField(databaseConnectionDelegate, "password"));
+    delegate.setUsername(genericExpression);
+    assertEquals(genericExpression, getField(delegate, USERNAME));
   }
 
   @Test
   void testFromTaskWorks() {
-    assertEquals(DatabaseConnectionTask.class, databaseConnectionDelegate.fromTask());
+
+    assertEquals(DatabaseConnectionTask.class, delegate.fromTask());
   }
 
   /**
    * Provide common mocking behavior for the execute() method.
    */
   private void setupExecuteMocking() {
-    when(delegateExecution.getBpmnModelElementInstance()).thenReturn(flowElementBpmn);
-    when(flowElementBpmn.getName()).thenReturn(KEY);
-    when(urlExpression.getValue(any())).thenReturn(URL);
-    when(designationExpression.getValue(any())).thenReturn(VALUE);
-    when(usernameExpression.getValue(any())).thenReturn(USERNAME);
-    when(passwordExpression.getValue(any())).thenReturn(PASSWORD);
 
-    setField(databaseConnectionDelegate, "url", urlExpression);
-    setField(databaseConnectionDelegate, "designation", designationExpression);
-    setField(databaseConnectionDelegate, "username", usernameExpression);
-    setField(databaseConnectionDelegate, "password", passwordExpression);
-    setField(databaseConnectionDelegate, "connectionService", connectionService);
+    when(flowElementBpmn.getName()).thenReturn(KEY);
+    when(delegateExecution.getBpmnModelElementInstance()).thenReturn(flowElementBpmn);
+    when(designationExpression.getValue(any())).thenReturn(VALUE);
+    when(passwordExpression.getValue(any())).thenReturn(PASSWORD);
+    when(searchPathExpression.getValue(any())).thenReturn(SEARCHPATH);
+    when(urlExpression.getValue(any())).thenReturn(URL);
+    when(usernameExpression.getValue(any())).thenReturn(USERNAME);
+
+    setField(delegate, CONNECTIONSERVICE, connectionService);
+    setField(delegate, DESIGNATION,       designationExpression);
+    setField(delegate, PASSWORD,          passwordExpression);
+    setField(delegate, SEARCHPATH,        searchPathExpression);
+    setField(delegate, USERNAME,          usernameExpression);
+    setField(delegate, URL,               urlExpression);
   }
 }

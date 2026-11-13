@@ -6,7 +6,6 @@ import java.nio.charset.Charset;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -65,18 +64,18 @@ public class ScriptEngineService {
    *
    * @throws IOException
    * @throws ScriptEngineUnsupported
-   * @throws NoSuchMethodException
    * @throws ScriptEngineLoadFailed
    */
   public void registerScript(String extension, String name, String script)
-      throws ScriptException, IOException, ScriptEngineUnsupported, NoSuchMethodException, ScriptEngineLoadFailed {
+      throws ScriptException, IOException, ScriptEngineUnsupported, ScriptEngineLoadFailed {
+
     if (!SCRIPT_ENGINE_TYPES.containsValue(extension)) {
       throw new ScriptEngineUnsupported(extension);
     }
 
-    Optional<ScriptEngine> maybeScriptEngine = Optional.ofNullable(scriptEngines.get(extension));
+    ScriptEngine scriptEngine = scriptEngines.get(extension);
 
-    if (!maybeScriptEngine.isPresent()) {
+    if (scriptEngine == null) {
       ScriptEngine newEngine = scriptEngineManager.getEngineByExtension(extension);
 
       if (newEngine == null) {
@@ -89,13 +88,10 @@ public class ScriptEngineService {
         newEngine.eval(loadScript(UTILS_PREFIX + extension));
       }
 
-      maybeScriptEngine = Optional.ofNullable(newEngine);
+      scriptEngine = newEngine;
     }
 
-    ScriptEngine scriptEngine = maybeScriptEngine.get();
-    String scriptFunctionName = name;
-    scriptEngine.eval(
-        String.format(loadScript(ENGINE_PREFIX + extension), scriptFunctionName, preprocessScript(script, extension)));
+    scriptEngine.eval(String.format(loadScript(ENGINE_PREFIX + extension), name, preprocessScript(script, extension)));
   }
 
   /**
@@ -145,14 +141,13 @@ public class ScriptEngineService {
    */
   private String preprocessScript(String script, String extension) {
 
-    if (extension.equals(ScriptType.PYTHON.getExtension())) {
+    if (script != null && extension.equals(ScriptType.PYTHON.getExtension())) {
       // Ensure that 2 leading spaces exist before newlines and that
       // there are no trailing white spaces.
-      String processed = script.replace("\r\n", "\n");
-      processed = script.replace("\r", "\n");
-      processed = script.replace("\n", "\n  ");
-      processed.trim();
-      return processed;
+      return script.replace("\r\n", "\n")
+        .replace("\r", "\n")
+        .replace("\n", "\n  ")
+        .trim();
     }
 
     return script;

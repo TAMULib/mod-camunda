@@ -12,7 +12,7 @@ import tools.jackson.databind.json.JsonMapper;
 @Scope("prototype")
 public class InputDelegate extends AbstractWorkflowIODelegate {
 
-  @Value("${okapi.url}")
+  @Value("${folio.gateway.url}")
   private String okapiUrl;
 
   /**

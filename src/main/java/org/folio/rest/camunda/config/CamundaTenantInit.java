@@ -19,9 +19,9 @@ public class CamundaTenantInit implements HibernateTenantInit {
 
   private static String tenantHeaderName;
 
-  private SqlTemplateService sqlTemplateService;
+  private final SqlTemplateService sqlTemplateService;
 
-  private TenantProperties tenantProperties;
+  private final TenantProperties tenantProperties;
 
   public CamundaTenantInit(SqlTemplateService sqlTemplateService, TenantProperties tenantProperties) {
     this.sqlTemplateService = sqlTemplateService;

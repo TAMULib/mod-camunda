@@ -1,5 +1,12 @@
 package org.folio.rest.camunda.delegate;
 
+import static org.folio.rest.camunda.service.DatabaseConnectionService.POOL_ID;
+import static org.folio.rest.camunda.service.DatabaseConnectionService.POOL_PASS;
+import static org.folio.rest.camunda.service.DatabaseConnectionService.POOL_SEARCH_PATH;
+import static org.folio.rest.camunda.service.DatabaseConnectionService.POOL_TENANT;
+import static org.folio.rest.camunda.service.DatabaseConnectionService.POOL_URL;
+import static org.folio.rest.camunda.service.DatabaseConnectionService.POOL_USER;
+
 import java.util.Properties;
 import org.folio.rest.camunda.exception.DelegateExecutionFailure;
 import org.folio.rest.camunda.service.DatabaseConnectionService;
@@ -19,11 +26,15 @@ import tools.jackson.databind.json.JsonMapper;
 @Scope("prototype")
 public class DatabaseConnectionDelegate extends AbstractDatabaseDelegate {
 
-  private Expression url;
-  private Expression username;
-  private Expression password;
+  protected final TenantProvisioningService tenantProvisioningService;
 
-  private TenantProvisioningService tenantProvisioningService;
+  protected Expression password;
+
+  protected Expression searchPath;
+
+  protected Expression url;
+
+  protected Expression username;
 
   /**
    * Initializer.
@@ -32,6 +43,78 @@ public class DatabaseConnectionDelegate extends AbstractDatabaseDelegate {
 
     super(mapper, runtimeService, connectionService);
     this.tenantProvisioningService = tenantProvisioningService;
+  }
+
+  /**
+   * Get the task class associated with this delegate.
+   *
+   * @param The class task.
+   */
+  @Override
+  public Class<?> fromTask() {
+
+    return DatabaseConnectionTask.class;
+  }
+
+  /**
+   * Set the pass word.
+   *
+   * @param password The pass word.
+   */
+  public void setPassword(Expression password) {
+
+    this.password = password;
+  }
+
+  /**
+   * Set the SQL search path.
+   *
+   * @param searchPath The SQL search path.
+   */
+  public void setSearchPath(Expression searchPath) {
+
+    this.searchPath = searchPath;
+  }
+
+  /**
+   * Set the URL.
+   *
+   * @param url The URL.
+   */
+  public void setUrl(Expression url) {
+
+    this.url = url;
+  }
+
+  /**
+   * Set the user name.
+   *
+   * @param username The user name.
+   */
+  public void setUsername(Expression username) {
+
+    this.username = username;
+  }
+
+  /**
+   * Construct the properties.
+   *
+   * @param execution     The delegate execution data.
+   * @param searchPathExp The search path string (optional).
+   *
+   * @return The constructed properties.
+   */
+  protected Properties buildProperties(DelegateExecution execution, String searchPathString) {
+
+    final Properties properties = new Properties();
+    properties.setProperty(POOL_ID, this.designation.getValue(execution).toString());
+    properties.setProperty(POOL_PASS, this.password.getValue(execution).toString());
+    properties.setProperty(POOL_SEARCH_PATH, searchPathString);
+    properties.setProperty(POOL_TENANT, execution.getTenantId());
+    properties.setProperty(POOL_URL, this.url.getValue(execution).toString());
+    properties.setProperty(POOL_USER, this.username.getValue(execution).toString());
+
+    return properties;
   }
 
   /**
@@ -44,38 +127,20 @@ public class DatabaseConnectionDelegate extends AbstractDatabaseDelegate {
   @Override
   protected void performExecute(DelegateExecution execution, String name, String id) {
 
-    final String urlValue = this.url.getValue(execution).toString();
-    final String key = this.designation.getValue(execution).toString();
-    final String tenant = execution.getTenantId();
+    final Object searchPathExpr = this.searchPath.getValue(execution);
 
-    Properties info = new Properties();
-    info.setProperty("user", this.username.getValue(execution).toString());
-    info.setProperty("password", this.password.getValue(execution).toString());
-    info.setProperty("tenant", tenant);
+    final String searchPathString = searchPathExpr == null
+      ? null
+      : searchPathExpr.toString();
+
+    final Properties properties = buildProperties(execution, searchPathString);
 
     try {
-      tenantProvisioningService.ensureSchema(tenant); // Need to validate this works correctly with Operaton
-      connectionService.createPool(key, urlValue, info);
+      tenantProvisioningService.ensureSchema(execution.getTenantId());
+      connectionService.createPool(false, properties);
     } catch (Exception e) {
       throw new DelegateExecutionFailure(name, id, e.getMessage(), e);
     }
-  }
-
-  public void setUrl(Expression url) {
-    this.url = url;
-  }
-
-  public void setUsername(Expression username) {
-    this.username = username;
-  }
-
-  public void setPassword(Expression password) {
-    this.password = password;
-  }
-
-  @Override
-  public Class<?> fromTask() {
-    return DatabaseConnectionTask.class;
   }
 
 }

@@ -51,7 +51,7 @@ import tools.jackson.databind.json.JsonMapper;
 @Scope("prototype")
 public class RequestDelegate extends AbstractWorkflowIODelegate {
 
-  @Value("${okapi.url}")
+  @Value("${folio.gateway.url}")
   protected String okapiUrl;
 
   protected HttpService httpService;

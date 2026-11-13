@@ -1,12 +1,14 @@
 package org.folio.rest.camunda.service;
 
+import static org.folio.spring.tenant.service.SchemaService.SCHEMA_REGEXP;
+
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.regex.Pattern;
+import org.folio.rest.camunda.config.FolioDelegateDatabaseConfig;
 import org.folio.spring.tenant.config.JpaPropertiesHibernateConfig;
 import org.folio.spring.tenant.properties.TenantProperties;
 import org.springframework.stereotype.Service;
@@ -57,14 +59,9 @@ public class DatabaseConnectionService {
    */
   public static final String POOL_USER = "user";
 
-  /**
-   * A regular expression pattern for ensuring that the schema name and pool id are safe.
-   *
-   * TODO: make the spring module core pattern public so this can just be called.
-   */ 
-  public static final Pattern SCHEMA_REGEXP = Pattern.compile("[a-z0-9_]+");
-
   private final ConcurrentHashMap<String, HikariDataSource> pools;
+
+  private final FolioDelegateDatabaseConfig folioDelegateDatabaseConfig;
 
   private final JpaPropertiesHibernateConfig jpaPropertiesHibernateConfig;
 
@@ -75,33 +72,41 @@ public class DatabaseConnectionService {
    *
    * @param tenantProperties The Tenant properties configuration.
    */
-  public DatabaseConnectionService(JpaPropertiesHibernateConfig jpaPropertiesHibernateConfig, TenantProperties tenantProperties) {
+  public DatabaseConnectionService(FolioDelegateDatabaseConfig folioDelegateDatabaseConfig, JpaPropertiesHibernateConfig jpaPropertiesHibernateConfig, TenantProperties tenantProperties) {
 
+    this.folioDelegateDatabaseConfig = folioDelegateDatabaseConfig;
     this.jpaPropertiesHibernateConfig = jpaPropertiesHibernateConfig;
     this.tenantProperties = tenantProperties;
 
     this.pools = new ConcurrentHashMap<>();
   }
 
-  public synchronized void createPool(boolean isFolio, Properties info) {
+  /**
+   * Create a database connection pool if it does not already exist.
+   *
+   * @param isFolio TRUE if this is a FOLIO database and requires special handling, FALSE otherwise.
+   * @param info All of the remaining parameters.
+   *
+   * @return The existing or created data source.
+   */
+  public synchronized HikariDataSource createPool(boolean isFolio, Properties info) {
 
-    this.pools.computeIfAbsent(buildPoolId(isFolio, info), key -> {
+    return this.pools.computeIfAbsent(buildPoolId(isFolio, info), key -> {
       final HikariConfig config = new HikariConfig();
-      final String searchPath = buildSearchPath(isFolio, info);
+      final String searchPath = buildSearchPath(isFolio, info, key);
 
       config.setLeakDetectionThreshold(0);
       config.setJdbcUrl(info.getProperty(POOL_URL));
       config.setUsername(info.getProperty(POOL_USER));
       config.setPassword(info.getProperty(POOL_PASS));
+
       // config.setDriverClassName();
-      config.setMaximumPoolSize(8);
+      config.setConnectionTimeout(folioDelegateDatabaseConfig.getConnectionTimeout());
+      config.setIdleTimeout(folioDelegateDatabaseConfig.getIdleTimeout()); 
+      config.setMaximumPoolSize(folioDelegateDatabaseConfig.getMaxPoolSize());
+      config.setMaxLifetime(folioDelegateDatabaseConfig.getMaxLifetime());
       //config.setDataSourceProperties(datasourceProperties);
       //config.addDataSourceProperty("oracle.jdbc.implicitStatementCacheSize", 10);
-
-      config.setConnectionTimeout(30000); // default
-      config.setIdleTimeout(600000); // default
-      config.setMaxLifetime(7200000); // 2 hours as default is 30 minutes
-
 
       // would be nice to just use this but have to ensure properties match
       // config.setDataSourceProperties(info);
@@ -145,9 +150,12 @@ public class DatabaseConnectionService {
     }
 
     if (name.isBlank()) {
-      throw new RuntimeException("TODO: Add a custom exception here for connection id (name/key) is not properly defined");
+      throw new IllegalArgumentException("Database connection pool name must be defined an non-blank.");
     }
-    // TODO: regex sanitize the name.
+
+    if (!SCHEMA_REGEXP.matcher(name).matches()) {
+      throw new IllegalArgumentException("Illegal character in database connection pool name: " + name);
+    }
 
     return isFolio
       ? PREFIX_FOLIO + name
@@ -156,26 +164,27 @@ public class DatabaseConnectionService {
 
   /**
    * Build the search path.
+   * 
+   * This provides the search path as-is, but when isFolio and the path is empty/undefined then the default tenant and schema path is used. 
    *
    * @param isFolio TRUE if this is a FOLIO connection and false otherwise.
    * @param info    An array of all properties.
+   * @param name    The pool name (this should be constructed and might be different from info['id']).
    *
    * @return The constructed search path where a blank string represents no custom search path to be set.
    */
-  private String buildSearchPath(boolean isFolio, Properties info) {
+  private String buildSearchPath(boolean isFolio, Properties info, String name) {
 
-    final String path;
+    String path = info.containsKey(POOL_SEARCH_PATH)
+      ? info.getProperty(POOL_SEARCH_PATH)
+      : "";
 
-    if (info.containsKey(POOL_SEARCH_PATH)) {
-      path = info.getProperty(POOL_SEARCH_PATH);
-    } else if (isFolio) {
+    if (isFolio && path.isBlank()) {
       path = tenantProperties.getDefaultTenant() + "_" + jpaPropertiesHibernateConfig.getDefaultSchema();
-    } else {
-      path = "";
     }
 
     if (!path.isBlank() && !SCHEMA_REGEXP.matcher(path).matches()) {
-      throw new IllegalArgumentException("Illegal character in search path name: " + path);
+      throw new IllegalArgumentException("Illegal character in database connection pool '" + name + "' search path name: " + path);
     }
 
     return path;
